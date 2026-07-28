@@ -1369,26 +1369,39 @@ function drawBackground(terrain){
   const bg = terrain ? ASSET['bg'+terrain.order] : null;
   if(bg && bg.loaded){
     ctx.drawImage(bg, 0, 0, W, H);
-    return;
+  } else {
+    const sky = ctx.createLinearGradient(0,0,0,GROUND_Y);
+    sky.addColorStop(0,'#bfe8ff'); sky.addColorStop(1,'#e8f7ff');
+    ctx.fillStyle = sky; ctx.fillRect(0,0,W,GROUND_Y);
+    const dirt = ctx.createLinearGradient(0,GROUND_Y,0,H);
+    dirt.addColorStop(0,'#8a5a2e'); dirt.addColorStop(1,'#2a1808');
+    ctx.fillStyle = dirt; ctx.fillRect(0,GROUND_Y,W,H-GROUND_Y);
+    ctx.fillStyle = 'rgba(0,0,0,0.18)'; ctx.fillRect(0,GROUND_Y,W,6);
+    ctx.fillStyle = 'rgba(0,0,0,0.08)';
+    for(let i=0;i<50;i++){
+      const x=(i*53.7)%W, y=GROUND_Y+((i*97)%(H-GROUND_Y));
+      ctx.beginPath(); ctx.arc(x,y,2,0,Math.PI*2); ctx.fill();
+    }
   }
-  const sky = ctx.createLinearGradient(0,0,0,GROUND_Y);
-  sky.addColorStop(0,'#bfe8ff'); sky.addColorStop(1,'#e8f7ff');
-  ctx.fillStyle = sky; ctx.fillRect(0,0,W,GROUND_Y);
-  const dirt = ctx.createLinearGradient(0,GROUND_Y,0,H);
-  dirt.addColorStop(0,'#8a5a2e'); dirt.addColorStop(1,'#2a1808');
-  ctx.fillStyle = dirt; ctx.fillRect(0,GROUND_Y,W,H-GROUND_Y);
-  ctx.fillStyle = 'rgba(0,0,0,0.18)'; ctx.fillRect(0,GROUND_Y,W,6);
-  ctx.fillStyle = 'rgba(0,0,0,0.08)';
-  for(let i=0;i<50;i++){
-    const x=(i*53.7)%W, y=GROUND_Y+((i*97)%(H-GROUND_Y));
-    ctx.beginPath(); ctx.arc(x,y,2,0,Math.PI*2); ctx.fill();
-  }
+  // Bottom-half gradient mask: fades from transparent (mid-canvas) down to 15%
+  // black at the very bottom, so the foreground (items/miner/claw) stays readable
+  // against busy background art.
+  const shade = ctx.createLinearGradient(0,H/2,0,H);
+  shade.addColorStop(0,'rgba(0,0,0,0)');
+  shade.addColorStop(1,'rgba(0,0,0,0.15)');
+  ctx.fillStyle = shade; ctx.fillRect(0,H/2,W,H/2);
 }
+// Miner artwork: fixed (hardcoded) size and position, independent of any other
+// scaling math. Bottom edge is pinned to ANCHOR.y+6 (same ground line the old
+// 120x156 art used), so shrinking the size here won't lift the feet off the floor.
+const MINER_IMG_W = 80;
+const MINER_IMG_H = 104;
+const MINER_IMG_X = 410;  // = ANCHOR.x(450) - MINER_IMG_W/2
+const MINER_IMG_Y = -20;  // = ANCHOR.y(78) - 34 + 40 - MINER_IMG_H, keeps feet at y=84
 function drawMiner(){
   const x=ANCHOR.x, y=ANCHOR.y-34;
   if(ASSET.miner && ASSET.miner.loaded){
-    const iw = 120, ih = 156;
-    ctx.drawImage(ASSET.miner, x-iw/2, y-ih+40, iw, ih);
+    ctx.drawImage(ASSET.miner, MINER_IMG_X, MINER_IMG_Y, MINER_IMG_W, MINER_IMG_H);
     return;
   }
   ctx.fillStyle='#5a3a20'; ctx.fillRect(x-60,y+34,120,12);
@@ -1527,8 +1540,8 @@ function drawBlob(r,fill,edge){
 function drawMine(){
   drawBackground(mine.terrain);
   for(const it of mine.items){ if(it.alive || it.carried) drawItemCanvas(it); }
-  for(const hook of mine.hooks){ drawHook(hook); }
   drawMiner();
+  for(const hook of mine.hooks){ drawHook(hook); }
   ctx.textAlign='center'; ctx.font='bold 15px sans-serif';
   for(const p of popups){
     ctx.globalAlpha = Math.max(0,Math.min(1,p.life));
