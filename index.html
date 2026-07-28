@@ -1070,7 +1070,7 @@ function blobSVG(cx,cy,r,fill,edge){
 const canvas = document.getElementById('mineCanvas');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
-const ANCHOR = {x: W/2, y: 78};
+const ANCHOR = {x: W/2, y: 98};
 // The rope pivots from the miner's hand, a bit above ANCHOR. tipFor() and the
 // rope-drawing code MUST use this exact same point, or the physics angle and
 // the visually-drawn line angle disagree (worse at short lengths, converging
@@ -1157,7 +1157,10 @@ function startMining(terrain){
 
   mine = {
     terrain, items, digCount, remaining: digCount,
-    hooks, baseSpeed: 480*winchMult, weightMult: lightMult,
+    hooks,
+    extendSpeed: 480*0.7*winchMult,   // 钩爪下探默认速度 = 原速度(480)的70%
+    retractSpeed: 480*0.6*winchMult,  // 矿石拉回默认速度 = 原速度(480)的60%
+    weightMult: lightMult,
     swingPhase: 0, swingSpeed: 1.25,
     timeLeft: timeTotal, timeTotal: timeTotal, ending:false,
     sessionValue: 0, caughtLog: {}, // name -> {mineral,count}
@@ -1277,7 +1280,7 @@ function updateMine(dt){
       if(a>SWING_LIMIT) a=SWING_LIMIT; if(a<-SWING_LIMIT) a=-SWING_LIMIT;
       hook.angle = a;
     } else if(hook.state==='extend'){
-      hook.length += mine.baseSpeed*dt;
+      hook.length += mine.extendSpeed*dt;
       const tip = tipFor(hook);
       const offscreen = tip.x<-20 || tip.x>W+20 || tip.y>H+20;
       if(!hook.pierce){
@@ -1311,7 +1314,7 @@ function updateMine(dt){
       const group = hook.attachedGroup;
       let totalW = 0;
       group.forEach(it=> totalW += it.weight);
-      const sp = totalW>0 ? mine.baseSpeed/(1+totalW*mine.weightMult*0.9) : mine.baseSpeed*1.6;
+      const sp = totalW>0 ? mine.retractSpeed/(1+totalW*mine.weightMult*0.9) : mine.retractSpeed*1.6;
       hook.length -= sp*dt;
       const tip = tipFor(hook);
       group.forEach((it,i)=>{ it.x = tip.x + i*5; it.y = tip.y - i*5; });
@@ -1393,11 +1396,11 @@ function drawBackground(terrain){
 }
 // Miner artwork: fixed (hardcoded) size and position, independent of any other
 // scaling math. Bottom edge is pinned to ANCHOR.y+6 (same ground line the old
-// 120x156 art used), so shrinking the size here won't lift the feet off the floor.
-const MINER_IMG_W = 80;
+// art used), so shrinking the size here won't lift the feet off the floor.
+const MINER_IMG_W = 70;
 const MINER_IMG_H = 104;
-const MINER_IMG_X = 410;  // = ANCHOR.x(450) - MINER_IMG_W/2
-const MINER_IMG_Y = -20;  // = ANCHOR.y(78) - 34 + 40 - MINER_IMG_H, keeps feet at y=84
+const MINER_IMG_X = 415;  // = ANCHOR.x(450) - MINER_IMG_W/2
+const MINER_IMG_Y = 0;    // = ANCHOR.y(98) - 34 + 40 - MINER_IMG_H, keeps feet at y=104
 function drawMiner(){
   const x=ANCHOR.x, y=ANCHOR.y-34;
   if(ASSET.miner && ASSET.miner.loaded){
