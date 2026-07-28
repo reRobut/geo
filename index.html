@@ -66,12 +66,12 @@ button{font-family:inherit;cursor:pointer;}
   mask-image:linear-gradient(to bottom, #000 0%, #000 55%, transparent 92%);
 }
 .home-title{
-  font-size:52px;font-weight:900;color:var(--gold);
+  font-size:56px;font-weight:900;color:var(--gold);
   letter-spacing:6px;text-shadow:0 4px 0 #3a2200, 0 8px 18px rgba(0,0,0,.5);
   z-index:2;
 }
 .home-sub{
-  font-size:16px;color:var(--cream-dim);letter-spacing:3px;margin-top:6px;z-index:2;
+  font-size:20px;color:var(--cream-dim);letter-spacing:3px;margin-top:6px;z-index:2;
 }
 .home-btns{
   margin-top:38px;display:flex;flex-direction:column;gap:14px;z-index:2;width:280px;
@@ -79,7 +79,7 @@ button{font-family:inherit;cursor:pointer;}
 .home-btn{
   padding:14px 0;border-radius:10px;border:2px solid var(--gold-dark);
   background:linear-gradient(180deg,#4a2f14,#2c1a08);
-  color:var(--cream);font-size:17px;font-weight:700;letter-spacing:2px;
+  color:var(--cream);font-size:21px;font-weight:700;letter-spacing:2px;
   box-shadow:0 4px 0 #140c04;transition:transform .1s;
 }
 .home-btn:hover{background:linear-gradient(180deg,#5c3c1a,#3a2410);}
@@ -92,11 +92,11 @@ button{font-family:inherit;cursor:pointer;}
 .home-btn:disabled{opacity:.4;cursor:not-allowed;}
 #home-sign{
   position:absolute;bottom:12px;right:18px;color:var(--cream-dim);
-  font-size:12px;letter-spacing:1px;opacity:.75;z-index:2;
+  font-size:16px;letter-spacing:1px;opacity:.75;z-index:2;
 }
 #testmode-toggle{
   position:absolute;bottom:12px;left:18px;color:var(--cream-dim);
-  font-size:11px;letter-spacing:.5px;opacity:.55;z-index:2;
+  font-size:15px;letter-spacing:.5px;opacity:.55;z-index:2;
   border:1px solid var(--wood-edge2);border-radius:12px;padding:4px 10px;
   background:rgba(0,0,0,.2);
 }
@@ -110,10 +110,10 @@ button{font-family:inherit;cursor:pointer;}
 #lang-menu.show{display:flex;}
 #lang-menu .lang-opt{
   padding:10px 14px;border-radius:6px;background:transparent;border:none;color:var(--cream);
-  text-align:left;font-size:14px;
+  text-align:left;font-size:18px;
 }
 #lang-menu .lang-opt:hover{background:var(--bg-panel2);}
-#lang-menu .lang-title{font-size:13px;color:var(--cream-dim);padding:4px 10px;}
+#lang-menu .lang-title{font-size:17px;color:var(--cream-dim);padding:4px 10px;}
 
 /* ---------- MAIN HUB ---------- */
 #screen-main{}
@@ -125,22 +125,22 @@ button{font-family:inherit;cursor:pointer;}
 #gold-badge{
   display:flex;align-items:center;gap:8px;
   background:rgba(0,0,0,.3);border:2px solid var(--gold-dark);border-radius:20px;
-  padding:6px 16px;font-weight:800;color:var(--gold);font-size:16px;
+  padding:6px 16px;font-weight:800;color:var(--gold);font-size:20px;
 }
 #gold-badge .coin{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #fff6cf, var(--gold) 60%, var(--gold-dark));display:inline-block;}
 #tabs{display:flex;gap:6px;}
 .tab-btn{
   padding:9px 20px;border-radius:8px 8px 0 0;border:2px solid var(--wood-edge2);border-bottom:none;
-  background:var(--bg-panel2);color:var(--cream-dim);font-weight:700;font-size:14px;
+  background:var(--bg-panel2);color:var(--cream-dim);font-weight:700;font-size:18px;
 }
 .tab-btn.active{background:var(--bg-deep);color:var(--gold);border-color:var(--gold-dark);}
 #home-exit-btn{
   background:none;border:1px solid var(--wood-edge2);color:var(--cream-dim);border-radius:6px;
-  padding:6px 12px;font-size:12px;
+  padding:6px 12px;font-size:16px;
 }
 #tab-content{flex:1;overflow-y:auto;padding:18px 22px;background:var(--bg-deep);max-width:1040px;width:100%;margin:0 auto;box-sizing:border-box;}
-.panel-title{font-size:20px;font-weight:800;color:var(--gold);margin:0 0 4px;}
-.panel-desc{font-size:13px;color:var(--cream-dim);margin:0 0 16px;}
+.panel-title{font-size:24px;font-weight:800;color:var(--gold);margin:0 0 4px;}
+.panel-desc{font-size:17px;color:var(--cream-dim);margin:0 0 16px;}
 
 /* map */
 #map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;align-items:stretch;}
@@ -150,33 +150,33 @@ button{font-family:inherit;cursor:pointer;}
   display:flex;flex-direction:column;
 }
 .terrain-card.locked{opacity:.55;filter:grayscale(.4);}
-.terrain-card h3{margin:0 0 4px;font-size:17px;color:var(--cream);}
-.terrain-card .tag{font-size:11px;color:var(--gold);background:rgba(255,207,73,.12);border:1px solid var(--gold-dark);border-radius:10px;padding:2px 8px;display:inline-block;margin-bottom:6px;align-self:flex-start;}
-.terrain-card .meta{font-size:12.5px;color:var(--cream-dim);line-height:1.7;}
+.terrain-card h3{margin:0 0 4px;font-size:21px;color:var(--cream);}
+.terrain-card .tag{font-size:15px;color:var(--gold);background:rgba(255,207,73,.12);border:1px solid var(--gold-dark);border-radius:10px;padding:2px 8px;display:inline-block;margin-bottom:6px;align-self:flex-start;}
+.terrain-card .meta{font-size:16.5px;color:var(--cream-dim);line-height:1.7;}
 .terrain-card .enter-btn{
   margin-top:auto;width:100%;padding:8px;border-radius:7px;border:2px solid var(--gold-dark);
-  background:linear-gradient(180deg,#ffe27a,#ffb92e);color:#4a2c00;font-weight:800;font-size:13px;
+  background:linear-gradient(180deg,#ffe27a,#ffb92e);color:#4a2c00;font-weight:800;font-size:17px;
 }
 .terrain-card .enter-btn:disabled{background:#3a3226;color:#8a8065;border-color:#4a4030;}
-.terrain-card .lock-note{font-size:12px;color:var(--danger);margin-top:8px;}
+.terrain-card .lock-note{font-size:16px;color:var(--danger);margin-top:8px;}
 
 /* shop */
 #shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px;}
 .shop-card{background:var(--bg-panel);border:2px solid var(--wood-edge2);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;}
-.shop-card h3{margin:0 0 6px;font-size:15.5px;color:var(--cream);display:flex;justify-content:space-between;gap:8px;}
-.shop-card p{margin:0 0 10px;font-size:12.5px;color:var(--cream-dim);line-height:1.6;flex:1;}
-.shop-card .buy-btn{width:100%;padding:8px;border-radius:7px;border:2px solid var(--gold-dark);background:linear-gradient(180deg,#ffe27a,#ffb92e);color:#4a2c00;font-weight:800;font-size:13px;margin-top:auto;}
+.shop-card h3{margin:0 0 6px;font-size:19.5px;color:var(--cream);display:flex;justify-content:space-between;gap:8px;}
+.shop-card p{margin:0 0 10px;font-size:16.5px;color:var(--cream-dim);line-height:1.6;flex:1;}
+.shop-card .buy-btn{width:100%;padding:8px;border-radius:7px;border:2px solid var(--gold-dark);background:linear-gradient(180deg,#ffe27a,#ffb92e);color:#4a2c00;font-weight:800;font-size:17px;margin-top:auto;}
 .shop-card .buy-btn.owned{background:#2c3a2c;color:var(--ok);border-color:#3d5a3d;cursor:default;}
 .shop-card .buy-btn:disabled:not(.owned){background:#3a3226;color:#8a8065;border-color:#4a4030;}
 .price-tag{color:var(--gold);font-weight:800;white-space:nowrap;}
-.shop-section-title{font-size:15px;font-weight:800;color:var(--cream);margin:4px 0 10px;border-left:3px solid var(--gold);padding-left:8px;}
+.shop-section-title{font-size:19px;font-weight:800;color:var(--cream);margin:4px 0 10px;border-left:3px solid var(--gold);padding-left:8px;}
 #hookslot-card{background:var(--bg-panel);border:2px solid var(--wood-edge2);border-radius:12px;padding:14px 16px;margin-bottom:14px;}
 #claw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .claw-slot-card{background:var(--bg-panel);border:2px solid var(--wood-edge2);border-radius:12px;padding:12px 14px;}
 .claw-slot-card.disabled{opacity:.4;}
-.claw-slot-card h4{margin:0 0 8px;font-size:13.5px;color:var(--cream);}
-.claw-upg-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:12px;}
-.claw-upg-row button{padding:5px 10px;border-radius:6px;border:1px solid var(--gold-dark);background:rgba(255,207,73,.12);color:var(--gold);font-size:11px;}
+.claw-slot-card h4{margin:0 0 8px;font-size:17.5px;color:var(--cream);}
+.claw-upg-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:16px;}
+.claw-upg-row button{padding:5px 10px;border-radius:6px;border:1px solid var(--gold-dark);background:rgba(255,207,73,.12);color:var(--gold);font-size:15px;}
 .claw-upg-row button.owned{background:#2c3a2c;color:var(--ok);border-color:#3d5a3d;}
 .claw-upg-row button:disabled:not(.owned){opacity:.4;}
 .dot-pierce{color:var(--pierce);}
@@ -189,14 +189,14 @@ button{font-family:inherit;cursor:pointer;}
 .wh-item.locked-item{border-color:var(--gold-dark);}
 .icon-wrap{position:relative;display:block;}
 .wh-item .icon{width:38px;height:38px;margin:0 auto 6px;}
-.wh-item .name{font-size:12px;color:var(--cream);margin-bottom:2px;}
-.wh-item .count{font-size:11px;color:var(--cream-dim);}
+.wh-item .name{font-size:16px;color:var(--cream);margin-bottom:2px;}
+.wh-item .count{font-size:15px;color:var(--cream-dim);}
 .wh-item .btn-row{display:flex;gap:4px;margin-top:6px;}
-.wh-item .btn-row button{flex:1;padding:5px 2px;font-size:10px;border-radius:6px;border:1px solid var(--gold-dark);background:rgba(255,207,73,.12);color:var(--gold);}
+.wh-item .btn-row button{flex:1;padding:5px 2px;font-size:14px;border-radius:6px;border:1px solid var(--gold-dark);background:rgba(255,207,73,.12);color:var(--gold);}
 .wh-item .btn-row button:disabled{opacity:.35;}
-.lock-toggle{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:5px;border:1px solid var(--wood-edge2);background:rgba(0,0,0,.35);font-size:11px;color:var(--cream-dim);display:flex;align-items:center;justify-content:center;}
+.lock-toggle{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:5px;border:1px solid var(--wood-edge2);background:rgba(0,0,0,.35);font-size:15px;color:var(--cream-dim);display:flex;align-items:center;justify-content:center;}
 .lock-toggle.locked{background:var(--gold-dark);color:#3a2200;}
-#wh-empty{color:var(--cream-dim);font-size:13px;padding:30px;text-align:center;}
+#wh-empty{color:var(--cream-dim);font-size:17px;padding:30px;text-align:center;}
 
 /* dex */
 .dex-section{margin-bottom:24px;position:relative;}
@@ -206,24 +206,24 @@ button{font-family:inherit;cursor:pointer;}
   border-bottom:2px solid var(--wood-edge2);
 }
 .dex-section-title .idx{
-  font-size:11px;font-weight:800;color:#3a2200;background:var(--gold);
+  font-size:15px;font-weight:800;color:#3a2200;background:var(--gold);
   border-radius:10px;padding:2px 9px;flex-shrink:0;
 }
-.dex-section-title .tname{font-size:14.5px;font-weight:800;color:var(--cream);}
-.dex-section-title .tcount{font-size:11.5px;color:var(--cream-dim);margin-left:auto;}
+.dex-section-title .tname{font-size:18.5px;font-weight:800;color:var(--cream);}
+.dex-section-title .tcount{font-size:15.5px;color:var(--cream-dim);margin-left:auto;}
 .dex-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;position:relative;}
 #dex-tooltip{
-  display:none;position:absolute;z-index:15;max-width:220px;pointer-events:none;
+  display:none;position:fixed;z-index:15;max-width:220px;pointer-events:none;
   background:var(--bg-panel2);border:1px solid var(--gold-dark);border-radius:8px;
-  padding:8px 10px;font-size:11.5px;color:var(--cream);box-shadow:0 6px 16px rgba(0,0,0,.5);line-height:1.5;
+  padding:8px 10px;font-size:15.5px;color:var(--cream);box-shadow:0 6px 16px rgba(0,0,0,.5);line-height:1.5;
 }
-#dex-tooltip b{color:var(--gold);font-size:12.5px;}
+#dex-tooltip b{color:var(--gold);font-size:16.5px;}
 .dex-tooltip-formula{color:var(--cream-dim);margin-top:2px;}
-.dex-tooltip-note{color:var(--cream-dim);margin-top:4px;font-size:11px;}
+.dex-tooltip-note{color:var(--cream-dim);margin-top:4px;font-size:15px;}
 .dex-item{background:var(--bg-panel);border:2px solid var(--wood-edge2);border-radius:10px;padding:8px 6px;text-align:center;position:relative;}
 .dex-item.locked{filter:grayscale(1) brightness(.5);}
 .dex-item .icon{width:34px;height:34px;margin:0 auto 4px;}
-.dex-item .name{font-size:10.5px;color:var(--cream);}
+.dex-item .name{font-size:14.5px;color:var(--cream);}
 .dex-item .rar{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;}
 #dex-detail{
   position:absolute;top:0;right:0;bottom:0;left:0;background:rgba(10,6,3,.85);display:none;align-items:center;justify-content:center;z-index:20;
@@ -232,9 +232,9 @@ button{font-family:inherit;cursor:pointer;}
 #dex-detail-card{background:var(--bg-panel);border:3px solid var(--gold-dark);border-radius:14px;padding:22px 26px;width:320px;text-align:center;}
 #dex-detail-card .icon{width:70px;height:70px;margin:0 auto 10px;}
 #dex-detail-card h3{margin:0 0 4px;color:var(--cream);}
-#dex-detail-card .rarline{font-size:12px;margin-bottom:10px;}
-#dex-detail-card .row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--cream-dim);padding:4px 0;border-top:1px solid var(--wood-edge);}
-#dex-detail-card .note{font-size:11.5px;color:var(--cream-dim);margin-top:10px;line-height:1.6;}
+#dex-detail-card .rarline{font-size:16px;margin-bottom:10px;}
+#dex-detail-card .row{display:flex;justify-content:space-between;font-size:16.5px;color:var(--cream-dim);padding:4px 0;border-top:1px solid var(--wood-edge);}
+#dex-detail-card .note{font-size:15.5px;color:var(--cream-dim);margin-top:10px;line-height:1.6;}
 #dex-detail-close{margin-top:14px;padding:7px 20px;border-radius:7px;border:1px solid var(--wood-edge2);background:var(--bg-panel2);color:var(--cream);}
 
 /* ---------- MINE SCREEN ---------- */
@@ -251,47 +251,47 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
   position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;
   padding:10px 16px;pointer-events:none;font-weight:700;
 }
-.mine-box{background:rgba(20,12,6,.6);border:2px solid var(--gold-dark);border-radius:8px;padding:6px 14px;font-size:14px;color:var(--cream);text-shadow:0 2px 3px rgba(0,0,0,.6);text-align:center;}
-.mine-box .big{font-size:18px;color:var(--gold);}
+.mine-box{background:rgba(20,12,6,.6);border:2px solid var(--gold-dark);border-radius:8px;padding:6px 14px;font-size:18px;color:var(--cream);text-shadow:0 2px 3px rgba(0,0,0,.6);text-align:center;}
+.mine-box .big{font-size:22px;color:var(--gold);}
 #mine-hud-right{display:flex;align-items:center;gap:8px;pointer-events:auto;}
 #mine-leave-btn{
   padding:9px 14px;border-radius:8px;border:2px solid var(--wood-edge2);
-  background:rgba(20,12,6,.7);color:var(--cream);font-size:12.5px;font-weight:700;
+  background:rgba(20,12,6,.7);color:var(--cream);font-size:16.5px;font-weight:700;
   text-shadow:0 2px 3px rgba(0,0,0,.6);
 }
-#mine-suit{background:rgba(20,12,6,.6);border:2px solid var(--ok);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--ok);text-align:center;}
+#mine-suit{background:rgba(20,12,6,.6);border:2px solid var(--ok);border-radius:8px;padding:6px 12px;font-size:16px;color:var(--ok);text-align:center;}
 #mine-timer{
-  position:absolute;bottom:16px;right:16px;width:92px;height:92px;border-radius:50%;
+  position:absolute;bottom:16px;right:16px;width:184px;height:184px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   border:3px solid var(--gold-dark);box-shadow:0 4px 14px rgba(0,0,0,.55);
 }
 #mine-timer-inner{
-  width:74px;height:74px;border-radius:50%;background:#160f0a;
+  width:148px;height:148px;border-radius:50%;background:#160f0a;
   display:flex;align-items:center;justify-content:center;
-  font-size:26px;font-weight:800;color:var(--gold);
+  font-size:60px;font-weight:800;color:var(--gold);
   text-shadow:0 2px 3px rgba(0,0,0,.6);
 }
 #mine-timer.urgent{border-color:var(--danger);}
 #mine-timer.urgent #mine-timer-inner{color:var(--danger);}
-#mine-hint{position:absolute;bottom:20px;left:0;right:130px;text-align:center;color:#f4e5c0;font-size:12.5px;opacity:.85;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.6);}
+#mine-hint{position:absolute;bottom:20px;left:0;right:130px;text-align:center;color:#f4e5c0;font-size:16.5px;opacity:.85;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.6);}
 #mine-result,#mine-faint{
   position:absolute;top:0;right:0;bottom:0;left:0;background:rgba(10,6,3,.88);display:none;align-items:center;justify-content:center;
 }
 #mine-result.show,#mine-faint.show{display:flex;}
 #mine-result-card{background:var(--bg-panel);border:3px solid var(--gold-dark);border-radius:16px;padding:24px 30px;width:460px;max-height:520px;display:flex;flex-direction:column;}
 #mine-result-card h2{margin:0 0 4px;color:var(--gold);text-align:center;}
-#mine-result-sub{text-align:center;color:var(--cream-dim);font-size:13px;margin-bottom:14px;}
+#mine-result-sub{text-align:center;color:var(--cream-dim);font-size:17px;margin-bottom:14px;}
 #mine-result-list{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
 .result-chip{background:var(--bg-panel2);border:1px solid var(--wood-edge2);border-radius:8px;padding:6px;text-align:center;position:relative;}
 .result-chip .icon{width:28px;height:28px;margin:0 auto 3px;}
-.result-chip .n{font-size:10px;color:var(--cream);}
-.result-chip .v{font-size:9.5px;color:var(--gold-dark);}
-.result-chip .cnt{position:absolute;top:2px;right:4px;font-size:10px;color:var(--gold);font-weight:800;}
+.result-chip .n{font-size:14px;color:var(--cream);}
+.result-chip .v{font-size:13.5px;color:var(--gold-dark);}
+.result-chip .cnt{position:absolute;top:2px;right:4px;font-size:14px;color:var(--gold);font-weight:800;}
 #mine-result-btn{padding:10px;border-radius:9px;border:2px solid var(--gold-dark);background:linear-gradient(180deg,#ffe27a,#ffb92e);color:#4a2c00;font-weight:800;}
 #mine-faint-card{background:var(--bg-panel);border:3px solid var(--danger);border-radius:16px;padding:28px 32px;width:380px;text-align:center;}
-#mine-faint-card .skull{font-size:44px;margin-bottom:10px;}
+#mine-faint-card .skull{font-size:48px;margin-bottom:10px;}
 #mine-faint-card h2{margin:0 0 10px;color:var(--danger);}
-#mine-faint-card p{color:var(--cream-dim);font-size:13.5px;line-height:1.7;margin:0 0 18px;}
+#mine-faint-card p{color:var(--cream-dim);font-size:17.5px;line-height:1.7;margin:0 0 18px;}
 #mine-faint-btn{padding:10px 24px;border-radius:9px;border:2px solid var(--gold-dark);background:linear-gradient(180deg,#ffe27a,#ffb92e);color:#4a2c00;font-weight:800;}
 
 </style>
@@ -374,7 +374,7 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
 
 <script>
 const MINERALS = [{"name": "铁矿石", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 8, "note": "岩石/矿石统称，无单一矿物", "icon": "min_001.png"}, {"name": "铜矿石", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 12, "note": "岩石/矿石统称，无单一矿物", "icon": "min_002.png"}, {"name": "铝土矿", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 10, "note": "多种氢氧化铝矿物混合岩石", "icon": "min_003.png"}, {"name": "锡石", "category": "工业矿物", "rarity": "少见", "formula": "SnO₂", "price": 20, "note": null, "icon": "min_004.png"}, {"name": "方铅矿", "category": "工业矿物", "rarity": "普通", "formula": "PbS", "price": 10, "note": null, "icon": "min_005.png"}, {"name": "闪锌矿", "category": "工业矿物", "rarity": "普通", "formula": "ZnS", "price": 10, "note": null, "icon": "min_006.png"}, {"name": "辉钼矿", "category": "工业矿物", "rarity": "少见", "formula": "MoS₂", "price": 25, "note": null, "icon": "min_007.png"}, {"name": "镍矿", "category": "工业矿物", "rarity": "少见", "formula": null, "price": 22, "note": "岩石/矿石统称，无单一矿物", "icon": "min_008.png"}, {"name": "钨矿", "category": "工业矿物", "rarity": "稀有", "formula": null, "price": 45, "note": "黑钨矿/白钨矿等统称，无单一矿物", "icon": "min_009.png"}, {"name": "金矿脉", "category": "工业矿物", "rarity": "稀有", "formula": null, "price": 80, "note": "自然金与围岩混合，无单一化学式", "icon": "min_010.png"}, {"name": "银矿脉", "category": "工业矿物", "rarity": "少见", "formula": null, "price": 40, "note": "自然银与围岩混合，无单一化学式", "icon": "min_011.png"}, {"name": "铬铁矿", "category": "工业矿物", "rarity": "少见", "formula": "FeCr₂O₄", "price": 28, "note": null, "icon": "min_012.png"}, {"name": "锰矿", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 15, "note": "多种锰氧化物矿石统称，无单一矿物", "icon": "min_013.png"}, {"name": "煤", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 5, "note": "有机质（植物遗骸炭化），无固定化学式", "icon": "min_014.png"}, {"name": "褐煤", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 4, "note": "有机质，无固定化学式", "icon": "min_015.png"}, {"name": "石油沥青", "category": "工业矿物", "rarity": "少见", "formula": null, "price": 18, "note": "有机质混合物，无固定化学式", "icon": "min_016.png"}, {"name": "油页岩", "category": "工业矿物", "rarity": "少见", "formula": null, "price": 16, "note": "有机质与岩石混合物，无固定化学式", "icon": "min_017.png"}, {"name": "铀矿", "category": "工业矿物", "rarity": "稀有", "formula": null, "price": 90, "note": "采集需特殊防护装备；沥青铀矿等统称，主要成分UO₂", "icon": "min_018.png"}, {"name": "石灰石", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 3, "note": "地形基底矿：平原（第1档，最低价）；岩石，主要成分CaCO₃", "icon": "min_019.png"}, {"name": "石膏", "category": "工业矿物", "rarity": "普通", "formula": "CaSO₄·2H₂O", "price": 4, "note": null, "icon": "min_020.png"}, {"name": "花岗岩", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 8, "note": "地形基底矿：山地（第3档）；石英+长石+云母等矿物混合岩石", "icon": "min_021.png"}, {"name": "大理岩", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 18, "note": "地形基底矿：海底（第5档）；变质石灰岩，主要成分CaCO₃", "icon": "min_022.png"}, {"name": "石英砂", "category": "工业矿物", "rarity": "普通", "formula": "SiO₂", "price": 12, "note": "地形基底矿：沙漠（第4档），同时也是山地的常见矿，两边统一定价", "icon": "min_023.png"}, {"name": "高岭土", "category": "工业矿物", "rarity": "普通", "formula": "Al₂Si₂O₅(OH)₄", "price": 5, "note": null, "icon": "min_024.png"}, {"name": "萤石", "category": "工业矿物", "rarity": "少见", "formula": "CaF₂", "price": 18, "note": null, "icon": "min_025.png"}, {"name": "重晶石", "category": "工业矿物", "rarity": "普通", "formula": "BaSO₄", "price": 10, "note": null, "icon": "min_026.png"}, {"name": "磷灰石", "category": "工业矿物", "rarity": "普通", "formula": "Ca₅(PO₄)₃(F,Cl,OH)", "price": 8, "note": null, "icon": "min_027.png"}, {"name": "硫磺", "category": "工业矿物", "rarity": "普通", "formula": "S", "price": 6, "note": null, "icon": "min_028.png"}, {"name": "岩盐", "category": "工业矿物", "rarity": "普通", "formula": "NaCl", "price": 4, "note": null, "icon": "min_029.png"}, {"name": "石棉", "category": "工业矿物", "rarity": "少见", "formula": null, "price": 15, "note": "采集需防护装备；矿物族统称（常见为温石棉），无单一化学式", "icon": "min_030.png"}, {"name": "云母", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 7, "note": "矿物族统称（白云母/黑云母等），无单一化学式", "icon": "min_031.png"}, {"name": "滑石", "category": "工业矿物", "rarity": "普通", "formula": "Mg₃Si₄O₁₀(OH)₂", "price": 5, "note": null, "icon": "min_032.png"}, {"name": "硼砂", "category": "工业矿物", "rarity": "少见", "formula": "Na₂B₄O₇·10H₂O", "price": 14, "note": null, "icon": "min_033.png"}, {"name": "黑曜岩", "category": "工业矿物", "rarity": "少见", "formula": null, "price": 25, "note": "火山玻璃，非结晶矿物，无固定化学式", "icon": "min_034.png"}, {"name": "泥煤", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 6, "note": "地形基底矿：沼泽（第2档）；有机质，无固定化学式", "icon": "min_035.png"}, {"name": "褐铁矿", "category": "工业矿物", "rarity": "普通", "formula": "FeO(OH)·nH₂O", "price": 12, "note": null, "icon": "min_036.png"}, {"name": "冰", "category": "工业矿物", "rarity": "普通", "formula": "H₂O", "price": 25, "note": "地形基底矿：极地（第6档）；天然、无机、结晶、成分固定，是矿物学承认的正式矿物", "icon": "min_037.png"}, {"name": "火山岩渣", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 35, "note": "地形基底矿：火山（第7档）；多孔玄武质火山岩，无固定化学式", "icon": "min_038.png"}, {"name": "脉石", "category": "工业矿物", "rarity": "普通", "formula": null, "price": 50, "note": "地形基底矿：深层洞穴（第8档，终局地形，连基底都值钱）；矿脉里包裹矿石的无价值围岩，真实矿业术语，成分常为脉石英或方解石，无单一化学式", "icon": "min_039.png"}, {"name": "钻石", "category": "常见宝石矿物", "rarity": "传说", "formula": "C", "price": 3000, "note": "现实中主要产自金伯利岩筒（火山成因），设为火山区顶级稀有产出", "icon": "min_040.png"}, {"name": "红宝石", "category": "常见宝石矿物", "rarity": "史诗", "formula": "Al₂O₃", "price": 1800, "note": "刚玉，Cr致色", "icon": "min_041.png"}, {"name": "蓝宝石", "category": "常见宝石矿物", "rarity": "史诗", "formula": "Al₂O₃", "price": 1600, "note": "刚玉，Fe/Ti致色", "icon": "min_042.png"}, {"name": "祖母绿", "category": "常见宝石矿物", "rarity": "史诗", "formula": "Be₃Al₂(SiO₃)₆", "price": 2000, "note": "绿柱石，Cr致色", "icon": "min_043.png"}, {"name": "金绿宝石（猫眼石）", "category": "常见宝石矿物", "rarity": "史诗", "formula": "BeAl₂O₄", "price": 1500, "note": "多产自冲积砂矿，设为沼泽湿地稀有产出", "icon": "min_044.png"}, {"name": "碧玺", "category": "常见宝石矿物", "rarity": "稀有", "formula": "NaFe₃Al₆(BO₃)₃Si₆O₁₈(OH)₄（通式）", "price": 400, "note": "电气石族，成分变化大，只有通式", "icon": "min_045.png"}, {"name": "坦桑石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Ca₂Al₃(SiO₄)(Si₂O₇)O(OH)", "price": 600, "note": "黝帘石的蓝色变种", "icon": "min_046.png"}, {"name": "尖晶石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "MgAl₂O₄", "price": 350, "note": null, "icon": "min_047.png"}, {"name": "石榴石", "category": "常见宝石矿物", "rarity": "少见", "formula": "X₃Y₂(SiO₄)₃（通式）", "price": 150, "note": "矿物族统称，只有通式", "icon": "min_048.png"}, {"name": "托帕石", "category": "常见宝石矿物", "rarity": "少见", "formula": "Al₂SiO₄(F,OH)₂", "price": 180, "note": null, "icon": "min_049.png"}, {"name": "橄榄石", "category": "常见宝石矿物", "rarity": "少见", "formula": "(Mg,Fe)₂SiO₄", "price": 120, "note": null, "icon": "min_050.png"}, {"name": "海蓝宝石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 350, "note": "绿柱石的蓝色变种", "icon": "min_051.png"}, {"name": "摩根石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 380, "note": "绿柱石的粉色变种（含锰）", "icon": "min_052.png"}, {"name": "月光石", "category": "常见宝石矿物", "rarity": "少见", "formula": "KAlSi₃O₈", "price": 140, "note": "钾长石类", "icon": "min_053.png"}, {"name": "拉长石", "category": "常见宝石矿物", "rarity": "少见", "formula": "(Ca,Na)(Al,Si)₄O₈（通式）", "price": 130, "note": "长石族固溶体，只有通式", "icon": "min_054.png"}, {"name": "紫水晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 60, "note": "石英", "icon": "min_055.png"}, {"name": "烟晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 50, "note": "石英", "icon": "min_056.png"}, {"name": "白水晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 30, "note": "石英", "icon": "min_057.png"}, {"name": "黄水晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 55, "note": "石英", "icon": "min_058.png"}, {"name": "玫瑰石英", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 45, "note": "石英", "icon": "min_059.png"}, {"name": "萤石晶簇", "category": "常见宝石矿物", "rarity": "少见", "formula": "CaF₂", "price": 90, "note": null, "icon": "min_060.png"}, {"name": "方解石晶体", "category": "常见宝石矿物", "rarity": "普通", "formula": "CaCO₃", "price": 25, "note": null, "icon": "min_061.png"}, {"name": "天青石", "category": "常见宝石矿物", "rarity": "少见", "formula": "SrSO₄", "price": 95, "note": null, "icon": "min_062.png"}, {"name": "蛋白石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "SiO₂·nH₂O", "price": 500, "note": "非晶质含水二氧化硅", "icon": "min_063.png"}, {"name": "翡翠", "category": "常见宝石矿物", "rarity": "史诗", "formula": "NaAlSi₂O₆", "price": 2500, "note": "硬玉，多产自变质岩带，设为深层洞穴稀有产出", "icon": "min_064.png"}, {"name": "和田玉", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Ca₂(Mg,Fe)₅Si₈O₂₂(OH)₂", "price": 700, "note": "软玉，透闪石为主", "icon": "min_065.png"}, {"name": "青金石", "category": "常见宝石矿物", "rarity": "稀有", "formula": null, "price": 320, "note": "岩石（青金石矿物+方解石+黄铁矿混合），无单一化学式", "icon": "min_066.png"}, {"name": "绿松石", "category": "常见宝石矿物", "rarity": "少见", "formula": "CuAl₆(PO₄)₄(OH)₈·4H₂O", "price": 160, "note": null, "icon": "min_067.png"}, {"name": "玛瑙", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 40, "note": "隐晶质石英", "icon": "min_068.png"}, {"name": "孔雀石", "category": "常见宝石矿物", "rarity": "普通", "formula": "Cu₂CO₃(OH)₂", "price": 35, "note": "与铜矿同源，可设计双属性", "icon": "min_069.png"}, {"name": "虎眼石", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 70, "note": "石英交代青石棉纤维", "icon": "min_070.png"}, {"name": "珍珠母", "category": "常见宝石矿物", "rarity": "少见", "formula": null, "price": 110, "note": "文石+有机质的生物矿化复合材料，无单一化学式", "icon": "min_071.png"}, {"name": "冰洲石", "category": "常见宝石矿物", "rarity": "少见", "formula": "CaCO₃", "price": 20, "note": "方解石的透明观赏变种，因产自冰岛得名，历史上用于研究光学双折射现象", "icon": "min_072.png"}, {"name": "三叶虫化石", "category": "化石", "rarity": "少见", "formula": null, "price": 200, "note": "生物遗骸矿化产物，成分随埋藏环境变化，无固定化学式", "icon": "min_073.png"}, {"name": "菊石化石", "category": "化石", "rarity": "少见", "formula": null, "price": 180, "note": "同上，无固定化学式", "icon": "min_074.png"}, {"name": "恐龙骨骼化石", "category": "化石", "rarity": "史诗", "formula": null, "price": 2500, "note": "同上，无固定化学式", "icon": "min_075.png"}, {"name": "恐龙蛋化石", "category": "化石", "rarity": "史诗", "formula": null, "price": 3000, "note": "同上，无固定化学式", "icon": "min_076.png"}, {"name": "猛犸象牙化石", "category": "化石", "rarity": "稀有", "formula": null, "price": 900, "note": "同上，无固定化学式", "icon": "min_077.png"}, {"name": "琥珀(含虫)", "category": "化石", "rarity": "稀有", "formula": null, "price": 650, "note": "树脂化石，有机质，无固定化学式", "icon": "min_078.png"}, {"name": "鱼化石", "category": "化石", "rarity": "普通", "formula": null, "price": 90, "note": "同上，无固定化学式", "icon": "min_079.png"}, {"name": "蕨类植物化石", "category": "化石", "rarity": "普通", "formula": null, "price": 60, "note": "同上，无固定化学式", "icon": "min_080.png"}, {"name": "贝壳化石", "category": "化石", "rarity": "普通", "formula": null, "price": 40, "note": "同上，无固定化学式", "icon": "min_081.png"}, {"name": "始祖鸟化石", "category": "化石", "rarity": "传说", "formula": null, "price": 5000, "note": "同上，无固定化学式", "icon": "min_082.png"}, {"name": "剑齿虎化石", "category": "化石", "rarity": "史诗", "formula": null, "price": 2200, "note": "同上，无固定化学式", "icon": "min_083.png"}, {"name": "三角龙头骨化石", "category": "化石", "rarity": "传说", "formula": null, "price": 4500, "note": "同上，无固定化学式", "icon": "min_084.png"}, {"name": "珊瑚化石", "category": "化石", "rarity": "普通", "formula": null, "price": 55, "note": "同上，无固定化学式", "icon": "min_085.png"}, {"name": "硅化木", "category": "化石", "rarity": "少见", "formula": "SiO₂（交代产物）", "price": 220, "note": "木质被二氧化硅交代，主体可视为SiO₂但严格不算矿物", "icon": "min_086.png"}, {"name": "磷叶石", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "Zn₂(Fe,Mn)(PO₄)₂·4H₂O", "price": 1500, "note": "极易碎，采集失败率高", "icon": "min_087.png"}, {"name": "辰砂", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "HgS", "price": 1300, "note": "含毒液，需防护装备采集", "icon": "min_088.png"}, {"name": "圆粒金刚石(波札)", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "C", "price": 5000, "note": null, "icon": "min_089.png"}, {"name": "黄钻", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "C", "price": 4000, "note": "含氮致色的钻石变种", "icon": "min_090.png"}, {"name": "红钻石", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "C", "price": 4200, "note": "晶格缺陷致色的钻石变种", "icon": "min_091.png"}, {"name": "金红石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "TiO₂", "price": 550, "note": null, "icon": "min_092.png"}, {"name": "变石(亚历山大变石)", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "BeAl₂O₄", "price": 2000, "note": "金绿宝石的变色变种", "icon": "min_093.png"}, {"name": "蓝锥矿", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "BaTiSi₃O₉", "price": 1800, "note": null, "icon": "min_094.png"}, {"name": "帕德玛刚玉", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "Al₂O₃", "price": 3500, "note": "刚玉的橙粉色变种", "icon": "min_095.png"}, {"name": "透绿柱石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 450, "note": "绿柱石的无色变种", "icon": "min_096.png"}, {"name": "红绿柱石", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "Be₃Al₂(SiO₃)₆", "price": 1600, "note": "绿柱石的红色变种", "icon": "min_097.png"}, {"name": "金绿柱石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 500, "note": "绿柱石的金黄色变种", "icon": "min_098.png"}, {"name": "南极石", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "CaCl₂·6H₂O", "price": 2800, "note": "仅极寒环境生成", "icon": "min_099.png"}, {"name": "异极矿", "category": "珍稀晶体矿物", "rarity": "少见", "formula": "Zn₄Si₂O₇(OH)₂·H₂O", "price": 280, "note": null, "icon": "min_100.png"}, {"name": "蓝柱石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "BeAlSiO₄(OH)", "price": 600, "note": null, "icon": "min_101.png"}, {"name": "幽灵水晶", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "SiO₂", "price": 1900, "note": "幻影水晶，本质仍是石英", "icon": "min_102.png"}, {"name": "黑水晶(墨晶)", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "SiO₂", "price": 400, "note": "烟晶的深色变种", "icon": "min_103.png"}];
-const TERRAINS = [{"order": 1, "name": "平原/浅层土壤", "unlockThreshold": 0, "speciesCount": 15, "ticket": 0, "isFree": true, "baseOre": "石灰石", "minerals": ["煤", "铁矿石", "岩盐", "石膏", "云母", "玛瑙", "方解石晶体", "贝壳化石", "蕨类植物化石", "珊瑚化石", "异极矿", "高岭土", "铝土矿", "滑石"], "note": "新手起始地形，免费开放"}, {"order": 2, "name": "沼泽/湿地", "unlockThreshold": 8, "speciesCount": 14, "ticket": 810, "isFree": false, "baseOre": "泥煤", "minerals": ["褐铁矿", "孔雀石", "绿松石", "青金石", "琥珀(含虫)", "蕨类植物化石", "贝壳化石", "硅化木", "异极矿", "金绿宝石（猫眼石）", "石油沥青", "油页岩", "褐煤"], "note": null}, {"order": 3, "name": "山地/岩层", "unlockThreshold": 16, "speciesCount": 17, "ticket": 780, "isFree": false, "baseOre": "花岗岩", "minerals": ["铜矿石", "锡石", "云母", "石英砂", "石榴石", "白水晶", "方解石晶体", "金红石", "蓝柱石", "三叶虫化石", "硅化木", "祖母绿", "辉钼矿", "玫瑰石英", "和田玉", "石棉"], "note": null}, {"order": 4, "name": "沙漠", "unlockThreshold": 24, "speciesCount": 15, "ticket": 820, "isFree": false, "baseOre": "石英砂", "minerals": ["石膏", "硼砂", "磷灰石", "月光石", "拉长石", "帕德玛刚玉", "托帕石", "玛瑙", "硅化木", "岩盐", "恐龙蛋化石", "恐龙骨骼化石", "尖晶石", "虎眼石"], "note": null}, {"order": 5, "name": "海底/海岸礁石", "unlockThreshold": 32, "speciesCount": 11, "ticket": 900, "isFree": false, "baseOre": "大理岩", "minerals": ["珊瑚化石", "贝壳化石", "海蓝宝石", "摩根石", "透绿柱石", "红绿柱石", "金绿柱石", "珍珠母", "蛋白石", "鱼化石"], "note": "可结合“渔具/潜水装备”等前置道具一起设计"}, {"order": 6, "name": "极地/雪原冰川", "unlockThreshold": 42, "speciesCount": 11, "ticket": 780, "isFree": false, "baseOre": "冰", "minerals": ["云母", "冰洲石", "蓝宝石", "坦桑石", "南极石", "猛犸象牙化石", "剑齿虎化石", "天青石", "萤石", "方解石晶体"], "note": "可结合“防寒装备”前置道具"}, {"order": 7, "name": "火山/熔岩区", "unlockThreshold": 52, "speciesCount": 15, "ticket": 730, "isFree": false, "baseOre": "火山岩渣", "minerals": ["硫磺", "黑曜岩", "铬铁矿", "辰砂", "橄榄石", "石榴石", "黄钻", "红钻石", "变石(亚历山大变石)", "圆粒金刚石(波札)", "重晶石", "钻石", "镍矿", "锰矿"], "note": "含钻石顶级稀有产出，可结合“耐热装备”前置道具"}, {"order": 8, "name": "深层洞穴/矿脉核心", "unlockThreshold": 64, "speciesCount": 24, "ticket": 1220, "isFree": false, "baseOre": "脉石", "minerals": ["金矿脉", "银矿脉", "钨矿", "萤石", "紫水晶", "黄水晶", "烟晶", "磷叶石", "幽灵水晶", "蓝锥矿", "天青石", "菊石化石", "三角龙头骨化石", "始祖鸟化石", "硅化木", "红宝石", "翡翠", "闪锌矿", "方铅矿", "铀矿", "碧玺", "黑水晶(墨晶)", "萤石晶簇"], "note": "含红宝石、翡翠顶级稀有产出，建议作为终局地形"}];
+const TERRAINS = [{"order": 1, "name": "平原/浅层土壤", "unlockThreshold": 0, "speciesCount": 15, "ticket": 0, "isFree": true, "baseOre": "石灰石", "minerals": ["煤", "铁矿石", "岩盐", "石膏", "云母", "玛瑙", "方解石晶体", "贝壳化石", "蕨类植物化石", "珊瑚化石", "异极矿", "高岭土", "铝土矿", "滑石"], "note": "新手起始地形，免费开放", "baseProb": 0.5}, {"order": 2, "name": "沼泽/湿地", "unlockThreshold": 8, "speciesCount": 14, "ticket": 260, "isFree": false, "baseOre": "泥煤", "minerals": ["褐铁矿", "孔雀石", "绿松石", "青金石", "琥珀(含虫)", "蕨类植物化石", "贝壳化石", "硅化木", "异极矿", "金绿宝石（猫眼石）", "石油沥青", "油页岩", "褐煤"], "note": null, "baseProb": 3.147}, {"order": 3, "name": "山地/岩层", "unlockThreshold": 16, "speciesCount": 17, "ticket": 470, "isFree": false, "baseOre": "花岗岩", "minerals": ["铜矿石", "锡石", "云母", "石英砂", "石榴石", "白水晶", "方解石晶体", "金红石", "蓝柱石", "三叶虫化石", "硅化木", "祖母绿", "辉钼矿", "玫瑰石英", "石棉", "和田玉"], "note": null, "baseProb": 1.819}, {"order": 4, "name": "沙漠", "unlockThreshold": 24, "speciesCount": 15, "ticket": 680, "isFree": false, "baseOre": "石英砂", "minerals": ["石膏", "硼砂", "磷灰石", "月光石", "拉长石", "托帕石", "玛瑙", "硅化木", "岩盐", "恐龙蛋化石", "恐龙骨骼化石", "尖晶石", "虎眼石", "帕德玛刚玉"], "note": null, "baseProb": 1.377}, {"order": 5, "name": "海底/海岸礁石", "unlockThreshold": 32, "speciesCount": 11, "ticket": 780, "isFree": false, "baseOre": "大理岩", "minerals": ["珊瑚化石", "贝壳化石", "海蓝宝石", "摩根石", "透绿柱石", "红绿柱石", "金绿柱石", "珍珠母", "蛋白石", "鱼化石"], "note": "可结合“渔具/潜水装备”等前置道具一起设计", "baseProb": 0.886}, {"order": 6, "name": "极地/雪原冰川", "unlockThreshold": 42, "speciesCount": 12, "ticket": 880, "isFree": false, "baseOre": "冰", "minerals": ["云母", "冰洲石", "蓝宝石", "坦桑石", "南极石", "猛犸象牙化石", "剑齿虎化石", "天青石", "萤石", "方解石晶体", "钻石"], "note": "可结合“防寒装备”前置道具", "baseProb": 1.088}, {"order": 7, "name": "火山/熔岩区", "unlockThreshold": 52, "speciesCount": 15, "ticket": 1000, "isFree": false, "baseOre": "火山岩渣", "minerals": ["硫磺", "黑曜岩", "铬铁矿", "辰砂", "橄榄石", "石榴石", "黄钻", "红钻石", "变石(亚历山大变石)", "圆粒金刚石(波札)", "重晶石", "钻石", "镍矿", "锰矿"], "note": "含钻石顶级稀有产出，可结合“耐热装备”前置道具", "baseProb": 0.957}, {"order": 8, "name": "深层洞穴/矿脉核心", "unlockThreshold": 64, "speciesCount": 24, "ticket": 1450, "isFree": false, "baseOre": "脉石", "minerals": ["金矿脉", "银矿脉", "钨矿", "萤石", "紫水晶", "黄水晶", "烟晶", "磷叶石", "幽灵水晶", "蓝锥矿", "天青石", "菊石化石", "三角龙头骨化石", "始祖鸟化石", "硅化木", "红宝石", "翡翠", "闪锌矿", "方铅矿", "铀矿", "碧玺", "黑水晶(墨晶)", "萤石晶簇"], "note": "含红宝石、翡翠顶级稀有产出，建议作为终局地形", "baseProb": 1.176}];
 
 const MIN_BY_NAME = {};
 MINERALS.forEach(m => MIN_BY_NAME[m.name] = m);
@@ -540,7 +540,7 @@ function t(key){ return I18N[lang][key]; }
 const EQUIPMENT = [
   {id:'winch', key:'equip_winch', cost:600},
   {id:'light', key:'equip_light', cost:500},
-  {id:'luck',  key:'equip_luck',  cost:1200},
+  {id:'luck',  key:'equip_luck',  cost:5000},
   {id:'dive',  key:'equip_dive',  cost:700, unlocks:'海底/海岸礁石'},
   {id:'cold',  key:'equip_cold',  cost:700, unlocks:'极地/雪原冰川'},
   {id:'heat',  key:'equip_heat',  cost:800, unlocks:'火山/熔岩区'},
@@ -856,7 +856,7 @@ function renderShop(){
   const nextSlotCost = hookSlotCost(game.hookSlots);
   const hookSlotBlock = `<div id="hookslot-card">
     <div class="shop-section-title">${t('hookslot_title')}</div>
-    <p style="margin:0 0 10px;font-size:12.5px;color:var(--cream-dim);">${t('hookslot_desc')}<br>${t('hookslot_cur')}: <b style="color:var(--gold)">${game.hookSlots}/3</b></p>
+    <p style="margin:0 0 10px;font-size:16.5px;color:var(--cream-dim);">${t('hookslot_desc')}<br>${t('hookslot_cur')}: <b style="color:var(--gold)">${game.hookSlots}/3</b></p>
     <button class="buy-btn ${slotMaxed?'owned':''}" id="buy-slot-btn" style="width:auto;padding:8px 20px;" ${(slotMaxed || game.gold<nextSlotCost)?'disabled':''}>
       ${slotMaxed? t('max_lv') : t('hookslot_buy')+' ('+nextSlotCost+' G)'}
     </button>
@@ -976,10 +976,12 @@ function showDexTooltip(e, name){
 function positionDexTooltip(e){
   const tip = document.getElementById('dex-tooltip');
   if(!tip || tip.style.display!=='block') return;
-  const gridEl = e.currentTarget && e.currentTarget.closest ? e.currentTarget.closest('.dex-grid') : null;
-  const wrap = (gridEl || document.getElementById('tab-content')).getBoundingClientRect();
-  tip.style.left = (e.clientX - wrap.left + 14) + 'px';
-  tip.style.top = (e.clientY - wrap.top + 14) + 'px';
+  // #dex-tooltip is `position:fixed`, so its left/top are plain viewport
+  // coordinates — no need to hunt for a positioned ancestor to offset against
+  // (that was the bug: it isn't actually inside .dex-grid, it's a sibling, so
+  // math based on .dex-grid's bounding box landed far from the cursor).
+  tip.style.left = (e.clientX + 14) + 'px';
+  tip.style.top = (e.clientY + 14) + 'px';
 }
 function hideDexTooltip(){
   const tip = document.getElementById('dex-tooltip');
@@ -1082,19 +1084,33 @@ const MAX_LEN = 900;
 
 function buildPool(terrain){
   const luckyMult = game.owned['luck'] ? 1.5 : 1.0;
+  // Deeper (higher-order) terrains skew toward better epic/legendary odds, so
+  // expected value climbs with progression instead of every mid-tier terrain
+  // landing at roughly the same payout. Only the two rarest tiers are boosted —
+  // touching common/rare odds too would swing the "commons" pool wildly for
+  // terrains that already carry a lot of specials (e.g. the deep cave).
+  const terrainLuck = 1 + (terrain.order-1)*0.20;
+  // Each terrain carries its own base-ore weight (baseProb) so per-terrain profit
+  // margin can be tuned independently: raise it to dilute the pool with cheap
+  // base ore (lowers expected value / margin), lower it to let the pricier
+  // specials/commons dominate (raises expected value / margin). This is a raw
+  // weight, not a capped 0-1 probability — it only matters relative to the other
+  // raw weights below, so values above 1 are valid and just mean "base ore
+  // dominates the pool even more".
+  const baseProb = terrain.baseProb!==undefined ? terrain.baseProb : BASE_PROB;
   const extraDefs = terrain.minerals.map(n=>MIN_BY_NAME[n]);
   let raw = [];
-  raw.push({name:terrain.baseOre, mineral:MIN_BY_NAME[terrain.baseOre], w: BASE_PROB, isBase:true});
+  raw.push({name:terrain.baseOre, mineral:MIN_BY_NAME[terrain.baseOre], w: baseProb, isBase:true});
   const commons = extraDefs.filter(m=>m.rarity==='普通');
   const specials = extraDefs.filter(m=>m.rarity!=='普通');
   let specialSum = 0;
   specials.forEach(m=>{
     let p = FIXED_PROB[m.rarity];
-    if(m.rarity==='传说' || m.rarity==='史诗') p *= luckyMult;
+    if(m.rarity==='传说' || m.rarity==='史诗') p *= luckyMult * terrainLuck;
     raw.push({name:m.name, mineral:m, w:p, isBase:false});
     specialSum += p;
   });
-  const remaining = Math.max(0.0001, 1 - BASE_PROB - specialSum);
+  const remaining = Math.max(0.0001, 1 - baseProb - specialSum);
   const perCommon = commons.length ? remaining/commons.length : 0;
   commons.forEach(m=> raw.push({name:m.name, mineral:m, w:perCommon, isBase:false}));
   const total = raw.reduce((s,x)=>s+x.w,0);
@@ -1386,13 +1402,14 @@ function drawBackground(terrain){
       ctx.beginPath(); ctx.arc(x,y,2,0,Math.PI*2); ctx.fill();
     }
   }
-  // Bottom-half gradient mask: fades from transparent (mid-canvas) down to 15%
-  // black at the very bottom, so the foreground (items/miner/claw) stays readable
-  // against busy background art.
-  const shade = ctx.createLinearGradient(0,H/2,0,H);
+  // Gradient mask: starts right at the miner's feet (bottom edge of the miner
+  // artwork) and fades down to 15% black at the very bottom of the canvas, so
+  // the foreground stays readable against busy background art.
+  const maskStart = MINER_IMG_Y + MINER_IMG_H;
+  const shade = ctx.createLinearGradient(0,maskStart,0,H);
   shade.addColorStop(0,'rgba(0,0,0,0)');
   shade.addColorStop(1,'rgba(0,0,0,0.15)');
-  ctx.fillStyle = shade; ctx.fillRect(0,H/2,W,H/2);
+  ctx.fillStyle = shade; ctx.fillRect(0,maskStart,W,H-maskStart);
 }
 // Miner artwork: fixed (hardcoded) size and position, independent of any other
 // scaling math. Bottom edge is pinned to ANCHOR.y+6 (same ground line the old
@@ -1502,7 +1519,7 @@ function drawItemCanvas(it){
     drawBlob(it.r,color,edge);
   }
   if(it.hazardType){
-    ctx.font='bold 14px sans-serif'; ctx.fillStyle='#ff8b7a'; ctx.textAlign='center';
+    ctx.font='bold 18px sans-serif'; ctx.fillStyle='#ff8b7a'; ctx.textAlign='center';
     ctx.fillText('☠',0,-it.r-6);
   }
   ctx.restore();
@@ -1545,7 +1562,7 @@ function drawMine(){
   for(const it of mine.items){ if(it.alive || it.carried) drawItemCanvas(it); }
   drawMiner();
   for(const hook of mine.hooks){ drawHook(hook); }
-  ctx.textAlign='center'; ctx.font='bold 15px sans-serif';
+  ctx.textAlign='center'; ctx.font='bold 19px sans-serif';
   for(const p of popups){
     ctx.globalAlpha = Math.max(0,Math.min(1,p.life));
     ctx.fillStyle = p.color;
