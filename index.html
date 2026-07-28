@@ -1419,17 +1419,41 @@ function drawHook(hook){
     ctx.lineWidth=2.5;
     ctx.beginPath(); ctx.moveTo(start.x,start.y); ctx.lineTo(tip.x,tip.y); ctx.stroke();
   }
-  ctx.save(); ctx.translate(tip.x,tip.y); ctx.rotate(-hook.angle);
+  // When an item is being carried, don't draw the claw dead-center on the mineral —
+  // pull it back toward the rope pivot so it sits on the near edge of the item's art,
+  // and only render one prong. The missing prong reads as gripping the hidden backside.
+  const carrying = hook.state==='retract' && hook.attachedGroup && hook.attachedGroup.length>0;
+  let clawX = tip.x, clawY = tip.y, clawSide = 0;
+  if(carrying){
+    const heldItem = hook.attachedGroup[0];
+    const r = (heldItem && heldItem.r) ? heldItem.r : 14;
+    const pullback = r * 0.85;
+    const dirX = Math.sin(hook.angle), dirY = Math.cos(hook.angle);
+    clawX = tip.x - dirX*pullback;
+    clawY = tip.y - dirY*pullback;
+    clawSide = 1;
+  }
+  ctx.save(); ctx.translate(clawX,clawY); ctx.rotate(-hook.angle);
   if(ASSET.claw && ASSET.claw.loaded){
     const s = 30;
-    ctx.drawImage(ASSET.claw, -s/2, -s/2, s, s);
+    if(clawSide!==0){
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(clawSide>0 ? 0 : -s/2, -s/2, s/2, s);
+      ctx.clip();
+      ctx.drawImage(ASSET.claw, -s/2, -s/2, s, s);
+      ctx.restore();
+    } else {
+      ctx.drawImage(ASSET.claw, -s/2, -s/2, s, s);
+    }
   } else {
     const openT = hook.clawOpen===undefined ? 1 : hook.clawOpen;
     const OPEN_ANGLE = 0.62, CLOSE_ANGLE = 0.16; // radians from vertical, per prong
     const prongAngle = CLOSE_ANGLE + (OPEN_ANGLE-CLOSE_ANGLE)*openT;
     const prongLen = 15, tipLen = 5;
     ctx.strokeStyle='#3a3a3a'; ctx.lineWidth=3.5; ctx.lineCap='round'; ctx.lineJoin='round';
-    [-1,1].forEach(side=>{
+    const sides = clawSide!==0 ? [clawSide] : [-1,1];
+    sides.forEach(side=>{
       const dx = Math.sin(prongAngle)*side, dy = Math.cos(prongAngle);
       const kx = -dx, ky = dy; // slight inward hook at the prong's tip
       const ex = dx*prongLen, ey = dy*prongLen;
