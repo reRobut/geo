@@ -151,7 +151,7 @@ button{font-family:inherit;cursor:pointer;}
 }
 .terrain-card.locked{opacity:.55;filter:grayscale(.4);}
 .terrain-card h3{margin:0 0 4px;font-size:17px;color:var(--cream);}
-.terrain-card .tag{font-size:11px;color:var(--gold);background:rgba(255,207,73,.12);border:1px solid var(--gold-dark);border-radius:10px;padding:2px 8px;display:inline-block;margin-bottom:6px;}
+.terrain-card .tag{font-size:11px;color:var(--gold);background:rgba(255,207,73,.12);border:1px solid var(--gold-dark);border-radius:10px;padding:2px 8px;display:inline-block;margin-bottom:6px;align-self:flex-start;}
 .terrain-card .meta{font-size:12.5px;color:var(--cream-dim);line-height:1.7;}
 .terrain-card .enter-btn{
   margin-top:auto;width:100%;padding:8px;border-radius:7px;border:2px solid var(--gold-dark);
@@ -1070,7 +1070,7 @@ function blobSVG(cx,cy,r,fill,edge){
 const canvas = document.getElementById('mineCanvas');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
-const ANCHOR = {x: W/2, y: 98};
+const ANCHOR = {x: W/2, y: 113};
 // The rope pivots from the miner's hand, a bit above ANCHOR. tipFor() and the
 // rope-drawing code MUST use this exact same point, or the physics angle and
 // the visually-drawn line angle disagree (worse at short lengths, converging
@@ -1119,7 +1119,7 @@ function startMining(terrain){
     tries++;
     const rr = rand(16,30);
     const x = rand(50,W-50);
-    const y = rand(GROUND_Y+40,H-40);
+    const y = rand(GROUND_Y+55,H-40);
     let ok=true;
     for(const s of spots){
       const dx=s.x-x, dy=s.y-y;
@@ -1400,7 +1400,7 @@ function drawBackground(terrain){
 const MINER_IMG_W = 70;
 const MINER_IMG_H = 104;
 const MINER_IMG_X = 415;  // = ANCHOR.x(450) - MINER_IMG_W/2
-const MINER_IMG_Y = 0;    // = ANCHOR.y(98) - 34 + 40 - MINER_IMG_H, keeps feet at y=104
+const MINER_IMG_Y = 15;   // = ANCHOR.y(113) - 34 + 40 - MINER_IMG_H, keeps feet at y=119
 function drawMiner(){
   const x=ANCHOR.x, y=ANCHOR.y-34;
   if(ASSET.miner && ASSET.miner.loaded){
