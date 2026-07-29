@@ -159,10 +159,14 @@ button{font-family:inherit;cursor:pointer;}
   background:var(--bg-panel2);color:var(--cream-dim);font-weight:700;font-size:18px;
 }
 .tab-btn.active{background:var(--bg-deep);color:var(--gold);border-color:var(--gold-dark);}
-#home-exit-btn{
-  background:none;border:1px solid var(--wood-edge2);color:var(--cream-dim);border-radius:6px;
-  padding:6px 12px;font-size:16px;
+#topbar-right{display:flex;align-items:center;gap:8px;}
+#save-btn,#home-exit-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;background:none;border:1px solid var(--wood-edge2);
+  color:var(--cream-dim);border-radius:8px;font-size:19px;line-height:1;
 }
+#save-btn:hover,#home-exit-btn:hover{background:rgba(255,255,255,.06);color:var(--cream);}
+#save-btn.saved{color:var(--ok);border-color:var(--ok);}
 #tab-content{flex:1;overflow-y:auto;padding:18px 22px;background:var(--bg-deep);max-width:1040px;width:100%;margin:0 auto;box-sizing:border-box;}
 .panel-title{font-size:24px;font-weight:800;color:var(--gold);margin:0 0 4px;}
 .panel-desc{font-size:17px;color:var(--cream-dim);margin:0 0 16px;}
@@ -375,7 +379,10 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
         <button class="tab-btn" data-tab="warehouse" id="tab-warehouse">仓库</button>
         <button class="tab-btn" data-tab="dex" id="tab-dex">图鉴</button>
       </div>
-      <button id="home-exit-btn">回到主页</button>
+      <div id="topbar-right">
+        <button id="save-btn" title="保存游戏" aria-label="保存游戏">💾</button>
+        <button id="home-exit-btn" title="回到主页" aria-label="回到主页">🏠</button>
+      </div>
     </div>
     <div id="tab-content"></div>
   </div>
@@ -523,6 +530,7 @@ const RAR_KEY = {'普通':'r_common','少见':'r_uncommon','稀有':'r_rare','�
 const HTML_LANG_ATTR = {zh:'zh-CN','zh-TW':'zh-TW',en:'en',de:'de',fr:'fr',ru:'ru',ja:'ja','pt-BR':'pt-BR',es:'es-419',ko:'ko'};
 
 const LANG_STORAGE_KEY = 'omniminer_lang';
+const SAVE_STORAGE_KEY = 'omniminer_save';
 let lang = localStorage.getItem(LANG_STORAGE_KEY) || 'zh';
 if(!I18N[lang]) lang = 'zh';
 function t(key){ return I18N[lang][key]; }
@@ -567,7 +575,28 @@ function reflectCost(slot){ return 550 + (slot-1)*350; }
 function suitCost(count){ return 350; }
 
 // ---------------- GAME STATE ----------------
-let game = null;
+// Persistence: the game only auto-saves when a mining run starts (so quitting
+// mid-dig and reopening the page can't be used to re-roll a terrain's item
+// layout for free) plus whenever the player taps the manual save button.
+// Nothing else writes to storage automatically.
+function saveGame(){
+  if(!game) return;
+  try{ localStorage.setItem(SAVE_STORAGE_KEY, JSON.stringify(game)); }catch(e){}
+}
+function loadGame(){
+  try{
+    const raw = localStorage.getItem(SAVE_STORAGE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+let game = loadGame();
+if(game){
+  // Backfill any fields a save might be missing (e.g. it predates a field
+  // added later) so the rest of the game never has to null-check for them.
+  const defaults = freshGame();
+  Object.keys(defaults).forEach(k=>{ if(!(k in game)) game[k] = defaults[k]; });
+}
 let mine = null;
 
 function freshGame(){
@@ -609,6 +638,11 @@ function showScreen(name){
 }
 
 let testModeEnabled = false;
+if(game){
+  document.getElementById('btn-continue').disabled = false;
+  testModeEnabled = !!game.testMode;
+  document.getElementById('testmode-toggle').classList.toggle('on', testModeEnabled);
+}
 
 document.getElementById('btn-newgame').addEventListener('click', ()=>{
   game = freshGame();
@@ -629,6 +663,16 @@ document.getElementById('lang-menu').addEventListener('click', (e)=>{
 });
 document.getElementById('home-exit-btn').addEventListener('click', ()=>{
   showScreen('home');
+});
+let saveFlashTimer = null;
+document.getElementById('save-btn').addEventListener('click', ()=>{
+  if(!game) return;
+  saveGame();
+  const btn = document.getElementById('save-btn');
+  btn.textContent = '✅';
+  btn.classList.add('saved');
+  clearTimeout(saveFlashTimer);
+  saveFlashTimer = setTimeout(()=>{ btn.textContent = '💾'; btn.classList.remove('saved'); }, 900);
 });
 document.getElementById('testmode-toggle').addEventListener('click', ()=>{
   testModeEnabled = !testModeEnabled;
@@ -655,7 +699,10 @@ function applyStaticText(){
   document.getElementById('tab-shop').textContent = t('tab_shop');
   document.getElementById('tab-warehouse').textContent = t('tab_warehouse');
   document.getElementById('tab-dex').textContent = t('tab_dex');
-  document.getElementById('home-exit-btn').textContent = t('exit');
+  document.getElementById('home-exit-btn').title = t('exit');
+  document.getElementById('home-exit-btn').setAttribute('aria-label', t('exit'));
+  document.getElementById('save-btn').title = t('save_game');
+  document.getElementById('save-btn').setAttribute('aria-label', t('save_game'));
   document.getElementById('t-total-earn').innerHTML = t('total_earn')+'<br><span class="big" id="mine-gold">'+ (mine?mine.sessionValue:0) +'</span>';
   document.getElementById('t-remain').innerHTML = t('remain')+'<br><span class="big" id="mine-remain">0/10</span>';
   document.getElementById('mine-leave-btn').textContent = t('leave');
@@ -1219,6 +1266,7 @@ function startMining(terrain){
     sessionValue: 0, caughtLog: {}, // name -> {mineral,count}
   };
   document.getElementById('mine-terrain-name').textContent = trName(terrain);
+  saveGame();
   const catchToastEl = document.getElementById('mine-catch-toast');
   if(catchToastEl){ catchToastEl.classList.remove('show'); catchToastEl.textContent=''; }
   clearTimeout(catchToastTimer);
@@ -1371,9 +1419,13 @@ function updateMine(dt){
       else { hook.length += mine.extendSpeed*dt; }
       const tip = tipFor(hook);
       const curLen = hook.bendPoint ? hook.bendLen : hook.length;
-      // Include the top edge too: after a bottom bounce the tip travels upward and can
-      // exit the top of the canvas, which should also end the throw.
-      const offscreen = tip.x<-20 || tip.x>W+20 || tip.y>H+20 || tip.y<-20;
+      // Once the hook has bounced and is now travelling back upward, it should
+      // only go as far as the top of the area minerals can actually spawn in
+      // (GROUND_Y+55, matching the spot-generation range below) rather than
+      // sailing all the way up to the top edge of the whole canvas.
+      const dir = hookDir(hook);
+      const topBound = (hook.bounced && dir.y<0) ? (GROUND_Y+55) : -20;
+      const offscreen = tip.x<-20 || tip.x>W+20 || tip.y>H+20 || tip.y<topBound;
       if(!hook.pierce){
         let hit=null;
         for(const it of mine.items){
@@ -1401,7 +1453,11 @@ function updateMine(dt){
           }
         }
         if(curLen>MAX_LEN || offscreen){
-          if(hook.pendingGroup.length===0 && hook.reflect && !hook.bounced){ tryBounce(hook, tip); }
+          // Pierce+reflect always rides out the full bounce (there and back to
+          // the boundary) before reeling in, piercing anything along either
+          // leg — it no longer cuts the bounce short just because something
+          // was already pierced on the way out.
+          if(hook.reflect && !hook.bounced){ tryBounce(hook, tip); }
           else { hook.state='retract'; }
         }
       }
