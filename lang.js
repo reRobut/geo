@@ -515,7 +515,7 @@ const MINERAL_NAME_I18N = {
   '红宝石': { zh:'红宝石', 'zh-TW':'紅寶石', en:'Ruby', de:'Rubin', fr:'Rubis', ru:'Рубин', ja:'ルビー', 'pt-BR':'Rubi', es:'Rubí', ko:'루비' },
   '蓝宝石': { zh:'蓝宝石', 'zh-TW':'藍寶石', en:'Sapphire', de:'Saphir', fr:'Saphir', ru:'Сапфир', ja:'サファイア', 'pt-BR':'Safira', es:'Zafiro', ko:'사파이어' },
   '祖母绿': { zh:'祖母绿', 'zh-TW':'祖母綠', en:'Emerald', de:'Smaragd', fr:'Émeraude', ru:'Изумруд', ja:'エメラルド', 'pt-BR':'Esmeralda', es:'Esmeralda', ko:'에메랄드' },
-  '金绿宝石（猫眼石）': { zh:'金绿宝石（猫眼石）', 'zh-TW':'金綠寶石（貓眼石）', en:'Chrysoberyl (Cat\'s Eye)', de:'Chrysoberyll (Katzenauge)', fr:'Chrysobéryl (œil-de-chat)', ru:'Хризоберилл (кошачий глаз)', ja:'クリソベリル（キャッツアイ）', 'pt-BR':'Crisoberilo (Olho-de-Gato)', es:'Crisoberilo (Ojo de Gato)', ko:'금록석(묘안석)' },
+  '金绿宝石': { zh:'金绿宝石', 'zh-TW':'金綠寶石', en:'Chrysoberyl', de:'Chrysoberyll', fr:'Chrysobéryl', ru:'Хризоберилл', ja:'クリソベリル', 'pt-BR':'Crisoberilo', es:'Crisoberilo', ko:'금록석' },
   '碧玺': { zh:'碧玺', 'zh-TW':'碧璽', en:'Tourmaline', de:'Turmalin', fr:'Tourmaline', ru:'Турмалин', ja:'トルマリン', 'pt-BR':'Turmalina', es:'Turmalina', ko:'전기석' },
   '坦桑石': { zh:'坦桑石', 'zh-TW':'丹泉石', en:'Tanzanite', de:'Tansanit', fr:'Tanzanite', ru:'Танзанит', ja:'タンザナイト', 'pt-BR':'Tanzanita', es:'Tanzanita', ko:'탄자나이트' },
   '尖晶石': { zh:'尖晶石', 'zh-TW':'尖晶石', en:'Spinel', de:'Spinell', fr:'Spinelle', ru:'Шпинель', ja:'スピネル', 'pt-BR':'Espinélio', es:'Espinela', ko:'첨정석' },
