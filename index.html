@@ -250,17 +250,6 @@ button{font-family:inherit;cursor:pointer;}
 .dex-item .icon{width:34px;height:34px;margin:0 auto 4px;}
 .dex-item .name{font-size:14.5px;color:var(--cream);}
 .dex-item .rar{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;}
-#dex-detail{
-  position:absolute;top:0;right:0;bottom:0;left:0;background:rgba(10,6,3,.85);display:none;align-items:center;justify-content:center;z-index:20;
-}
-#dex-detail.show{display:flex;}
-#dex-detail-card{background:var(--bg-panel);border:3px solid var(--gold-dark);border-radius:14px;padding:22px 26px;width:320px;text-align:center;}
-#dex-detail-card .icon{width:70px;height:70px;margin:0 auto 10px;}
-#dex-detail-card h3{margin:0 0 4px;color:var(--cream);}
-#dex-detail-card .rarline{font-size:16px;margin-bottom:10px;}
-#dex-detail-card .row{display:flex;justify-content:space-between;font-size:16.5px;color:var(--cream-dim);padding:4px 0;border-top:1px solid var(--wood-edge);}
-#dex-detail-card .note{font-size:15.5px;color:var(--cream-dim);margin-top:10px;line-height:1.6;}
-#dex-detail-close{margin-top:14px;padding:7px 20px;border-radius:7px;border:1px solid var(--wood-edge2);background:var(--bg-panel2);color:var(--cream);}
 
 /* ---------- MINE SCREEN ---------- */
 #screen-mine{background:#000;align-items:center;justify-content:center;}
@@ -278,6 +267,16 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
 }
 .mine-box{background:rgba(20,12,6,.6);border:2px solid var(--gold-dark);border-radius:8px;padding:6px 14px;font-size:18px;color:var(--cream);text-shadow:0 2px 3px rgba(0,0,0,.6);text-align:center;}
 .mine-box .big{font-size:22px;color:var(--gold);}
+#mine-terrain-wrap{display:flex;align-items:center;gap:8px;}
+#mine-catch-toast{
+  background:rgba(20,12,6,.75);border:2px solid var(--gold);border-radius:8px;
+  padding:6px 14px;font-size:17px;font-weight:800;color:var(--gold);
+  text-shadow:0 2px 3px rgba(0,0,0,.6);white-space:nowrap;
+  opacity:0;transform:translateX(-6px);
+  transition:opacity .18s ease,transform .18s ease;
+  pointer-events:none;
+}
+#mine-catch-toast.show{opacity:1;transform:translateX(0);}
 #mine-hud-right{display:flex;align-items:center;gap:8px;pointer-events:auto;}
 #mine-leave-btn{
   padding:9px 14px;border-radius:8px;border:2px solid var(--wood-edge2);
@@ -312,6 +311,11 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
 .result-chip .n{font-size:14px;color:var(--cream);}
 .result-chip .v{font-size:13.5px;color:var(--gold-dark);}
 .result-chip .cnt{position:absolute;top:2px;right:4px;font-size:14px;color:var(--gold);font-weight:800;}
+.result-chip .new-badge{
+  position:absolute;bottom:2px;right:4px;font-size:12px;font-weight:900;
+  color:#e83b3b;letter-spacing:.5px;
+  -webkit-text-stroke:1.5px #fff;paint-order:stroke fill;
+}
 #mine-result-btn{padding:10px;border-radius:9px;border:2px solid var(--gold-dark);background:linear-gradient(180deg,#ffe27a,#ffb92e);color:#4a2c00;font-weight:800;}
 #mine-faint-card{background:var(--bg-panel);border:3px solid var(--danger);border-radius:16px;padding:28px 32px;width:380px;text-align:center;}
 #mine-faint-card .skull{font-size:48px;margin-bottom:10px;}
@@ -372,7 +376,10 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
       <canvas id="mineCanvas" width="900" height="560"></canvas>
       <div id="mine-hud">
         <div class="mine-box" id="t-total-earn">总收益<br><span class="big" id="mine-gold">0</span></div>
-        <div class="mine-box" id="mine-terrain-name">-</div>
+        <div id="mine-terrain-wrap">
+          <div class="mine-box" id="mine-terrain-name">-</div>
+          <div id="mine-catch-toast"></div>
+        </div>
         <div id="mine-hud-right">
           <button id="mine-leave-btn">结束挖掘</button>
           <div class="mine-box" id="t-remain">剩余矿物<br><span class="big" id="mine-remain">0/12</span></div>
@@ -397,10 +404,6 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
         </div>
       </div>
     </div>
-  </div>
-
-  <div id="dex-detail">
-    <div id="dex-detail-card"></div>
   </div>
 
 </div>
@@ -503,6 +506,19 @@ function t(key){ return I18N[lang][key]; }
 function trName(tr){
   const entry = TERRAIN_NAME_I18N[tr.name];
   return (entry && entry[lang]) || tr.name;
+}
+// Localized display name for a mineral, falling back to the raw (Chinese) name
+// if a translation is missing. The raw name (m.name) stays the internal id
+// everywhere else (MIN_BY_NAME, inventory, discovered, caughtLog, etc).
+function minName(m){
+  const entry = MINERAL_NAME_I18N[m.name];
+  return (entry && entry[lang]) || m.name;
+}
+// Localized note/备注 text for a mineral, falling back to the raw (Chinese)
+// note (or nothing) if no translation exists for the current language.
+function minNote(m){
+  const entry = MINERAL_NOTE_I18N[m.name];
+  return (entry && entry[lang]) || m.note;
 }
 
 // ---------------- EQUIPMENT (one-time boolean) ----------------
@@ -770,7 +786,6 @@ function bindTabEvents(tab){
     });
   } else if(tab==='dex'){
     document.querySelectorAll('.dex-item').forEach(b=>{
-      b.addEventListener('click', ()=> openDexDetail(b.dataset.name));
       b.addEventListener('mouseenter', (e)=> showDexTooltip(e, b.dataset.name));
       b.addEventListener('mousemove', (e)=> positionDexTooltip(e));
       b.addEventListener('mouseleave', hideDexTooltip);
@@ -878,7 +893,7 @@ function renderWarehouse(){
     return `<div class="wh-item ${locked?'locked-item':''}">
       <button class="lock-toggle ${locked?'locked':''}" data-name="${name}">${locked?'🔒':'🔓'}</button>
       ${mineralIconHTML(m,40,true)}
-      <div class="name">${name}</div>
+      <div class="name">${minName(m)}</div>
       <div class="count">x${c} · ${m.price}G</div>
       <div class="btn-row">
         <button class="sell-one" data-name="${name}" ${locked?'disabled':''}>${t('sell_one')}</button>
@@ -905,7 +920,7 @@ function dexItemHTML(m){
   return `<div class="dex-item ${found?'':'locked'}" data-name="${m.name}">
     <div class="rar" style="background:${RARITY_COLOR_HEX[m.rarity]}"></div>
     ${mineralIconHTML(m,40,found)}
-    <div class="name">${found?m.name:t('unknown_short')}</div>
+    <div class="name">${found?minName(m):t('unknown_short')}</div>
   </div>`;
 }
 function dexSectionHTML(idxLabel, title, list){
@@ -940,9 +955,9 @@ function showDexTooltip(e, name){
   if(!m.formula && !m.note) return;
   const tip = document.getElementById('dex-tooltip');
   if(!tip) return;
-  tip.innerHTML = `<b>${m.name}</b>`
+  tip.innerHTML = `<b>${minName(m)}</b>`
     + (m.formula ? `<div class="dex-tooltip-formula">${t('formula')}: ${m.formula}</div>` : '')
-    + (m.note ? `<div class="dex-tooltip-note">${m.note}</div>` : '');
+    + (m.note ? `<div class="dex-tooltip-note">${minNote(m)}</div>` : '');
   tip.style.display = 'block';
   positionDexTooltip(e);
 }
@@ -960,32 +975,6 @@ function hideDexTooltip(){
   const tip = document.getElementById('dex-tooltip');
   if(tip) tip.style.display = 'none';
 }
-function openDexDetail(name){
-  const m = MIN_BY_NAME[name];
-  const found = game.testMode || !!game.discovered[name];
-  const card = document.getElementById('dex-detail-card');
-  if(!found){
-    card.innerHTML = `${mineralIconHTML(m,70,false)}
-    <h3>${t('unknown')}</h3>
-    <div class="rarline" style="color:${RARITY_COLOR_HEX[m.rarity]}">${t(RAR_KEY[m.rarity])}</div>
-    <button id="dex-detail-close">${t('dex_close')}</button>`;
-  } else {
-    card.innerHTML = `${mineralIconHTML(m,70,true)}
-    <h3>${m.name}</h3>
-    <div class="rarline" style="color:${RARITY_COLOR_HEX[m.rarity]}">${t(RAR_KEY[m.rarity])} · ${t(CAT_KEY[m.category])}</div>
-    <div class="row"><span>${t('price')}</span><span>${m.price} G</span></div>
-    <div class="row"><span>${t('formula')}</span><span>${m.formula || '—'}</span></div>
-    ${m.note?`<div class="note">${m.note}</div>`:''}
-    <button id="dex-detail-close">${t('dex_close')}</button>`;
-  }
-  document.getElementById('dex-detail').classList.add('show');
-  document.getElementById('dex-detail-close').addEventListener('click', ()=>{
-    document.getElementById('dex-detail').classList.remove('show');
-  });
-}
-document.getElementById('dex-detail').addEventListener('click', (e)=>{
-  if(e.target.id==='dex-detail') document.getElementById('dex-detail').classList.remove('show');
-});
 
 // ---------------- MINERAL SVG (procedural icon by category+rarity) ----------------
 function mineralSVG(m, cx, cy){
@@ -1138,7 +1127,7 @@ function startMining(terrain){
     const up = game.hookUpgrades[s];
     hooks.push({
       slot:s, offset: offsets[s-1],
-      angle:0, length:40, state:'swing',
+      angle:0, phase:0, length:40, state:'swing',
       attachedGroup:[], pendingGroup:[], bounced:false, clawOpen:1,
       bendPoint:null, bendDir:null, bendLen:0,
       pierce: !!up.pierce, reflect: !!up.reflect,
@@ -1151,11 +1140,14 @@ function startMining(terrain){
     extendSpeed: 480*0.7*winchMult,   // 钩爪下探默认速度 = 原速度(480)的70%
     retractSpeed: 480*0.6*winchMult,  // 矿石拉回默认速度 = 原速度(480)的60%
     weightMult: lightMult,
-    swingPhase: 0, swingSpeed: 1.25,
+    swingSpeed: 1.25,
     timeLeft: timeTotal, timeTotal: timeTotal, ending:false,
     sessionValue: 0, caughtLog: {}, // name -> {mineral,count}
   };
   document.getElementById('mine-terrain-name').textContent = terrain.name;
+  const catchToastEl = document.getElementById('mine-catch-toast');
+  if(catchToastEl){ catchToastEl.classList.remove('show'); catchToastEl.textContent=''; }
+  clearTimeout(catchToastTimer);
   document.getElementById('mine-gold').textContent = 0;
   document.getElementById('mine-remain').textContent = mine.remaining+'/'+mine.digCount;
   document.getElementById('mine-result').classList.remove('show');
@@ -1206,10 +1198,9 @@ function fireHook(){
   // extra lag from waiting on the next animation frame.
   const now = performance.now();
   const extraDt = lastTime ? Math.min(0.05, Math.max(0,(now-lastTime)/1000)) : 0;
-  const liveMasterAngle = Math.sin(mine.swingPhase + mine.swingSpeed*extraDt) * SWING_LIMIT;
   for(const hook of mine.hooks){
     if(hook.state==='swing'){
-      let a = liveMasterAngle + hook.offset;
+      let a = Math.sin(hook.phase + mine.swingSpeed*extraDt) * SWING_LIMIT + hook.offset;
       if(a>SWING_LIMIT) a=SWING_LIMIT; if(a<-SWING_LIMIT) a=-SWING_LIMIT;
       hook.angle = a;
       hook.state='extend'; hook.length=40; hook.attachedGroup=[]; hook.pendingGroup=[]; hook.bounced=false;
@@ -1255,16 +1246,29 @@ function commitItem(item){
     if(game.suitCharges>0){ game.suitCharges--; }
     else { return 'fainted'; }
   }
+  const isFirstEver = !game.discovered[item.name];
   game.discovered[item.name] = true;
   game.inventory[item.name] = (game.inventory[item.name]||0)+1;
   mine.sessionValue += item.mineral.price;
-  if(!mine.caughtLog[item.name]) mine.caughtLog[item.name] = {mineral:item.mineral, count:0};
+  if(!mine.caughtLog[item.name]) mine.caughtLog[item.name] = {mineral:item.mineral, count:0, isNew:false};
   mine.caughtLog[item.name].count++;
+  if(isFirstEver) mine.caughtLog[item.name].isNew = true;
   playCatchSound(item);
   popups.push({x:ANCHOR.x,y:ANCHOR.y+10,life:1.2,
     text: '+'+item.mineral.price+'G',
     color: RARITY_COLOR_HEX[item.mineral.rarity]});
+  showCatchToast(item.mineral);
   return 'ok';
+}
+
+let catchToastTimer = null;
+function showCatchToast(mineral){
+  const el = document.getElementById('mine-catch-toast');
+  if(!el) return;
+  el.textContent = t('gained')+minName(mineral);
+  el.classList.add('show');
+  clearTimeout(catchToastTimer);
+  catchToastTimer = setTimeout(()=>{ el.classList.remove('show'); }, 1600);
 }
 
 function updateMine(dt){
@@ -1277,9 +1281,6 @@ function updateMine(dt){
     return;
   }
 
-  mine.swingPhase += mine.swingSpeed*dt;
-  const masterAngle = Math.sin(mine.swingPhase) * SWING_LIMIT;
-
   let fainted = false;
 
   for(const hook of mine.hooks){
@@ -1287,7 +1288,8 @@ function updateMine(dt){
     const clawTarget = (hook.state==='retract' && hook.attachedGroup && hook.attachedGroup.length>0) ? 0 : 1;
     hook.clawOpen = (hook.clawOpen===undefined?1:hook.clawOpen) + (clawTarget-(hook.clawOpen===undefined?1:hook.clawOpen))*Math.min(1, dt*9);
     if(hook.state==='swing'){
-      let a = masterAngle + hook.offset;
+      hook.phase += mine.swingSpeed*dt;
+      let a = Math.sin(hook.phase) * SWING_LIMIT + hook.offset;
       if(a>SWING_LIMIT) a=SWING_LIMIT; if(a<-SWING_LIMIT) a=-SWING_LIMIT;
       hook.angle = a;
     } else if(hook.state==='extend'){
@@ -1400,8 +1402,9 @@ function finishMining(){
     return `<div class="result-chip">
       <span class="cnt">x${e.count}</span>
       ${mineralIconHTML(e.mineral,40,true)}
-      <div class="n">${name}</div>
+      <div class="n">${minName(e.mineral)}</div>
       <div class="v">${e.mineral.price}G ${t('each_suffix')}</div>
+      ${e.isNew ? '<span class="new-badge">NEW</span>' : ''}
     </div>`;
   }).join('') || `<div style="grid-column:1/-1;text-align:center;color:var(--cream-dim);padding:20px;">--</div>`;
   document.getElementById('mine-result').classList.add('show');
@@ -1528,20 +1531,31 @@ function drawHook(hook){
 }
 function drawItemCanvas(it){
   ctx.save(); ctx.translate(it.x,it.y);
-  const color = it.isBase ? '#8a7a63' : mineralColor(it.mineral);
-  const edge = shadeColor(color,-40);
-  if(it.isBase){
-    drawPoly(it.r,6,color,edge,0.15);
-  } else if(it.mineral.category==='工业矿物'){
-    drawPoly(it.r,6,color,edge,0.12);
-  } else if(it.mineral.category==='常见宝石矿物'){
-    drawDiamond(it.r,color,edge);
-  } else if(it.mineral.category==='珍稀晶体矿物'){
-    ctx.shadowColor=color; ctx.shadowBlur=12;
-    drawStar(it.r,color,edge);
-    ctx.shadowBlur=0;
+  // Prefer the real texture (pic/min_xxx.png) if it's been dropped in and has
+  // finished loading; otherwise fall back to the procedural shape placeholder.
+  const tex = it.mineral ? ASSET['min_'+it.mineral.icon] : null;
+  if(tex && tex.loaded){
+    const d = it.r*2;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(0,0,it.r,0,Math.PI*2); ctx.clip();
+    ctx.drawImage(tex, -it.r, -it.r, d, d);
+    ctx.restore();
   } else {
-    drawBlob(it.r,color,edge);
+    const color = it.isBase ? '#8a7a63' : mineralColor(it.mineral);
+    const edge = shadeColor(color,-40);
+    if(it.isBase){
+      drawPoly(it.r,6,color,edge,0.15);
+    } else if(it.mineral.category==='工业矿物'){
+      drawPoly(it.r,6,color,edge,0.12);
+    } else if(it.mineral.category==='常见宝石矿物'){
+      drawDiamond(it.r,color,edge);
+    } else if(it.mineral.category==='珍稀晶体矿物'){
+      ctx.shadowColor=color; ctx.shadowBlur=12;
+      drawStar(it.r,color,edge);
+      ctx.shadowBlur=0;
+    } else {
+      drawBlob(it.r,color,edge);
+    }
   }
   if(it.hazardType){
     ctx.font='bold 18px sans-serif'; ctx.fillStyle='#ff8b7a'; ctx.textAlign='center';
