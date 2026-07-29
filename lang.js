@@ -1,5 +1,5 @@
 /* ==========================================================================
-   万象矿工 Omni Miner — Localization file
+   矿石收集者 Mine Collector — Localization file
    10 languages: zh, zh-TW, en, de, fr, ru, ja, pt-BR, es, ko
    Loaded before the main <script> in index.html — exposes:
      - window.I18N              UI text strings, keyed by language code
@@ -9,7 +9,7 @@
    ========================================================================== */
 const I18N = {
   zh: {
-    title:'万象矿工', subtitle:'OMNI MINER', newgame:'开始游戏', continue_:'继续游戏', lang:'🌐 语言选择',
+    title:'矿石收集者', subtitle:'MINE COLLECTOR', newgame:'开始游戏', continue_:'继续游戏', lang:'🌐 语言选择',
     tab_map:'地图', tab_shop:'商店', tab_warehouse:'仓库', tab_dex:'图鉴', exit:'回到主页',
     map_title:'地形选择', map_desc:'挑选一处地形入场挖矿。解锁新地形需要累计发现足够多的矿物种类。',
     enter:'进入挖矿', free:'免费', locked_need:'累计发现矿物 {n}/{t} 种解锁', need_gear:'需要装备：',
@@ -50,7 +50,7 @@ const I18N = {
     on_state:'开', off_state:'关', testmode_label:'测试模式：', lang_menu_title:'选择语言', gained:'获得：',
   },
   'zh-TW': {
-    title:'萬象礦工', subtitle:'OMNI MINER', newgame:'開始遊戲', continue_:'繼續遊戲', lang:'🌐 語言選擇',
+    title:'礦石收集者', subtitle:'MINE COLLECTOR', newgame:'開始遊戲', continue_:'繼續遊戲', lang:'🌐 語言選擇',
     tab_map:'地圖', tab_shop:'商店', tab_warehouse:'倉庫', tab_dex:'圖鑑', exit:'回到主頁',
     map_title:'地形選擇', map_desc:'挑選一處地形入場挖礦。解鎖新地形需要累計發現足夠多的礦物種類。',
     enter:'進入挖礦', free:'免費', locked_need:'累計發現礦物 {n}/{t} 種解鎖', need_gear:'需要裝備：',
@@ -91,7 +91,7 @@ const I18N = {
     on_state:'開', off_state:'關', testmode_label:'測試模式：', lang_menu_title:'選擇語言', gained:'獲得：',
   },
   en: {
-    title:'Omni Miner', subtitle:'万象矿工', newgame:'New Game', continue_:'Continue', lang:'🌐 Language',
+    title:'Mine Collector', subtitle:'矿石收集者', newgame:'New Game', continue_:'Continue', lang:'🌐 Language',
     tab_map:'Map', tab_shop:'Shop', tab_warehouse:'Warehouse', tab_dex:'Dex', exit:'Home',
     map_title:'Choose a Site', map_desc:'Pick a terrain to enter and mine. Unlock new terrains by discovering enough mineral species overall.',
     enter:'Enter Mine', free:'Free', locked_need:'Discover {n}/{t} species to unlock', need_gear:'Requires gear: ',
@@ -132,7 +132,7 @@ const I18N = {
     on_state:'ON', off_state:'OFF', testmode_label:'Test Mode: ', lang_menu_title:'Select Language', gained:'Gained: ',
   },
   de: {
-    title:'Omni Miner', subtitle:'万象矿工', newgame:'Neues Spiel', continue_:'Fortsetzen', lang:'🌐 Sprache',
+    title:'Minensammler', subtitle:'矿石收集者', newgame:'Neues Spiel', continue_:'Fortsetzen', lang:'🌐 Sprache',
     tab_map:'Karte', tab_shop:'Shop', tab_warehouse:'Lager', tab_dex:'Dex', exit:'Startseite',
     map_title:'Gebiet wählen', map_desc:'Wähle ein Gelände zum Schürfen. Neue Gelände werden freigeschaltet, sobald du genug Mineralarten insgesamt entdeckt hast.',
     enter:'Mine betreten', free:'Kostenlos', locked_need:'{n}/{t} Arten entdecken zum Freischalten', need_gear:'Benötigt Ausrüstung: ',
@@ -173,7 +173,7 @@ const I18N = {
     on_state:'AN', off_state:'AUS', testmode_label:'Testmodus: ', lang_menu_title:'Sprache wählen', gained:'Erhalten: ',
   },
   fr: {
-    title:'Omni Miner', subtitle:'万象矿工', newgame:'Nouvelle partie', continue_:'Continuer', lang:'🌐 Langue',
+    title:'Collectionneur de Mines', subtitle:'矿石收集者', newgame:'Nouvelle partie', continue_:'Continuer', lang:'🌐 Langue',
     tab_map:'Carte', tab_shop:'Boutique', tab_warehouse:'Entrepôt', tab_dex:'Dex', exit:'Accueil',
     map_title:'Choisir un site', map_desc:"Choisissez un terrain pour miner. Débloquez de nouveaux terrains en découvrant suffisamment d'espèces de minéraux au total.",
     enter:'Entrer dans la mine', free:'Gratuit', locked_need:'Découvrez {n}/{t} espèces pour débloquer', need_gear:'Équipement requis : ',
@@ -214,7 +214,7 @@ const I18N = {
     on_state:'ON', off_state:'OFF', testmode_label:'Mode test : ', lang_menu_title:'Choisir la langue', gained:'Obtenu : ',
   },
   ru: {
-    title:'Omni Miner', subtitle:'万象矿工', newgame:'Новая игра', continue_:'Продолжить', lang:'🌐 Язык',
+    title:'Коллекционер Шахт', subtitle:'矿石收集者', newgame:'Новая игра', continue_:'Продолжить', lang:'🌐 Язык',
     tab_map:'Карта', tab_shop:'Магазин', tab_warehouse:'Склад', tab_dex:'Дех', exit:'На главную',
     map_title:'Выбор участка', map_desc:'Выберите местность для добычи. Новые местности открываются по мере обнаружения достаточного числа видов минералов.',
     enter:'Войти в шахту', free:'Бесплатно', locked_need:'Откройте {n}/{t} видов для разблокировки', need_gear:'Необходимо снаряжение: ',
@@ -255,7 +255,7 @@ const I18N = {
     on_state:'ВКЛ', off_state:'ВЫКЛ', testmode_label:'Тестовый режим: ', lang_menu_title:'Выбор языка', gained:'Получено: ',
   },
   ja: {
-    title:'オムニマイナー', subtitle:'万象矿工', newgame:'新しく始める', continue_:'続ける', lang:'🌐 言語',
+    title:'マインコレクター', subtitle:'矿石收集者', newgame:'新しく始める', continue_:'続ける', lang:'🌐 言語',
     tab_map:'マップ', tab_shop:'ショップ', tab_warehouse:'倉庫', tab_dex:'図鑑', exit:'ホームへ',
     map_title:'採掘地を選ぶ', map_desc:'採掘する地形を選んでください。累計で十分な種類の鉱物を発見すると新しい地形が解放されます。',
     enter:'採掘へ', free:'無料', locked_need:'鉱物を{n}/{t}種発見で解放', need_gear:'必要装備：',
@@ -296,7 +296,7 @@ const I18N = {
     on_state:'オン', off_state:'オフ', testmode_label:'テストモード：', lang_menu_title:'言語を選択', gained:'獲得：',
   },
   'pt-BR': {
-    title:'Omni Miner', subtitle:'万象矿工', newgame:'Novo Jogo', continue_:'Continuar', lang:'🌐 Idioma',
+    title:'Colecionador de Minas', subtitle:'矿石收集者', newgame:'Novo Jogo', continue_:'Continuar', lang:'🌐 Idioma',
     tab_map:'Mapa', tab_shop:'Loja', tab_warehouse:'Armazém', tab_dex:'Dex', exit:'Início',
     map_title:'Escolher Local', map_desc:'Escolha um terreno para minerar. Desbloqueie novos terrenos descobrindo espécies de minerais suficientes no total.',
     enter:'Entrar na Mina', free:'Grátis', locked_need:'Descubra {n}/{t} espécies para desbloquear', need_gear:'Equipamento necessário: ',
@@ -337,7 +337,7 @@ const I18N = {
     on_state:'LIGADO', off_state:'DESLIGADO', testmode_label:'Modo de teste: ', lang_menu_title:'Selecionar idioma', gained:'Obtido: ',
   },
   es: {
-    title:'Omni Miner', subtitle:'万象矿工', newgame:'Nueva Partida', continue_:'Continuar', lang:'🌐 Idioma',
+    title:'Coleccionista de Minas', subtitle:'矿石收集者', newgame:'Nueva Partida', continue_:'Continuar', lang:'🌐 Idioma',
     tab_map:'Mapa', tab_shop:'Tienda', tab_warehouse:'Almacén', tab_dex:'Dex', exit:'Inicio',
     map_title:'Elegir Terreno', map_desc:'Elige un terreno para entrar y minar. Desbloquea nuevos terrenos descubriendo suficientes especies de minerales en total.',
     enter:'Entrar a la Mina', free:'Gratis', locked_need:'Descubre {n}/{t} especies para desbloquear', need_gear:'Equipo requerido: ',
@@ -378,7 +378,7 @@ const I18N = {
     on_state:'ACTIVADO', off_state:'DESACTIVADO', testmode_label:'Modo de prueba: ', lang_menu_title:'Seleccionar idioma', gained:'Obtenido: ',
   },
   ko: {
-    title:'오므니 마이너', subtitle:'万象矿工', newgame:'새 게임', continue_:'이어하기', lang:'🌐 언어',
+    title:'마인 컬렉터', subtitle:'矿石收集者', newgame:'새 게임', continue_:'이어하기', lang:'🌐 언어',
     tab_map:'지도', tab_shop:'상점', tab_warehouse:'창고', tab_dex:'도감', exit:'홈으로',
     map_title:'지형 선택', map_desc:'채굴할 지형을 선택하세요. 누적으로 충분한 종류의 광물을 발견하면 새로운 지형이 해금됩니다.',
     enter:'채굴 입장', free:'무료', locked_need:'광물 {n}/{t}종 발견 시 해금', need_gear:'필요 장비: ',
@@ -509,7 +509,7 @@ const MINERAL_NAME_I18N = {
   '泥煤': { zh:'泥煤', 'zh-TW':'泥煤', en:'Peat', de:'Torf', fr:'Tourbe', ru:'Торф', ja:'泥炭', 'pt-BR':'Turfa', es:'Turba', ko:'이탄' },
   '褐铁矿': { zh:'褐铁矿', 'zh-TW':'褐鐵礦', en:'Limonite', de:'Limonit', fr:'Limonite', ru:'Лимонит', ja:'褐鉄鉱', 'pt-BR':'Limonita', es:'Limonita', ko:'갈철석' },
   '冰': { zh:'冰', 'zh-TW':'冰', en:'Ice', de:'Eis', fr:'Glace', ru:'Лёд', ja:'氷', 'pt-BR':'Gelo', es:'Hielo', ko:'얼음' },
-  '火山岩渣': { zh:'火山岩渣', 'zh-TW':'火山岩渣', en:'Volcanic Scoria', de:'Vulkanische Schlacke', fr:'Scorie volcanique', ru:'Вулканический шлак', ja:'スコリア', 'pt-BR':'Escória Vulcânica', es:'Escoria Volcánica', ko:'화산암재' },
+  '火山岩': { zh:'火山岩', 'zh-TW':'火山岩', en:'Volcanic Rock', de:'Vulkangestein', fr:'Roche volcanique', ru:'Вулканическая порода', ja:'火山岩', 'pt-BR':'Rocha Vulcânica', es:'Roca Volcánica', ko:'화산암' },
   '脉石': { zh:'脉石', 'zh-TW':'脈石', en:'Gangue', de:'Gangart', fr:'Gangue', ru:'Пустая порода', ja:'脈石', 'pt-BR':'Ganga', es:'Ganga', ko:'맥석' },
   '钻石': { zh:'钻石', 'zh-TW':'鑽石', en:'Diamond', de:'Diamant', fr:'Diamant', ru:'Алмаз', ja:'ダイヤモンド', 'pt-BR':'Diamante', es:'Diamante', ko:'다이아몬드' },
   '红宝石': { zh:'红宝石', 'zh-TW':'紅寶石', en:'Ruby', de:'Rubin', fr:'Rubis', ru:'Рубин', ja:'ルビー', 'pt-BR':'Rubi', es:'Rubí', ko:'루비' },
@@ -531,7 +531,6 @@ const MINERAL_NAME_I18N = {
   '白水晶': { zh:'白水晶', 'zh-TW':'白水晶', en:'Clear Quartz', de:'Bergkristall', fr:'Cristal de roche', ru:'Горный хрусталь', ja:'水晶', 'pt-BR':'Cristal de Rocha', es:'Cuarzo Transparente', ko:'백수정' },
   '黄水晶': { zh:'黄水晶', 'zh-TW':'黃水晶', en:'Citrine', de:'Citrin', fr:'Citrine', ru:'Цитрин', ja:'シトリン', 'pt-BR':'Citrino', es:'Citrino', ko:'황수정' },
   '玫瑰石英': { zh:'玫瑰石英', 'zh-TW':'玫瑰石英', en:'Rose Quartz', de:'Rosenquarz', fr:'Quartz rose', ru:'Розовый кварц', ja:'ローズクォーツ', 'pt-BR':'Quartzo Rosa', es:'Cuarzo Rosa', ko:'장미석영' },
-  '萤石晶簇': { zh:'萤石晶簇', 'zh-TW':'螢石晶簇', en:'Fluorite Cluster', de:'Flussspat-Stufe', fr:'Amas de fluorite', ru:'Друза флюорита', ja:'蛍石クラスター', 'pt-BR':'Drusa de Fluorita', es:'Racimo de Fluorita', ko:'형석 정족' },
   '方解石晶体': { zh:'方解石晶体', 'zh-TW':'方解石晶體', en:'Calcite Crystal', de:'Kalzitkristall', fr:'Cristal de calcite', ru:'Кристалл кальцита', ja:'方解石結晶', 'pt-BR':'Cristal de Calcita', es:'Cristal de Calcita', ko:'방해석 결정' },
   '天青石': { zh:'天青石', 'zh-TW':'天青石', en:'Celestite', de:'Cölestin', fr:'Célestine', ru:'Целестин', ja:'天青石', 'pt-BR':'Celestita', es:'Celestina', ko:'천청석' },
   '蛋白石': { zh:'蛋白石', 'zh-TW':'蛋白石', en:'Opal', de:'Opal', fr:'Opale', ru:'Опал', ja:'オパール', 'pt-BR':'Opala', es:'Ópalo', ko:'오팔' },
@@ -542,11 +541,11 @@ const MINERAL_NAME_I18N = {
   '玛瑙': { zh:'玛瑙', 'zh-TW':'瑪瑙', en:'Agate', de:'Achat', fr:'Agate', ru:'Агат', ja:'瑪瑙', 'pt-BR':'Ágata', es:'Ágata', ko:'마노' },
   '孔雀石': { zh:'孔雀石', 'zh-TW':'孔雀石', en:'Malachite', de:'Malachit', fr:'Malachite', ru:'Малахит', ja:'孔雀石', 'pt-BR':'Malaquita', es:'Malaquita', ko:'공작석' },
   '虎眼石': { zh:'虎眼石', 'zh-TW':'虎眼石', en:'Tiger\'s Eye', de:'Tigerauge', fr:'Œil-de-tigre', ru:'Тигровый глаз', ja:'タイガーアイ', 'pt-BR':'Olho-de-Tigre', es:'Ojo de Tigre', ko:'호안석' },
-  '珍珠母': { zh:'珍珠母', 'zh-TW':'珍珠母', en:'Mother of Pearl', de:'Perlmutt', fr:'Nacre', ru:'Перламутр', ja:'真珠母（マザーオブパール）', 'pt-BR':'Madrepérola', es:'Nácar', ko:'진주모' },
+  '珍珠': { zh:'珍珠', 'zh-TW':'珍珠', en:'Pearl', de:'Perle', fr:'Perle', ru:'Жемчуг', ja:'真珠', 'pt-BR':'Pérola', es:'Perla', ko:'진주' },
   '冰洲石': { zh:'冰洲石', 'zh-TW':'冰洲石', en:'Iceland Spar', de:'Doppelspat (Islandspat)', fr:'Spath d\'Islande', ru:'Исландский шпат', ja:'アイスランドスパー', 'pt-BR':'Espato da Islândia', es:'Espato de Islandia', ko:'아이슬란드 방해석' },
   '三叶虫化石': { zh:'三叶虫化石', 'zh-TW':'三葉蟲化石', en:'Trilobite Fossil', de:'Trilobiten-Fossil', fr:'Fossile de trilobite', ru:'Окаменелость трилобита', ja:'三葉虫化石', 'pt-BR':'Fóssil de Trilobita', es:'Fósil de Trilobites', ko:'삼엽충 화석' },
   '菊石化石': { zh:'菊石化石', 'zh-TW':'菊石化石', en:'Ammonite Fossil', de:'Ammoniten-Fossil', fr:'Fossile d\'ammonite', ru:'Окаменелость аммонита', ja:'アンモナイト化石', 'pt-BR':'Fóssil de Amonite', es:'Fósil de Amonita', ko:'암모나이트 화석' },
-  '恐龙骨骼化石': { zh:'恐龙骨骼化石', 'zh-TW':'恐龍骨骼化石', en:'Dinosaur Bone Fossil', de:'Dinosaurierknochen-Fossil', fr:'Fossile d\'os de dinosaure', ru:'Окаменелая кость динозавра', ja:'恐竜骨化石', 'pt-BR':'Fóssil de Osso de Dinossauro', es:'Fósil de Hueso de Dinosaurio', ko:'공룡 뼈 화석' },
+  '恐龙牙齿化石': { zh:'恐龙牙齿化石', 'zh-TW':'恐龍牙齒化石', en:'Dinosaur Tooth Fossil', de:'Dinosaurierzahn-Fossil', fr:'Fossile de dent de dinosaure', ru:'Окаменелый зуб динозавра', ja:'恐竜の歯化石', 'pt-BR':'Fóssil de Dente de Dinossauro', es:'Fósil de Diente de Dinosaurio', ko:'공룡 이빨 화석' },
   '恐龙蛋化石': { zh:'恐龙蛋化石', 'zh-TW':'恐龍蛋化石', en:'Dinosaur Egg Fossil', de:'Dinosaurierei-Fossil', fr:'Fossile d\'œuf de dinosaure', ru:'Окаменелое яйцо динозавра', ja:'恐竜卵化石', 'pt-BR':'Fóssil de Ovo de Dinossauro', es:'Fósil de Huevo de Dinosaurio', ko:'공룡알 화석' },
   '猛犸象牙化石': { zh:'猛犸象牙化石', 'zh-TW':'猛獁象牙化石', en:'Mammoth Ivory Fossil', de:'Mammutelfenbein-Fossil', fr:'Fossile d\'ivoire de mammouth', ru:'Ископаемый мамонтовый бивень', ja:'マンモスの牙化石', 'pt-BR':'Fóssil de Marfim de Mamute', es:'Fósil de Marfil de Mamut', ko:'매머드 상아 화석' },
   '琥珀(含虫)': { zh:'琥珀(含虫)', 'zh-TW':'琥珀(含蟲)', en:'Amber (with insect)', de:'Bernstein (mit Insekt)', fr:'Ambre (avec insecte)', ru:'Янтарь (с насекомым)', ja:'琥珀（虫入り）', 'pt-BR':'Âmbar (com inseto)', es:'Ámbar (con insecto)', ko:'호박(곤충 포함)' },
@@ -554,7 +553,6 @@ const MINERAL_NAME_I18N = {
   '蕨类植物化石': { zh:'蕨类植物化石', 'zh-TW':'蕨類植物化石', en:'Fern Fossil', de:'Farnfossil', fr:'Fossile de fougère', ru:'Окаменелость папоротника', ja:'シダ植物化石', 'pt-BR':'Fóssil de Samambaia', es:'Fósil de Helecho', ko:'양치식물 화석' },
   '贝壳化石': { zh:'贝壳化石', 'zh-TW':'貝殼化石', en:'Shell Fossil', de:'Muschelfossil', fr:'Fossile de coquillage', ru:'Окаменелая раковина', ja:'貝殻化石', 'pt-BR':'Fóssil de Concha', es:'Fósil de Concha', ko:'조개껍데기 화석' },
   '始祖鸟化石': { zh:'始祖鸟化石', 'zh-TW':'始祖鳥化石', en:'Archaeopteryx Fossil', de:'Archaeopteryx-Fossil', fr:'Fossile d\'archéoptéryx', ru:'Окаменелость археоптерикса', ja:'始祖鳥化石', 'pt-BR':'Fóssil de Archaeopteryx', es:'Fósil de Arqueópterix', ko:'시조새 화석' },
-  '剑齿虎化石': { zh:'剑齿虎化石', 'zh-TW':'劍齒虎化石', en:'Saber-toothed Tiger Fossil', de:'Säbelzahntiger-Fossil', fr:'Fossile de tigre à dents de sabre', ru:'Окаменелость саблезубого тигра', ja:'サーベルタイガー化石', 'pt-BR':'Fóssil de Tigre-dente-de-sabre', es:'Fósil de Tigre Dientes de Sable', ko:'검치호 화석' },
   '三角龙头骨化石': { zh:'三角龙头骨化石', 'zh-TW':'三角龍頭骨化石', en:'Triceratops Skull Fossil', de:'Triceratops-Schädelfossil', fr:'Fossile de crâne de tricératops', ru:'Окаменелый череп трицератопса', ja:'トリケラトプス頭骨化石', 'pt-BR':'Fóssil de Crânio de Triceratops', es:'Fósil de Cráneo de Triceratops', ko:'트리케라톱스 두개골 화석' },
   '珊瑚化石': { zh:'珊瑚化石', 'zh-TW':'珊瑚化石', en:'Coral Fossil', de:'Korallenfossil', fr:'Fossile de corail', ru:'Окаменелый коралл', ja:'サンゴ化石', 'pt-BR':'Fóssil de Coral', es:'Fósil de Coral', ko:'산호 화석' },
   '硅化木': { zh:'硅化木', 'zh-TW':'矽化木', en:'Petrified Wood', de:'Versteinertes Holz', fr:'Bois pétrifié', ru:'Окаменелое дерево', ja:'珪化木', 'pt-BR':'Madeira Petrificada', es:'Madera Petrificada', ko:'규화목' },
@@ -597,7 +595,7 @@ const MINERAL_NOTE_I18N = {
   '石棉': { zh:'也有青石棉等角闪石族品种', 'zh-TW':'也有青石棉等角閃石族品種', en:'Crocidolite and other amphibole-group varieties also occur.', de:'Auch Krokydolith und andere Amphibol-Varietäten kommen vor.', fr:'On trouve aussi la crocidolite et d\'autres variétés du groupe des amphiboles.', ru:'Также встречаются крокидолит и другие разновидности группы амфиболов.', ja:'青石綿（クロシドライト）など角閃石族の品種もある。', 'pt-BR':'Crocidolita e outras variedades do grupo dos anfibólios também ocorrem.', es:'La crocidolita y otras variedades del grupo de los anfíboles también existen.', ko:'청석면 등 각섬석족 종류도 있다.' },
   '云母': { zh:'云母族矿物统称', 'zh-TW':'雲母族礦物統稱', en:'A general term for the mica group of minerals.', de:'Ein Sammelbegriff für die Glimmergruppe der Minerale.', fr:'Terme générique pour le groupe minéral des micas.', ru:'Общее название группы слюдяных минералов.', ja:'雲母族鉱物の総称。', 'pt-BR':'Termo geral para o grupo mineral das micas.', es:'Término general para el grupo mineral de las micas.', ko:'운모족 광물의 총칭.' },
   '黑曜岩': { zh:'火山玻璃', 'zh-TW':'火山玻璃', en:'Volcanic glass.', de:'Vulkanisches Glas.', fr:'Verre volcanique.', ru:'Вулканическое стекло.', ja:'火山ガラス。', 'pt-BR':'Vidro vulcânico.', es:'Vidrio volcánico.', ko:'화산 유리.' },
-  '火山岩渣': { zh:'多孔玄武质火山岩', 'zh-TW':'多孔玄武質火山岩', en:'Porous basaltic volcanic rock.', de:'Poröses basaltisches Vulkangestein.', fr:'Roche volcanique basaltique poreuse.', ru:'Пористая базальтовая вулканическая порода.', ja:'多孔質な玄武岩質の火山岩。', 'pt-BR':'Rocha vulcânica basáltica porosa.', es:'Roca volcánica basáltica porosa.', ko:'다공질 현무암질 화산암.' },
+  '火山岩': { zh:'多孔玄武质火山岩', 'zh-TW':'多孔玄武質火山岩', en:'Porous basaltic volcanic rock.', de:'Poröses basaltisches Vulkangestein.', fr:'Roche volcanique basaltique poreuse.', ru:'Пористая базальтовая вулканическая порода.', ja:'多孔質な玄武岩質の火山岩。', 'pt-BR':'Rocha vulcânica basáltica porosa.', es:'Roca volcánica basáltica porosa.', ko:'다공질 현무암질 화산암.' },
   '脉石': { zh:'矿脉里包裹矿石的无价值围岩', 'zh-TW':'礦脈裡包裹礦石的無價值圍岩', en:'The worthless host rock surrounding ore within a vein.', de:'Das wertlose Nebengestein, das das Erz in einer Ader umschließt.', fr:'La roche encaissante sans valeur qui entoure le minerai dans un filon.', ru:'Бесполезная вмещающая порода, окружающая руду в жиле.', ja:'鉱脈の中で鉱石を包む無価値な母岩。', 'pt-BR':'A rocha hospedeira sem valor que envolve o minério em um veio.', es:'La roca encajante sin valor que rodea el mineral en una veta.', ko:'광맥 안에서 광석을 감싸는 가치 없는 모암.' },
   '红宝石': { zh:'刚玉，Cr致色', 'zh-TW':'剛玉，Cr致色', en:'Corundum, colored by chromium.', de:'Korund, durch Chrom gefärbt.', fr:'Corindon, coloré par le chrome.', ru:'Корунд, окрашенный хромом.', ja:'コランダムで、Crによって発色する。', 'pt-BR':'Coríndon, colorido por cromo.', es:'Corindón, coloreado por el cromo.', ko:'강옥(커런덤)이며, 크롬에 의해 색이 난다.' },
   '蓝宝石': { zh:'刚玉，Fe/Ti致色', 'zh-TW':'剛玉，Fe/Ti致色', en:'Corundum, colored by iron and titanium.', de:'Korund, durch Eisen und Titan gefärbt.', fr:'Corindon, coloré par le fer et le titane.', ru:'Корунд, окрашенный железом и титаном.', ja:'コランダムで、Fe/Tiによって発色する。', 'pt-BR':'Coríndon, colorido por ferro e titânio.', es:'Corindón, coloreado por hierro y titanio.', ko:'강옥이며, 철/티타늄에 의해 색이 난다.' },
@@ -620,7 +618,7 @@ const MINERAL_NOTE_I18N = {
   '玛瑙': { zh:'隐晶质石英', 'zh-TW':'隱晶質石英', en:'Cryptocrystalline quartz.', de:'Kryptokristalliner Quarz.', fr:'Quartz cryptocristallin.', ru:'Скрытокристаллический кварц.', ja:'隠微晶質の石英。', 'pt-BR':'Quartzo criptocristalino.', es:'Cuarzo criptocristalino.', ko:'은정질 석영.' },
   '孔雀石': { zh:'与铜矿同源', 'zh-TW':'與銅礦同源', en:'Shares the same origin as copper ore.', de:'Hat denselben Ursprung wie Kupfererz.', fr:'A la même origine que le minerai de cuivre.', ru:'Имеет тот же источник, что и медная руда.', ja:'銅鉱と同源である。', 'pt-BR':'Tem a mesma origem do minério de cobre.', es:'Tiene el mismo origen que el mineral de cobre.', ko:'구리 광석과 같은 기원을 가진다.' },
   '虎眼石': { zh:'石英交代青石棉纤维', 'zh-TW':'石英交代青石棉纖維', en:'Quartz that has replaced crocidolite (blue asbestos) fibers.', de:'Quarz, der Krokydolith-(Blauasbest-)Fasern verdrängt hat.', fr:'Quartz ayant remplacé des fibres de crocidolite (amiante bleu).', ru:'Кварц, замещающий волокна крокидолита (голубого асбеста).', ja:'石英が青石綿の繊維を交代したもの。', 'pt-BR':'Quartzo que substituiu fibras de crocidolita (amianto azul).', es:'Cuarzo que ha reemplazado fibras de crocidolita (asbesto azul).', ko:'석영이 청석면 섬유를 교대한 것.' },
-  '珍珠母': { zh:'文石+有机质的生物矿化复合材料', 'zh-TW':'文石+有機質的生物礦化複合材料', en:'A biomineralized composite of aragonite and organic matter.', de:'Ein biomineralisiertes Verbundmaterial aus Aragonit und organischer Substanz.', fr:'Un matériau composite biominéralisé d\'aragonite et de matière organique.', ru:'Биоминерализованный композит из арагонита и органического вещества.', ja:'アラゴナイトと有機質からなる生体鉱物化複合材料。', 'pt-BR':'Um material composto biomineralizado de aragonita e matéria orgânica.', es:'Un material compuesto biomineralizado de aragonito y materia orgánica.', ko:'아라고나이트와 유기물이 결합된 생체광물 복합재료.' },
+  '珍珠': { zh:'文石+有机质的生物矿化复合材料', 'zh-TW':'文石+有機質的生物礦化複合材料', en:'A biomineralized composite of aragonite and organic matter.', de:'Ein biomineralisiertes Verbundmaterial aus Aragonit und organischer Substanz.', fr:'Un matériau composite biominéralisé d\'aragonite et de matière organique.', ru:'Биоминерализованный композит из арагонита и органического вещества.', ja:'アラゴナイトと有機質からなる生体鉱物化複合材料。', 'pt-BR':'Um material composto biomineralizado de aragonita e matéria orgânica.', es:'Un material compuesto biomineralizado de aragonito y materia orgánica.', ko:'아라고나이트와 유기물이 결합된 생체광물 복합재료.' },
   '冰洲石': { zh:'方解石的透明观赏变种，因产自冰岛得名，历史上用于研究光学双折射现象', 'zh-TW':'方解石的透明觀賞變種，因產自冰島得名，歷史上用於研究光學雙折射現象', en:'A transparent, gem-quality variety of calcite named after Iceland, historically used to study optical double refraction.', de:'Eine durchsichtige, dekorative Varietät des Calcits, benannt nach Island, historisch zur Erforschung der optischen Doppelbrechung verwendet.', fr:'Une variété transparente et décorative de la calcite, nommée d\'après l\'Islande, historiquement utilisée pour étudier la double réfraction optique.', ru:'Прозрачная декоративная разновидность кальцита, названная в честь Исландии, исторически использовалась для изучения оптического двойного лучепреломления.', ja:'方解石の透明で観賞用の変種で、アイスランド産にちなんで名付けられ、歴史的に光学的複屈折現象の研究に用いられた。', 'pt-BR':'Uma variedade transparente e ornamental da calcita, nomeada em homenagem à Islândia, historicamente usada para estudar a dupla refração óptica.', es:'Una variedad transparente y ornamental de la calcita, llamada así por Islandia, utilizada históricamente para estudiar la doble refracción óptica.', ko:'방해석의 투명한 관상용 변종으로, 아이슬란드산이라는 이름에서 유래했으며 역사적으로 광학 복굴절 현상 연구에 사용되었다.' },
   '三叶虫化石': { zh:'具体成分取决于石化过程', 'zh-TW':'具體成分取決於石化過程', en:'The exact composition depends on the fossilization process.', de:'Die genaue Zusammensetzung hängt vom Fossilisationsprozess ab.', fr:'La composition exacte dépend du processus de fossilisation.', ru:'Точный состав зависит от процесса окаменения.', ja:'具体的な成分は石化の過程によって異なる。', 'pt-BR':'A composição exata depende do processo de fossilização.', es:'La composición exacta depende del proceso de fosilización.', ko:'구체적인 성분은 화석화 과정에 따라 다르다.' },
   '琥珀(含虫)': { zh:'树脂化石，非严格矿物', 'zh-TW':'樹脂化石，非嚴格礦物', en:'Fossilized resin; not a mineral in the strict sense.', de:'Fossiles Harz; kein Mineral im strengen Sinne.', fr:'Résine fossilisée ; pas un minéral au sens strict.', ru:'Окаменевшая смола; не является минералом в строгом смысле.', ja:'樹脂の化石であり、厳密には鉱物ではない。', 'pt-BR':'Resina fossilizada; não é um mineral em sentido estrito.', es:'Resina fosilizada; no es un mineral en sentido estricto.', ko:'수지가 화석화된 것으로, 엄밀히는 광물이 아니다.' },
