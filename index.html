@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>万象矿工 Omni Miner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg-deep:#160f0a;
@@ -67,11 +70,32 @@ button{font-family:inherit;cursor:pointer;}
 }
 .home-title{
   font-size:56px;font-weight:900;color:var(--gold);
-  letter-spacing:6px;text-shadow:0 4px 0 #3a2200, 0 8px 18px rgba(0,0,0,.5);
+  letter-spacing:6px;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.5),
+    0 4px 0 #3a2200,
+    0 8px 18px rgba(0,0,0,.5),
+    0 0 24px rgba(255,196,84,.35);
   z-index:2;
 }
 .home-sub{
-  font-size:20px;color:var(--cream-dim);letter-spacing:3px;margin-top:6px;z-index:2;
+  font-family:'Orbitron','ZCOOL KuaiLe',sans-serif;
+  font-size:21px;font-weight:700;letter-spacing:7px;margin-top:10px;z-index:2;
+  position:relative;
+  background:linear-gradient(120deg, #ffb92e 0%, #fff8e1 12%, #ffb92e 26%, #e08a1a 42%, #fff8e1 55%, #ffb92e 70%, #fff3c4 85%, #ffb92e 100%);
+  background-size:220% auto;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.75),
+    0 -1px 0 rgba(90,50,0,.55),
+    0 3px 6px rgba(0,0,0,.4),
+    0 0 18px rgba(255,200,90,.45);
+  animation:crystalShine 4.5s linear infinite;
+}
+@keyframes crystalShine{
+  0%{background-position:0% center;}
+  100%{background-position:220% center;}
 }
 .home-btns{
   margin-top:38px;display:flex;flex-direction:column;gap:14px;z-index:2;width:280px;
@@ -105,7 +129,8 @@ button{font-family:inherit;cursor:pointer;}
 #lang-menu{
   position:absolute;z-index:5;background:var(--bg-panel);border:2px solid var(--gold-dark);
   border-radius:10px;padding:8px;display:none;flex-direction:column;gap:4px;
-  top:50%;left:50%;transform:translate(-50%,-50%);min-width:200px;
+  top:50%;left:50%;transform:translate(-50%,-50%);min-width:220px;
+  max-height:80vh;overflow-y:auto;
 }
 #lang-menu.show{display:flex;}
 #lang-menu .lang-opt{
@@ -310,11 +335,19 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
       <button class="home-btn" id="btn-lang">🌐 语言选择</button>
     </div>
     <div id="home-sign">by 纯一星鸣</div>
-    <div id="testmode-toggle">测试模式：<span id="testmode-state">关</span></div>
+    <div id="testmode-toggle"><span id="testmode-label">测试模式：</span><span id="testmode-state">关</span></div>
     <div id="lang-menu">
-      <div class="lang-title">选择语言 / Select language</div>
-      <button class="lang-opt" data-lang="zh">中文（简体）</button>
+      <div class="lang-title" id="lang-menu-title">选择语言 / Select language</div>
+      <button class="lang-opt" data-lang="zh">简体中文</button>
+      <button class="lang-opt" data-lang="zh-TW">繁體中文</button>
       <button class="lang-opt" data-lang="en">English</button>
+      <button class="lang-opt" data-lang="de">Deutsch</button>
+      <button class="lang-opt" data-lang="fr">Français</button>
+      <button class="lang-opt" data-lang="ru">Русский</button>
+      <button class="lang-opt" data-lang="ja">日本語</button>
+      <button class="lang-opt" data-lang="pt-BR">Português (Brasil)</button>
+      <button class="lang-opt" data-lang="es">Español (Latinoamérica)</button>
+      <button class="lang-opt" data-lang="ko">한국어</button>
     </div>
   </div>
 
@@ -372,6 +405,7 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
 
 </div>
 
+<script src="lang.js"></script>
 <script>
 const MINERALS = [{"name": "铁矿石", "category": "工业矿物", "rarity": "普通", "formula": "Fe₂O₃(赤铁矿)/Fe₃O₄(磁铁矿)", "price": 8, "note": "常见铁矿主要为赤铁矿或磁铁矿，也有菱铁矿FeCO₃", "icon": "min_001.png"}, {"name": "铜矿石", "category": "工业矿物", "rarity": "普通", "formula": "CuFeS₂(黄铜矿)", "price": 12, "note": "工业铜矿最主要来源，也有辉铜矿Cu₂S、孔雀石等氧化矿", "icon": "min_002.png"}, {"name": "铝土矿", "category": "工业矿物", "rarity": "普通", "formula": "Al(OH)₃/AlO(OH)", "price": 10, "note": "三水铝石+一水软铝石+氧化铁杂质的混合矿石", "icon": "min_003.png"}, {"name": "锡石", "category": "工业矿物", "rarity": "少见", "formula": "SnO₂", "price": 20, "note": null, "icon": "min_004.png"}, {"name": "方铅矿", "category": "工业矿物", "rarity": "普通", "formula": "PbS", "price": 10, "note": null, "icon": "min_005.png"}, {"name": "闪锌矿", "category": "工业矿物", "rarity": "普通", "formula": "ZnS", "price": 10, "note": null, "icon": "min_006.png"}, {"name": "辉钼矿", "category": "工业矿物", "rarity": "少见", "formula": "MoS₂", "price": 25, "note": null, "icon": "min_007.png"}, {"name": "镍矿", "category": "工业矿物", "rarity": "少见", "formula": "(Ni,Fe)₉S₈(镍黄铁矿)", "price": 22, "note": "硫化镍矿为主，也有硅酸镍型红土镍矿", "icon": "min_008.png"}, {"name": "钨矿", "category": "工业矿物", "rarity": "稀有", "formula": "CaWO₄(白钨矿)/(Fe,Mn)WO₄(黑钨矿)", "price": 45, "note": null, "icon": "min_009.png"}, {"name": "金矿脉", "category": "工业矿物", "rarity": "稀有", "formula": "Au", "price": 80, "note": "多以自然金颗粒赋存于石英脉中", "icon": "min_010.png"}, {"name": "银矿脉", "category": "工业矿物", "rarity": "少见", "formula": "Ag/Ag₂S(辉银矿)", "price": 40, "note": null, "icon": "min_011.png"}, {"name": "铬铁矿", "category": "工业矿物", "rarity": "少见", "formula": "FeCr₂O₄", "price": 28, "note": null, "icon": "min_012.png"}, {"name": "锰矿", "category": "工业矿物", "rarity": "普通", "formula": "MnO₂(软锰矿)", "price": 15, "note": "也常见Mn₂O₃(黑锰矿)等", "icon": "min_013.png"}, {"name": "煤", "category": "工业矿物", "rarity": "普通", "formula": "C（复杂有机质）", "price": 5, "note": "非严格意义矿物，主体为碳质", "icon": "min_014.png"}, {"name": "褐煤", "category": "工业矿物", "rarity": "普通", "formula": "C（复杂有机质，含水量较高）", "price": 4, "note": "煤化程度低于煤", "icon": "min_015.png"}, {"name": "石油沥青", "category": "工业矿物", "rarity": "少见", "formula": "CₙHₘ（复杂烃类混合物）", "price": 18, "note": null, "icon": "min_016.png"}, {"name": "油页岩", "category": "工业矿物", "rarity": "少见", "formula": "干酪根（有机质）+硅酸盐矿物", "price": 16, "note": null, "icon": "min_017.png"}, {"name": "铀矿", "category": "工业矿物", "rarity": "稀有", "formula": "UO₂", "price": 90, "note": "沥青铀矿等统称，主要成分UO₂", "icon": "min_018.png"}, {"name": "石灰石", "category": "工业矿物", "rarity": "普通", "formula": "CaCO₃", "price": 3, "note": "主要成分CaCO₃", "icon": "min_019.png"}, {"name": "石膏", "category": "工业矿物", "rarity": "普通", "formula": "CaSO₄·2H₂O", "price": 4, "note": null, "icon": "min_020.png"}, {"name": "花岗岩", "category": "工业矿物", "rarity": "普通", "formula": "SiO₂+KAlSi₃O₈+NaAlSi₃O₈等", "price": 8, "note": "石英+长石+云母等矿物混合岩石", "icon": "min_021.png"}, {"name": "大理岩", "category": "工业矿物", "rarity": "普通", "formula": "CaCO₃", "price": 18, "note": "变质石灰岩，主要成分CaCO₃", "icon": "min_022.png"}, {"name": "石英砂", "category": "工业矿物", "rarity": "普通", "formula": "SiO₂", "price": 12, "note": null, "icon": "min_023.png"}, {"name": "高岭土", "category": "工业矿物", "rarity": "普通", "formula": "Al₂Si₂O₅(OH)₄", "price": 5, "note": null, "icon": "min_024.png"}, {"name": "萤石", "category": "工业矿物", "rarity": "少见", "formula": "CaF₂", "price": 18, "note": null, "icon": "min_025.png"}, {"name": "重晶石", "category": "工业矿物", "rarity": "普通", "formula": "BaSO₄", "price": 10, "note": null, "icon": "min_026.png"}, {"name": "磷灰石", "category": "工业矿物", "rarity": "普通", "formula": "Ca₅(PO₄)₃(F,Cl,OH)", "price": 8, "note": null, "icon": "min_027.png"}, {"name": "硫磺", "category": "工业矿物", "rarity": "普通", "formula": "S", "price": 6, "note": null, "icon": "min_028.png"}, {"name": "岩盐", "category": "工业矿物", "rarity": "普通", "formula": "NaCl", "price": 4, "note": null, "icon": "min_029.png"}, {"name": "石棉", "category": "工业矿物", "rarity": "少见", "formula": "Mg₃Si₂O₅(OH)₄(温石棉为主)", "price": 15, "note": "也有青石棉等角闪石族品种", "icon": "min_030.png"}, {"name": "云母", "category": "工业矿物", "rarity": "普通", "formula": "KAl₂(AlSi₃O₁₀)(OH)₂(白云母为主)", "price": 7, "note": "云母族矿物统称", "icon": "min_031.png"}, {"name": "滑石", "category": "工业矿物", "rarity": "普通", "formula": "Mg₃Si₄O₁₀(OH)₂", "price": 5, "note": null, "icon": "min_032.png"}, {"name": "硼砂", "category": "工业矿物", "rarity": "少见", "formula": "Na₂B₄O₇·10H₂O", "price": 14, "note": null, "icon": "min_033.png"}, {"name": "黑曜岩", "category": "工业矿物", "rarity": "少见", "formula": "SiO₂（非晶质火山玻璃）", "price": 25, "note": "火山玻璃", "icon": "min_034.png"}, {"name": "泥煤", "category": "工业矿物", "rarity": "普通", "formula": "有机质（未完全碳化植物残体）", "price": 6, "note": null, "icon": "min_035.png"}, {"name": "褐铁矿", "category": "工业矿物", "rarity": "普通", "formula": "FeO(OH)·nH₂O", "price": 12, "note": null, "icon": "min_036.png"}, {"name": "冰", "category": "工业矿物", "rarity": "普通", "formula": "H₂O", "price": 25, "note": null, "icon": "min_037.png"}, {"name": "火山岩渣", "category": "工业矿物", "rarity": "普通", "formula": "硅酸盐矿物（玄武质成分为主）", "price": 35, "note": "多孔玄武质火山岩", "icon": "min_038.png"}, {"name": "脉石", "category": "工业矿物", "rarity": "普通", "formula": "SiO₂/CaCO₃等（伴生无价值矿物）", "price": 50, "note": "矿脉里包裹矿石的无价值围岩", "icon": "min_039.png"}, {"name": "钻石", "category": "常见宝石矿物", "rarity": "传说", "formula": "C", "price": 3000, "note": null, "icon": "min_040.png"}, {"name": "红宝石", "category": "常见宝石矿物", "rarity": "史诗", "formula": "Al₂O₃", "price": 1800, "note": "刚玉，Cr致色", "icon": "min_041.png"}, {"name": "蓝宝石", "category": "常见宝石矿物", "rarity": "史诗", "formula": "Al₂O₃", "price": 1600, "note": "刚玉，Fe/Ti致色", "icon": "min_042.png"}, {"name": "祖母绿", "category": "常见宝石矿物", "rarity": "史诗", "formula": "Be₃Al₂(SiO₃)₆", "price": 2000, "note": "绿柱石，Cr致色", "icon": "min_043.png"}, {"name": "金绿宝石（猫眼石）", "category": "常见宝石矿物", "rarity": "史诗", "formula": "BeAl₂O₄", "price": 1500, "note": null, "icon": "min_044.png"}, {"name": "碧玺", "category": "常见宝石矿物", "rarity": "稀有", "formula": "NaFe₃Al₆(BO₃)₃Si₆O₁₈(OH)₄（通式）", "price": 400, "note": "电气石族，成分变化大", "icon": "min_045.png"}, {"name": "坦桑石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Ca₂Al₃(SiO₄)(Si₂O₇)O(OH)", "price": 600, "note": "黝帘石的蓝色变种", "icon": "min_046.png"}, {"name": "尖晶石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "MgAl₂O₄", "price": 350, "note": null, "icon": "min_047.png"}, {"name": "石榴石", "category": "常见宝石矿物", "rarity": "少见", "formula": "X₃Y₂(SiO₄)₃（通式）", "price": 150, "note": null, "icon": "min_048.png"}, {"name": "托帕石", "category": "常见宝石矿物", "rarity": "少见", "formula": "Al₂SiO₄(F,OH)₂", "price": 180, "note": null, "icon": "min_049.png"}, {"name": "橄榄石", "category": "常见宝石矿物", "rarity": "少见", "formula": "(Mg,Fe)₂SiO₄", "price": 120, "note": null, "icon": "min_050.png"}, {"name": "海蓝宝石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 350, "note": "绿柱石的蓝色变种", "icon": "min_051.png"}, {"name": "摩根石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 380, "note": "绿柱石的粉色变种（含锰）", "icon": "min_052.png"}, {"name": "月光石", "category": "常见宝石矿物", "rarity": "少见", "formula": "KAlSi₃O₈", "price": 140, "note": "钾长石类", "icon": "min_053.png"}, {"name": "拉长石", "category": "常见宝石矿物", "rarity": "少见", "formula": "(Ca,Na)(Al,Si)₄O₈（通式）", "price": 130, "note": "长石族固溶体，只有通式", "icon": "min_054.png"}, {"name": "紫水晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 60, "note": "石英", "icon": "min_055.png"}, {"name": "烟晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 50, "note": "石英", "icon": "min_056.png"}, {"name": "白水晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 30, "note": "石英", "icon": "min_057.png"}, {"name": "黄水晶", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 55, "note": "石英", "icon": "min_058.png"}, {"name": "玫瑰石英", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 45, "note": "石英", "icon": "min_059.png"}, {"name": "萤石晶簇", "category": "常见宝石矿物", "rarity": "少见", "formula": "CaF₂", "price": 90, "note": null, "icon": "min_060.png"}, {"name": "方解石晶体", "category": "常见宝石矿物", "rarity": "普通", "formula": "CaCO₃", "price": 25, "note": null, "icon": "min_061.png"}, {"name": "天青石", "category": "常见宝石矿物", "rarity": "少见", "formula": "SrSO₄", "price": 95, "note": null, "icon": "min_062.png"}, {"name": "蛋白石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "SiO₂·nH₂O", "price": 500, "note": "非晶质含水二氧化硅", "icon": "min_063.png"}, {"name": "翡翠", "category": "常见宝石矿物", "rarity": "史诗", "formula": "NaAlSi₂O₆", "price": 2500, "note": "硬玉，多产自变质岩带", "icon": "min_064.png"}, {"name": "和田玉", "category": "常见宝石矿物", "rarity": "稀有", "formula": "Ca₂(Mg,Fe)₅Si₈O₂₂(OH)₂", "price": 700, "note": "软玉，透闪石为主", "icon": "min_065.png"}, {"name": "青金石", "category": "常见宝石矿物", "rarity": "稀有", "formula": "(Na,Ca)₈(AlSiO₄)₆(SO₄,S,Cl)₂", "price": 320, "note": "青金石矿物+方解石+黄铁矿混合", "icon": "min_066.png"}, {"name": "绿松石", "category": "常见宝石矿物", "rarity": "少见", "formula": "CuAl₆(PO₄)₄(OH)₈·4H₂O", "price": 160, "note": null, "icon": "min_067.png"}, {"name": "玛瑙", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 40, "note": "隐晶质石英", "icon": "min_068.png"}, {"name": "孔雀石", "category": "常见宝石矿物", "rarity": "普通", "formula": "Cu₂CO₃(OH)₂", "price": 35, "note": "与铜矿同源", "icon": "min_069.png"}, {"name": "虎眼石", "category": "常见宝石矿物", "rarity": "普通", "formula": "SiO₂", "price": 70, "note": "石英交代青石棉纤维", "icon": "min_070.png"}, {"name": "珍珠母", "category": "常见宝石矿物", "rarity": "少见", "formula": "CaCO₃(文石)+有机质", "price": 110, "note": "文石+有机质的生物矿化复合材料", "icon": "min_071.png"}, {"name": "冰洲石", "category": "常见宝石矿物", "rarity": "少见", "formula": "CaCO₃", "price": 20, "note": "方解石的透明观赏变种，因产自冰岛得名，历史上用于研究光学双折射现象", "icon": "min_072.png"}, {"name": "三叶虫化石", "category": "化石", "rarity": "少见", "formula": "Ca₅(PO₄)₃(OH,F,Cl)（磷灰石化）/CaCO₃（方解石化）", "price": 200, "note": "具体成分取决于石化过程", "icon": "min_073.png"}, {"name": "菊石化石", "category": "化石", "rarity": "少见", "formula": "CaCO₃（方解石化为主）", "price": 180, "note": null, "icon": "min_074.png"}, {"name": "恐龙骨骼化石", "category": "化石", "rarity": "史诗", "formula": "Ca₅(PO₄)₃(OH,F,Cl)（骨磷灰石，多经矿化交代）", "price": 2500, "note": null, "icon": "min_075.png"}, {"name": "恐龙蛋化石", "category": "化石", "rarity": "史诗", "formula": "CaCO₃（蛋壳，钙质为主）+磷灰石", "price": 3000, "note": null, "icon": "min_076.png"}, {"name": "猛犸象牙化石", "category": "化石", "rarity": "稀有", "formula": "Ca₅(PO₄)₃(OH)（象牙质磷灰石）", "price": 900, "note": null, "icon": "min_077.png"}, {"name": "琥珀(含虫)", "category": "化石", "rarity": "稀有", "formula": "C₁₀H₁₆O（琥珀酸树脂化石，成分不定）", "price": 650, "note": "树脂化石，非严格矿物", "icon": "min_078.png"}, {"name": "鱼化石", "category": "化石", "rarity": "普通", "formula": "Ca₅(PO₄)₃(OH,F,Cl)/CaCO₃", "price": 90, "note": null, "icon": "min_079.png"}, {"name": "蕨类植物化石", "category": "化石", "rarity": "普通", "formula": "SiO₂/CaCO₃（矿化交代产物）", "price": 60, "note": null, "icon": "min_080.png"}, {"name": "贝壳化石", "category": "化石", "rarity": "普通", "formula": "CaCO₃", "price": 40, "note": null, "icon": "min_081.png"}, {"name": "始祖鸟化石", "category": "化石", "rarity": "传说", "formula": "Ca₅(PO₄)₃(OH,F,Cl)", "price": 5000, "note": null, "icon": "min_082.png"}, {"name": "剑齿虎化石", "category": "化石", "rarity": "史诗", "formula": "Ca₅(PO₄)₃(OH,F,Cl)", "price": 2200, "note": null, "icon": "min_083.png"}, {"name": "三角龙头骨化石", "category": "化石", "rarity": "传说", "formula": "Ca₅(PO₄)₃(OH,F,Cl)", "price": 4500, "note": null, "icon": "min_084.png"}, {"name": "珊瑚化石", "category": "化石", "rarity": "普通", "formula": "CaCO₃", "price": 55, "note": null, "icon": "min_085.png"}, {"name": "硅化木", "category": "化石", "rarity": "少见", "formula": "SiO₂（交代产物）", "price": 220, "note": "木质被二氧化硅交代，主体可视为SiO₂但严格不算矿物", "icon": "min_086.png"}, {"name": "磷叶石", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "Zn₂(Fe,Mn)(PO₄)₂·4H₂O", "price": 1500, "note": null, "icon": "min_087.png"}, {"name": "辰砂", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "HgS", "price": 1300, "note": null, "icon": "min_088.png"}, {"name": "圆粒金刚石(波札)", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "C", "price": 5000, "note": null, "icon": "min_089.png"}, {"name": "黄钻", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "C", "price": 4000, "note": "含氮致色的钻石变种", "icon": "min_090.png"}, {"name": "红钻石", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "C", "price": 4200, "note": "晶格缺陷致色的钻石变种", "icon": "min_091.png"}, {"name": "金红石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "TiO₂", "price": 550, "note": null, "icon": "min_092.png"}, {"name": "变石(亚历山大变石)", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "BeAl₂O₄", "price": 2000, "note": "金绿宝石的变色变种", "icon": "min_093.png"}, {"name": "蓝锥矿", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "BaTiSi₃O₉", "price": 1800, "note": null, "icon": "min_094.png"}, {"name": "帕德玛刚玉", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "Al₂O₃", "price": 3500, "note": "刚玉的橙粉色变种", "icon": "min_095.png"}, {"name": "透绿柱石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 450, "note": "绿柱石的无色变种", "icon": "min_096.png"}, {"name": "红绿柱石", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "Be₃Al₂(SiO₃)₆", "price": 1600, "note": "绿柱石的红色变种", "icon": "min_097.png"}, {"name": "金绿柱石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "Be₃Al₂(SiO₃)₆", "price": 500, "note": "绿柱石的金黄色变种", "icon": "min_098.png"}, {"name": "南极石", "category": "珍稀晶体矿物", "rarity": "传说", "formula": "CaCl₂·6H₂O", "price": 2800, "note": null, "icon": "min_099.png"}, {"name": "异极矿", "category": "珍稀晶体矿物", "rarity": "少见", "formula": "Zn₄Si₂O₇(OH)₂·H₂O", "price": 280, "note": null, "icon": "min_100.png"}, {"name": "蓝柱石", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "BeAlSiO₄(OH)", "price": 600, "note": null, "icon": "min_101.png"}, {"name": "幽灵水晶", "category": "珍稀晶体矿物", "rarity": "史诗", "formula": "SiO₂", "price": 1900, "note": "幻影水晶，本质仍是石英", "icon": "min_102.png"}, {"name": "黑水晶(墨晶)", "category": "珍稀晶体矿物", "rarity": "稀有", "formula": "SiO₂", "price": 400, "note": "烟晶的深色变种", "icon": "min_103.png"}];
 const TERRAINS = [{"order": 1, "name": "平原/浅层土壤", "unlockThreshold": 0, "speciesCount": 15, "ticket": 0, "isFree": true, "baseOre": "石灰石", "minerals": ["煤", "铁矿石", "岩盐", "石膏", "云母", "玛瑙", "方解石晶体", "贝壳化石", "蕨类植物化石", "珊瑚化石", "异极矿", "高岭土", "铝土矿", "滑石"], "note": "新手起始地形，免费开放", "baseProb": 0.5}, {"order": 2, "name": "沼泽/湿地", "unlockThreshold": 8, "speciesCount": 14, "ticket": 260, "isFree": false, "baseOre": "泥煤", "minerals": ["褐铁矿", "孔雀石", "绿松石", "青金石", "琥珀(含虫)", "蕨类植物化石", "贝壳化石", "硅化木", "异极矿", "金绿宝石（猫眼石）", "石油沥青", "油页岩", "褐煤"], "note": null, "baseProb": 3.147}, {"order": 3, "name": "山地/岩层", "unlockThreshold": 16, "speciesCount": 17, "ticket": 470, "isFree": false, "baseOre": "花岗岩", "minerals": ["铜矿石", "锡石", "云母", "石英砂", "石榴石", "白水晶", "方解石晶体", "金红石", "蓝柱石", "三叶虫化石", "硅化木", "祖母绿", "辉钼矿", "玫瑰石英", "石棉", "和田玉"], "note": null, "baseProb": 1.819}, {"order": 4, "name": "沙漠", "unlockThreshold": 24, "speciesCount": 15, "ticket": 680, "isFree": false, "baseOre": "石英砂", "minerals": ["石膏", "硼砂", "磷灰石", "月光石", "拉长石", "托帕石", "玛瑙", "硅化木", "岩盐", "恐龙蛋化石", "恐龙骨骼化石", "尖晶石", "虎眼石", "帕德玛刚玉"], "note": null, "baseProb": 1.377}, {"order": 5, "name": "海底/海岸礁石", "unlockThreshold": 32, "speciesCount": 11, "ticket": 780, "isFree": false, "baseOre": "大理岩", "minerals": ["珊瑚化石", "贝壳化石", "海蓝宝石", "摩根石", "透绿柱石", "红绿柱石", "金绿柱石", "珍珠母", "蛋白石", "鱼化石"], "note": "可结合“渔具/潜水装备”等前置道具一起设计", "baseProb": 0.886}, {"order": 6, "name": "极地/雪原冰川", "unlockThreshold": 42, "speciesCount": 12, "ticket": 880, "isFree": false, "baseOre": "冰", "minerals": ["云母", "冰洲石", "蓝宝石", "坦桑石", "南极石", "猛犸象牙化石", "剑齿虎化石", "天青石", "萤石", "方解石晶体", "钻石"], "note": "可结合“防寒装备”前置道具", "baseProb": 1.088}, {"order": 7, "name": "火山/熔岩区", "unlockThreshold": 52, "speciesCount": 15, "ticket": 1000, "isFree": false, "baseOre": "火山岩渣", "minerals": ["硫磺", "黑曜岩", "铬铁矿", "辰砂", "橄榄石", "石榴石", "黄钻", "红钻石", "变石(亚历山大变石)", "圆粒金刚石(波札)", "重晶石", "钻石", "镍矿", "锰矿"], "note": "含钻石顶级稀有产出，可结合“耐热装备”前置道具", "baseProb": 0.957}, {"order": 8, "name": "深层洞穴/矿脉核心", "unlockThreshold": 64, "speciesCount": 24, "ticket": 1450, "isFree": false, "baseOre": "脉石", "minerals": ["金矿脉", "银矿脉", "钨矿", "萤石", "紫水晶", "黄水晶", "烟晶", "磷叶石", "幽灵水晶", "蓝锥矿", "天青石", "菊石化石", "三角龙头骨化石", "始祖鸟化石", "硅化木", "红宝石", "翡翠", "闪锌矿", "方铅矿", "铀矿", "碧玺", "黑水晶(墨晶)", "萤石晶簇"], "note": "含红宝石、翡翠顶级稀有产出，建议作为终局地形", "baseProb": 1.176}];
@@ -440,6 +474,10 @@ function mineralIconHTML(m, size, found){
 }
 
 const RARITY_COLOR_HEX = {'普通':'#b7b0a2','少见':'#4fbd82','稀有':'#4a90e2','史诗':'#b06be0','传说':'#ffb020'};
+// Per-mineral color overrides: some minerals should render in their real-world
+// color rather than the generic rarity color (e.g. coal is black, gypsum is white).
+const MINERAL_COLOR_OVERRIDE = {'煤':'#242220','石膏':'#f4f1e8'};
+function mineralColor(m){ return MINERAL_COLOR_OVERRIDE[m.name] || RARITY_COLOR_HEX[m.rarity]; }
 const RARITY_WEIGHT = {'普通':1.6,'少见':1.3,'稀有':1.0,'史诗':0.8,'传说':0.5};
 const RARITY_R = {'普通':16,'少见':18,'稀有':20,'史诗':23,'传说':27};
 const HAZARD = ['辰砂','铀矿','石棉'];
@@ -450,91 +488,22 @@ const BASE_DIG_TIME = 30;
 const BASE_DIG_COUNT = 10;
 const MAX_DIG_COUNT = 20;
 
-const I18N = {
-  zh: {
-    title:'万象矿工', subtitle:'OMNI MINER', newgame:'开始游戏', continue_:'继续游戏', lang:'🌐 语言选择',
-    tab_map:'地图', tab_shop:'商店', tab_warehouse:'仓库', tab_dex:'图鉴', exit:'回到主页',
-    map_title:'地形选择', map_desc:'挑选一处地形入场挖矿。解锁新地形需要累计发现足够多的矿物种类。',
-    enter:'进入挖矿', free:'免费', locked_need:'累计发现矿物 {n}/{t} 种解锁', need_gear:'需要装备：',
-    not_enough_gold:'金币不足',
-    shop_title:'装备商店', shop_desc:'装备一次性永久购买；升级类可重复购买、效果叠加。',
-    owned:'已拥有', buy:'购买', max_lv:'已满级',
-    wh_title:'仓库', wh_desc:'挖到的矿石会先放进仓库，来这里手动卖出换金币。锁定的矿石不会被卖出。', sell_all:'出售全部', sell_one:'出售1个', wh_empty:'仓库空空如也，去挖矿吧！',
-    total_value:'仓库库存价值',
-    dex_title:'矿物图鉴', dex_desc:'记录你发现过的所有矿物。', dex_progress:'已发现', dex_other:'其他',
-    all:'全部', industrial:'工业矿物', gem:'常见宝石矿物', crystal:'珍稀晶体矿物', fossil:'化石',
-    unknown:'？？？未发现',
-    haul_title:'本次收获', confirm:'确认入库，返回地图', total_earn:'总收益', remain:'剩余矿物', leave:'结束挖掘',
-    hint:'点击画面或按【空格】发射钩爪',
-    dex_close:'关闭',
-    price:'售价', formula:'化学式', category:'分类', rarity:'稀有度', note:'备注',
-    r_common:'普通', r_uncommon:'少见', r_rare:'稀有', r_epic:'史诗', r_legend:'传说',
-    equip_winch:{n:'强化绞盘', d:'钩爪伸缩速度 +25%，挖矿效率更高。'},
-    equip_light:{n:'轻量化钩爪', d:'所有矿物的拖拽重量 -20%，收绳更快。'},
-    equip_luck:{n:'幸运探测仪', d:'史诗、传说级矿物的出现概率提升为原来的 1.5 倍。'},
-    equip_dive:{n:'潜水装备', d:'解锁地形【海底/海岸礁石】的必备装备。'},
-    equip_cold:{n:'防寒装备', d:'解锁地形【极地/雪原冰川】的必备装备。'},
-    equip_heat:{n:'耐热装备', d:'解锁地形【火山/熔岩区】的必备装备。'},
-    shop_time_n:'延长开采时间', shop_time_d:'每次购买，单局挖矿时间 +5 秒，可重复购买。',
-    time_cur:'当前单局时长',
-    shop_det_n:'探矿仪升级', shop_det_d:'每次购买，单局矿物数量 +1 个，最多 20 个。',
-    det_cur:'当前单局矿物数',
-    shop_suit_n:'防护服', shop_suit_d:'一件可保护采集 10 次有毒矿物（辰砂/铀矿/石棉），用完即销毁，可多买堆叠。',
-    suit_cur:'当前防护次数',
-    hookslot_title:'多爪系统', hookslot_desc:'升级同时发射的钩爪数量，最多 3 只。',
-    hookslot_cur:'当前钩爪数量', hookslot_buy:'升级钩爪数量',
-    claw_title:'钩爪强化（每只钩爪独立升级）',
-    claw_n:'{n}号爪', claw_locked:'尚未解锁',
-    pierce_n:'穿透爪', pierce_d:'一次贯穿沿途所有矿物',
-    reflect_n:'反射爪', reflect_d:'触底扑空后弹射一次再试',
-    buy_short:'升级',
-    faint_title:'采矿中断', faint_msg:'接触有毒矿物，你已晕倒。请去商店购买防护用品。', faint_btn:'前往商店',
-  },
-  en: {
-    title:'Omni Miner', subtitle:'万象矿工', newgame:'New Game', continue_:'Continue', lang:'🌐 Language',
-    tab_map:'Map', tab_shop:'Shop', tab_warehouse:'Warehouse', tab_dex:'Dex', exit:'Home',
-    map_title:'Choose a Site', map_desc:'Pick a terrain to enter and mine. Unlock new terrains by discovering enough mineral species overall.',
-    enter:'Enter Mine', free:'Free', locked_need:'Discover {n}/{t} species to unlock', need_gear:'Requires gear: ',
-    not_enough_gold:'Not enough gold',
-    shop_title:'Equipment Shop', shop_desc:'Gear is a one-time permanent purchase; upgrades are repeatable and stack.',
-    owned:'Owned', buy:'Buy', max_lv:'Maxed',
-    wh_title:'Warehouse', wh_desc:'Ore you dig up goes into the warehouse first — sell it here for gold. Locked ore cannot be sold.', sell_all:'Sell All', sell_one:'Sell 1', wh_empty:'Warehouse is empty. Go mine something!',
-    total_value:'Warehouse stock value',
-    dex_title:'Mineral Dex', dex_desc:'Everything you have ever discovered.', dex_progress:'Discovered', dex_other:'Other',
-    all:'All', industrial:'Industrial', gem:'Common Gems', crystal:'Rare Crystals', fossil:'Fossils',
-    unknown:'????? Undiscovered',
-    haul_title:'Haul This Run', confirm:'Bank it & return to map', total_earn:'Total Earnings', remain:'Left', leave:'Leave Mine',
-    hint:'Click or press SPACE to swing the hook',
-    dex_close:'Close',
-    price:'Price', formula:'Formula', category:'Category', rarity:'Rarity', note:'Note',
-    r_common:'Common', r_uncommon:'Uncommon', r_rare:'Rare', r_epic:'Epic', r_legend:'Legendary',
-    equip_winch:{n:'Reinforced Winch', d:'+25% hook extend/retract speed.'},
-    equip_light:{n:'Light Claw', d:'-20% drag weight on all minerals — reel in faster.'},
-    equip_luck:{n:'Lucky Detector', d:'Epic and legendary mineral odds ×1.5.'},
-    equip_dive:{n:'Diving Gear', d:'Required to unlock the Seabed/Reef terrain.'},
-    equip_cold:{n:'Cold Gear', d:'Required to unlock the Polar Icefields terrain.'},
-    equip_heat:{n:'Heat Suit', d:'Required to unlock the Volcanic Zone terrain.'},
-    shop_time_n:'Extend Dig Time', shop_time_d:'Each purchase adds +5s to every mining run. Repeatable.',
-    time_cur:'Current run length',
-    shop_det_n:'Detector Upgrade', shop_det_d:'Each purchase gives +1 mineral per run, up to 20.',
-    det_cur:'Current minerals/run',
-    shop_suit_n:'Protective Suit', shop_suit_d:'Each suit protects 10 hazardous catches (cinnabar/uranium/asbestos), then is destroyed. Stackable.',
-    suit_cur:'Charges remaining',
-    hookslot_title:'Multi-Claw System', hookslot_desc:'Upgrade how many claws fire at once, up to 3.',
-    hookslot_cur:'Active claws', hookslot_buy:'Upgrade claw count',
-    claw_title:'Claw Enhancements (each claw upgrades independently)',
-    claw_n:'Claw {n}', claw_locked:'Not unlocked',
-    pierce_n:'Piercing Claw', pierce_d:'Grabs every mineral along its path in one throw',
-    reflect_n:'Reflect Claw', reflect_d:'Bounces once and retries if it comes up empty',
-    buy_short:'Upgrade',
-    faint_title:'Mining Interrupted', faint_msg:'You touched a toxic mineral and passed out. Head to the shop for protective gear.', faint_btn:'Go to Shop',
-  }
-};
+// I18N and TERRAIN_NAME_I18N are defined in lang.js, loaded before this script.
 const CAT_KEY = {'工业矿物':'industrial','常见宝石矿物':'gem','珍稀晶体矿物':'crystal','化石':'fossil'};
 const RAR_KEY = {'普通':'r_common','少见':'r_uncommon','稀有':'r_rare','史诗':'r_epic','传说':'r_legend'};
+// Maps our language codes to the standard <html lang> attribute value.
+const HTML_LANG_ATTR = {zh:'zh-CN','zh-TW':'zh-TW',en:'en',de:'de',fr:'fr',ru:'ru',ja:'ja','pt-BR':'pt-BR',es:'es-419',ko:'ko'};
 
-let lang = 'zh';
+const LANG_STORAGE_KEY = 'omniminer_lang';
+let lang = localStorage.getItem(LANG_STORAGE_KEY) || 'zh';
+if(!I18N[lang]) lang = 'zh';
 function t(key){ return I18N[lang][key]; }
+// Localized display name for a terrain, falling back to the raw (Chinese) name
+// if a translation is missing. The raw name stays the internal id everywhere else.
+function trName(tr){
+  const entry = TERRAIN_NAME_I18N[tr.name];
+  return (entry && entry[lang]) || tr.name;
+}
 
 // ---------------- EQUIPMENT (one-time boolean) ----------------
 const EQUIPMENT = [
@@ -613,7 +582,7 @@ document.getElementById('btn-lang').addEventListener('click', ()=>{
 });
 document.getElementById('lang-menu').addEventListener('click', (e)=>{
   const b = e.target.closest('.lang-opt');
-  if(b){ lang = b.dataset.lang; applyStaticText(); }
+  if(b){ lang = b.dataset.lang; localStorage.setItem(LANG_STORAGE_KEY, lang); applyStaticText(); }
   document.getElementById('lang-menu').classList.remove('show');
 });
 document.getElementById('home-exit-btn').addEventListener('click', ()=>{
@@ -626,11 +595,15 @@ document.getElementById('testmode-toggle').addEventListener('click', ()=>{
   if(testModeEnabled) game.gold = Math.max(game.gold, 9999);
   const el = document.getElementById('testmode-toggle');
   el.classList.toggle('on', testModeEnabled);
-  document.getElementById('testmode-state').textContent = testModeEnabled ? (lang==='zh'?'开':'ON') : (lang==='zh'?'关':'OFF');
+  document.getElementById('testmode-state').textContent = testModeEnabled ? t('on_state') : t('off_state');
   if(screens.main.classList.contains('active')) renderTab(currentTab);
 });
 
 function applyStaticText(){
+  document.documentElement.lang = HTML_LANG_ATTR[lang] || lang;
+  document.getElementById('testmode-label').textContent = t('testmode_label');
+  document.getElementById('testmode-state').textContent = testModeEnabled ? t('on_state') : t('off_state');
+  document.getElementById('lang-menu-title').textContent = t('lang_menu_title');
   document.getElementById('t-title').textContent = t('title');
   document.getElementById('t-subtitle').textContent = t('subtitle');
   document.getElementById('btn-newgame').textContent = t('newgame');
@@ -700,7 +673,7 @@ function renderMap(){
     const canAfford = tr.isFree || game.gold >= tr.ticket;
     return `<div class="terrain-card ${unlocked?'':'locked'}">
       <span class="tag">#${tr.order}</span>
-      <h3>${tr.name}</h3>
+      <h3>${trName(tr)}</h3>
       <div class="meta">${t('enter')}: <b style="color:var(--gold)">${priceLabel}</b></div>
       ${noteHtml}
       <button class="enter-btn" data-terrain="${tr.name}" ${(!unlocked || !canAfford)?'disabled':''}>
@@ -932,7 +905,7 @@ function dexItemHTML(m){
   return `<div class="dex-item ${found?'':'locked'}" data-name="${m.name}">
     <div class="rar" style="background:${RARITY_COLOR_HEX[m.rarity]}"></div>
     ${mineralIconHTML(m,40,found)}
-    <div class="name">${found?m.name:'？？？'}</div>
+    <div class="name">${found?m.name:t('unknown_short')}</div>
   </div>`;
 }
 function dexSectionHTML(idxLabel, title, list){
@@ -951,7 +924,7 @@ function renderDex(){
   const total = MINERALS.length, found = game.testMode ? total : discoveredCount();
   const sections = TERRAINS.map(tr=>{
     const list = MINERALS.filter(m=> (TERRAIN_OF_MINERAL[m.name]||[]).includes(tr.order));
-    return dexSectionHTML(tr.order, tr.name, list);
+    return dexSectionHTML(tr.order, trName(tr), list);
   }).join('');
   const unassigned = MINERALS.filter(m=>!TERRAIN_OF_MINERAL[m.name]);
   const otherSection = dexSectionHTML(null, t('dex_other'), unassigned);
@@ -1016,7 +989,7 @@ document.getElementById('dex-detail').addEventListener('click', (e)=>{
 
 // ---------------- MINERAL SVG (procedural icon by category+rarity) ----------------
 function mineralSVG(m, cx, cy){
-  const color = RARITY_COLOR_HEX[m.rarity];
+  const color = mineralColor(m);
   const dark = shadeColor(color, -30);
   const r = 13;
   if(m.category==='工业矿物'){
@@ -1166,7 +1139,8 @@ function startMining(terrain){
     hooks.push({
       slot:s, offset: offsets[s-1],
       angle:0, length:40, state:'swing',
-      attachedGroup:[], bounced:false, clawOpen:1,
+      attachedGroup:[], pendingGroup:[], bounced:false, clawOpen:1,
+      bendPoint:null, bendDir:null, bendLen:0,
       pierce: !!up.pierce, reflect: !!up.reflect,
     });
   }
@@ -1203,7 +1177,27 @@ function updateTimerUI(){
 }
 
 function tipFor(hook){
+  if(hook.bendPoint){
+    return { x: hook.bendPoint.x + hook.bendDir.x*hook.bendLen, y: hook.bendPoint.y + hook.bendDir.y*hook.bendLen };
+  }
   return { x: HOOK_PIVOT.x + Math.sin(hook.angle)*hook.length, y: HOOK_PIVOT.y + Math.cos(hook.angle)*hook.length };
+}
+function hookDir(hook){
+  return hook.bendDir ? hook.bendDir : { x: Math.sin(hook.angle), y: Math.cos(hook.angle) };
+}
+// True reflect: mirror the travel direction off whichever wall (left/right/bottom) the
+// tip just crossed, and keep extending from that contact point — a real bounce, not a
+// reset-and-relaunch-from-the-pivot. Only used once per throw (hook.bounced flag).
+function tryBounce(hook, tip){
+  hook.bounced = true;
+  const dir = hookDir(hook);
+  let cx = tip.x, cy = tip.y, ndx = dir.x, ndy = dir.y;
+  if(tip.x < 0){ cx = 0; ndx = -dir.x; }
+  else if(tip.x > W){ cx = W; ndx = -dir.x; }
+  if(tip.y > H){ cy = H; ndy = -dir.y; }
+  hook.bendPoint = {x:cx, y:cy};
+  hook.bendDir = {x:ndx, y:ndy};
+  hook.bendLen = 0;
 }
 function fireHook(){
   if(!mine) return;
@@ -1218,7 +1212,8 @@ function fireHook(){
       let a = liveMasterAngle + hook.offset;
       if(a>SWING_LIMIT) a=SWING_LIMIT; if(a<-SWING_LIMIT) a=-SWING_LIMIT;
       hook.angle = a;
-      hook.state='extend'; hook.length=40; hook.attachedGroup=[]; hook.bounced=false;
+      hook.state='extend'; hook.length=40; hook.attachedGroup=[]; hook.pendingGroup=[]; hook.bounced=false;
+      hook.bendPoint=null; hook.bendDir=null; hook.bendLen=0;
     }
   }
 }
@@ -1296,9 +1291,13 @@ function updateMine(dt){
       if(a>SWING_LIMIT) a=SWING_LIMIT; if(a<-SWING_LIMIT) a=-SWING_LIMIT;
       hook.angle = a;
     } else if(hook.state==='extend'){
-      hook.length += mine.extendSpeed*dt;
+      if(hook.bendPoint){ hook.bendLen += mine.extendSpeed*dt; }
+      else { hook.length += mine.extendSpeed*dt; }
       const tip = tipFor(hook);
-      const offscreen = tip.x<-20 || tip.x>W+20 || tip.y>H+20;
+      const curLen = hook.bendPoint ? hook.bendLen : hook.length;
+      // Include the top edge too: after a bottom bounce the tip travels upward and can
+      // exit the top of the canvas, which should also end the throw.
+      const offscreen = tip.x<-20 || tip.x>W+20 || tip.y>H+20 || tip.y<-20;
       if(!hook.pierce){
         let hit=null;
         for(const it of mine.items){
@@ -1307,23 +1306,27 @@ function updateMine(dt){
           if(Math.sqrt(dx*dx+dy*dy) < it.r+8){ hit=it; break; }
         }
         if(hit){ grabItem(hit); hook.attachedGroup=[hit]; hook.state='retract'; }
-        else if(hook.length>MAX_LEN || offscreen){
-          if(hook.reflect && !hook.bounced){
-            hook.bounced=true; hook.length=40;
-            hook.angle = rand(-SWING_LIMIT, SWING_LIMIT);
-          } else { hook.state='retract'; }
+        else if(curLen>MAX_LEN || offscreen){
+          if(hook.reflect && !hook.bounced){ tryBounce(hook, tip); }
+          else { hook.state='retract'; }
         }
       } else {
+        // Pierce: mark items as pierced on contact but don't collect them yet — they
+        // stay put and get picked up one by one on the way back during retract, so the
+        // mineral art stacks onto the claw progressively instead of all at once.
         for(const it of mine.items){
-          if(!it.alive) continue;
+          if(!it.alive || it.pierced) continue;
           const dx=it.x-tip.x, dy=it.y-tip.y;
-          if(Math.sqrt(dx*dx+dy*dy) < it.r+8){ grabItem(it); hook.attachedGroup.push(it); }
+          if(Math.sqrt(dx*dx+dy*dy) < it.r+8){
+            it.pierced = true;
+            it._pierceLeg = hook.bendPoint ? 'bend' : 'main';
+            it._pierceDist = curLen;
+            hook.pendingGroup.push(it);
+          }
         }
-        if(hook.length>MAX_LEN || offscreen){
-          if(hook.attachedGroup.length===0 && hook.reflect && !hook.bounced){
-            hook.bounced=true; hook.length=40;
-            hook.angle = rand(-SWING_LIMIT, SWING_LIMIT);
-          } else { hook.state='retract'; }
+        if(curLen>MAX_LEN || offscreen){
+          if(hook.pendingGroup.length===0 && hook.reflect && !hook.bounced){ tryBounce(hook, tip); }
+          else { hook.state='retract'; }
         }
       }
     } else if(hook.state==='retract'){
@@ -1331,10 +1334,31 @@ function updateMine(dt){
       let totalW = 0;
       group.forEach(it=> totalW += it.weight);
       const sp = totalW>0 ? mine.retractSpeed/(1+totalW*mine.weightMult*0.9) : mine.retractSpeed*1.6;
-      hook.length -= sp*dt;
+      if(hook.bendPoint){
+        hook.bendLen -= sp*dt;
+        if(hook.bendLen<=0){
+          hook.bendLen=0;
+          hook.length = Math.sqrt((hook.bendPoint.x-HOOK_PIVOT.x)**2 + (hook.bendPoint.y-HOOK_PIVOT.y)**2);
+          hook.bendPoint=null; hook.bendDir=null;
+        }
+      } else {
+        hook.length -= sp*dt;
+      }
       const tip = tipFor(hook);
+      // Progressively collect pierced items as the line retracts back past their spot.
+      if(hook.pendingGroup && hook.pendingGroup.length>0){
+        const phase = hook.bendPoint ? 'bend' : 'main';
+        const threshold = hook.bendPoint ? hook.bendLen : hook.length;
+        hook.pendingGroup = hook.pendingGroup.filter(it=>{
+          if(it._pierceLeg===phase && threshold<=it._pierceDist){
+            grabItem(it); group.push(it);
+            return false;
+          }
+          return true;
+        });
+      }
       group.forEach((it,i)=>{ it.x = tip.x + i*5; it.y = tip.y - i*5; });
-      if(hook.length<=40){
+      if(!hook.bendPoint && hook.length<=40){
         hook.length=40;
         for(const it of group){
           it.carried=false;
@@ -1343,7 +1367,7 @@ function updateMine(dt){
           if(res==='fainted'){ fainted = true; }
         }
         document.getElementById('mine-gold').textContent = mine.sessionValue;
-        hook.attachedGroup=[];
+        hook.attachedGroup=[]; hook.pendingGroup=[];
         hook.state='swing';
       }
     }
@@ -1369,7 +1393,7 @@ function finishMining(){
   const log = mine.caughtLog;
   const names = Object.keys(log);
   const totalCount = names.reduce((s,n)=>s+log[n].count,0);
-  document.getElementById('mine-result-sub').textContent = totalCount + (lang==='zh' ? ' 件矿物' : ' items');
+  document.getElementById('mine-result-sub').textContent = totalCount + t('items_suffix');
   const list = document.getElementById('mine-result-list');
   list.innerHTML = names.map(name=>{
     const e = log[name];
@@ -1377,7 +1401,7 @@ function finishMining(){
       <span class="cnt">x${e.count}</span>
       ${mineralIconHTML(e.mineral,40,true)}
       <div class="n">${name}</div>
-      <div class="v">${e.mineral.price}G ${lang==='zh'?'/个':'each'}</div>
+      <div class="v">${e.mineral.price}G ${t('each_suffix')}</div>
     </div>`;
   }).join('') || `<div style="grid-column:1/-1;text-align:center;color:var(--cream-dim);padding:20px;">--</div>`;
   document.getElementById('mine-result').classList.add('show');
@@ -1433,18 +1457,8 @@ function drawMiner(){
 function drawHook(hook){
   const tip = tipFor(hook);
   const start = HOOK_PIVOT;
-  if(hook.pierce && hook.reflect){
-    ctx.setLineDash([8,8]); ctx.lineWidth=2.5;
-    ctx.lineDashOffset=0; ctx.strokeStyle=RARITY_COLOR_HEX['稀有'];
-    ctx.beginPath(); ctx.moveTo(start.x,start.y); ctx.lineTo(tip.x,tip.y); ctx.stroke();
-    ctx.lineDashOffset=8; ctx.strokeStyle='#4fbd6f';
-    ctx.beginPath(); ctx.moveTo(start.x,start.y); ctx.lineTo(tip.x,tip.y); ctx.stroke();
-    ctx.setLineDash([]);
-  } else {
-    ctx.strokeStyle = hook.pierce ? '#4a90e2' : (hook.reflect ? '#4fbd6f' : '#2a2a2a');
-    ctx.lineWidth=2.5;
-    ctx.beginPath(); ctx.moveTo(start.x,start.y); ctx.lineTo(tip.x,tip.y); ctx.stroke();
-  }
+  const curDir = hookDir(hook);
+  const curAngle = Math.atan2(curDir.x, curDir.y);
   // When an item is being carried, don't draw the claw dead-center on the mineral —
   // pull it back toward the rope pivot so it sits on the near edge of the item's art,
   // and only render one prong. The missing prong reads as gripping the hidden backside.
@@ -1454,12 +1468,31 @@ function drawHook(hook){
     const heldItem = hook.attachedGroup[0];
     const r = (heldItem && heldItem.r) ? heldItem.r : 14;
     const pullback = r * 0.85;
-    const dirX = Math.sin(hook.angle), dirY = Math.cos(hook.angle);
-    clawX = tip.x - dirX*pullback;
-    clawY = tip.y - dirY*pullback;
+    clawX = tip.x - curDir.x*pullback;
+    clawY = tip.y - curDir.y*pullback;
     clawSide = 1;
   }
-  ctx.save(); ctx.translate(clawX,clawY); ctx.rotate(-hook.angle);
+  // The rope should end at the claw itself, not the full un-pulled-back tip —
+  // otherwise the line visibly overshoots past the claw when carrying an item.
+  const lineEnd = carrying ? {x:clawX, y:clawY} : tip;
+  const drawLine = () => {
+    ctx.beginPath(); ctx.moveTo(start.x,start.y);
+    if(hook.bendPoint) ctx.lineTo(hook.bendPoint.x,hook.bendPoint.y);
+    ctx.lineTo(lineEnd.x,lineEnd.y); ctx.stroke();
+  };
+  if(hook.pierce && hook.reflect){
+    ctx.setLineDash([8,8]); ctx.lineWidth=2.5;
+    ctx.lineDashOffset=0; ctx.strokeStyle=RARITY_COLOR_HEX['稀有'];
+    drawLine();
+    ctx.lineDashOffset=8; ctx.strokeStyle='#4fbd6f';
+    drawLine();
+    ctx.setLineDash([]);
+  } else {
+    ctx.strokeStyle = hook.pierce ? '#4a90e2' : (hook.reflect ? '#4fbd6f' : '#2a2a2a');
+    ctx.lineWidth=2.5;
+    drawLine();
+  }
+  ctx.save(); ctx.translate(clawX,clawY); ctx.rotate(-curAngle);
   if(ASSET.claw && ASSET.claw.loaded){
     const s = 30;
     if(clawSide!==0){
@@ -1495,7 +1528,7 @@ function drawHook(hook){
 }
 function drawItemCanvas(it){
   ctx.save(); ctx.translate(it.x,it.y);
-  const color = it.isBase ? '#8a7a63' : RARITY_COLOR_HEX[it.mineral.rarity];
+  const color = it.isBase ? '#8a7a63' : mineralColor(it.mineral);
   const edge = shadeColor(color,-40);
   if(it.isBase){
     drawPoly(it.r,6,color,edge,0.15);
