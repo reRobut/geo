@@ -1402,15 +1402,6 @@ function drawBackground(terrain){
       ctx.beginPath(); ctx.arc(x,y,2,0,Math.PI*2); ctx.fill();
     }
   }
-  // Flat black mask over the underground portion, starting right at the miner's
-  // feet (bottom edge of the miner artwork) down to the bottom of the canvas —
-  // no gradient, so it reads as a clearly visible dark band. This is drawn onto
-  // bg1~bg8 only (before the mineral items are drawn), darkening the background
-  // rocks so they read as non-interactive scenery, distinct from the grabbable
-  // mineral items drawn on top afterward.
-  const maskStart = MINER_IMG_Y + MINER_IMG_H;
-  ctx.fillStyle = 'rgba(0,0,0,0.35)';
-  ctx.fillRect(0,maskStart,W,H-maskStart);
 }
 // Miner artwork: fixed (hardcoded) size and position, independent of any other
 // scaling math. Bottom edge is pinned to ANCHOR.y+6 (same ground line the old
