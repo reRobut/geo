@@ -243,8 +243,8 @@ button{font-family:inherit;cursor:pointer;}
   padding:8px 14px;
 }
 .stats-item .icon{width:46px;height:46px;flex:none;}
-.stats-item .stats-name{flex:1;font-size:16.5px;color:var(--cream);}
-.stats-item .stats-count{font-size:17.5px;font-weight:800;color:var(--gold);white-space:nowrap;}
+.stats-item .stats-name{flex:1;min-width:0;font-size:16.5px;color:var(--cream);}
+.stats-item .stats-count{flex:none;font-size:17.5px;font-weight:800;color:var(--gold);white-space:nowrap;}
 #stats-empty{color:var(--cream-dim);font-size:17px;padding:30px;text-align:center;}
 
 /* dex */
@@ -1602,7 +1602,6 @@ function commitItem(item){
   if(!mine.caughtLog[item.name]) mine.caughtLog[item.name] = {mineral:item.mineral, count:0, isNew:false};
   mine.caughtLog[item.name].count++;
   if(isFirstEver) mine.caughtLog[item.name].isNew = true;
-  playCatchSound(item);
   popups.push({x:ANCHOR.x,y:ANCHOR.y+10,life:1.2,
     text: '+'+item.mineral.price+'G',
     color: RARITY_COLOR_HEX[item.mineral.rarity]});
@@ -1723,11 +1722,21 @@ function updateMine(dt){
       group.forEach((it,i)=>{ it.x = tip.x + i*5; it.y = tip.y - i*5; });
       if(!hook.bendPoint && hook.length<=40){
         hook.length=40;
+        // Fire each catch sound a beat after the last instead of all at once —
+        // a pierce claw can land several items in the same frame here, and
+        // playing every sound simultaneously just sounds like noise. The
+        // sound itself doesn't touch `mine`, so it's still safe to fire even
+        // if the mining round has already ended by the time the timer runs.
+        let soundIndex = 0;
         for(const it of group){
           it.carried=false;
           if(fainted) continue;
           const res = commitItem(it);
-          if(res==='fainted'){ fainted = true; }
+          if(res==='fainted'){ fainted = true; continue; }
+          const delayMs = soundIndex * 90;
+          soundIndex++;
+          if(delayMs===0) playCatchSound(it);
+          else setTimeout(()=> playCatchSound(it), delayMs);
         }
         document.getElementById('mine-gold').textContent = mine.sessionValue;
         hook.attachedGroup=[]; hook.pendingGroup=[];
