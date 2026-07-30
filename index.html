@@ -236,6 +236,17 @@ button{font-family:inherit;cursor:pointer;}
 .lock-toggle.locked{background:var(--gold-dark);color:#3a2200;}
 #wh-empty{color:var(--cream-dim);font-size:17px;padding:30px;text-align:center;}
 
+#stats-list{display:flex;flex-direction:column;gap:8px;}
+.stats-item{
+  display:flex;align-items:center;gap:12px;
+  background:var(--bg-panel);border:2px solid var(--wood-edge2);border-radius:10px;
+  padding:8px 14px;
+}
+.stats-item .icon{width:46px;height:46px;flex:none;}
+.stats-item .stats-name{flex:1;font-size:16.5px;color:var(--cream);}
+.stats-item .stats-count{font-size:17.5px;font-weight:800;color:var(--gold);white-space:nowrap;}
+#stats-empty{color:var(--cream-dim);font-size:17px;padding:30px;text-align:center;}
+
 /* dex */
 .dex-section{margin-bottom:24px;position:relative;}
 .dex-section:last-of-type{margin-bottom:0;}
@@ -260,7 +271,7 @@ button{font-family:inherit;cursor:pointer;}
 .dex-tooltip-note{color:var(--cream-dim);margin-top:4px;font-size:15px;}
 .dex-item{background:var(--bg-panel);border:2px solid var(--wood-edge2);border-radius:10px;padding:8px 6px;text-align:center;position:relative;}
 .dex-item.locked{filter:grayscale(1) brightness(.5);}
-.dex-item .icon{width:51px;height:51px;margin:0 auto 4px;}
+.dex-item .icon{width:77px;height:77px;margin:0 auto 4px;}
 .dex-item .name{font-size:14.5px;color:var(--cream);}
 .dex-item .rar{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;}
 
@@ -379,6 +390,7 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
         <button class="tab-btn" data-tab="shop" id="tab-shop">商店</button>
         <button class="tab-btn" data-tab="warehouse" id="tab-warehouse">仓库</button>
         <button class="tab-btn" data-tab="dex" id="tab-dex">图鉴</button>
+        <button class="tab-btn" data-tab="stats" id="tab-stats">数据</button>
       </div>
       <div id="topbar-right">
         <button id="save-btn" aria-label="保存游戏"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.1716 1C18.702 1 19.2107 1.21071 19.5858 1.58579L22.4142 4.41421C22.7893 4.78929 23 5.29799 23 5.82843V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H18.1716ZM4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21L5 21L5 15C5 13.3431 6.34315 12 8 12L16 12C17.6569 12 19 13.3431 19 15V21H20C20.5523 21 21 20.5523 21 20V6.82843C21 6.29799 20.7893 5.78929 20.4142 5.41421L18.5858 3.58579C18.2107 3.21071 17.702 3 17.1716 3H17V5C17 6.65685 15.6569 8 14 8H10C8.34315 8 7 6.65685 7 5V3H4ZM17 21V15C17 14.4477 16.5523 14 16 14L8 14C7.44772 14 7 14.4477 7 15L7 21L17 21ZM9 3H15V5C15 5.55228 14.5523 6 14 6H10C9.44772 6 9 5.55228 9 5V3Z" fill="currentColor"/></svg></button>
@@ -605,6 +617,7 @@ function freshGame(){
     gold: 0,
     discovered: {},
     inventory: {},
+    caughtTotal: {}, // lifetime catch counts per mineral, never decremented by selling — powers the 数据 tab
     locked: {},
     owned: {},
     timeLevel: 0,
@@ -699,6 +712,7 @@ function applyStaticText(){
   document.getElementById('tab-shop').textContent = t('tab_shop');
   document.getElementById('tab-warehouse').textContent = t('tab_warehouse');
   document.getElementById('tab-dex').textContent = t('tab_dex');
+  document.getElementById('tab-stats').textContent = t('tab_stats');
   document.getElementById('home-exit-btn').setAttribute('aria-label', t('exit'));
   document.getElementById('save-btn').setAttribute('aria-label', t('save_game'));
   document.getElementById('t-total-earn').innerHTML = t('total_earn')+'<br><span class="big" id="mine-gold">'+ (mine?mine.sessionValue:0) +'</span>';
@@ -739,6 +753,7 @@ function renderTab(tab){
   else if(tab==='shop') el.innerHTML = renderShop();
   else if(tab==='warehouse') el.innerHTML = renderWarehouse();
   else if(tab==='dex') el.innerHTML = renderDex();
+  else if(tab==='stats') el.innerHTML = renderStats();
   bindTabEvents(tab);
 }
 
@@ -1067,6 +1082,29 @@ function renderDex(){
   ${sections}${otherSection}
   <div id="dex-tooltip"></div>`;
 }
+// ---------------- STATS TAB ----------------
+// Shows every mineral the player has ever caught, ranked by how many times
+// they've caught it (lifetime count, unaffected by selling — see
+// game.caughtTotal). Purely a read-only leaderboard, no interactions.
+function renderStats(){
+  const totals = game.caughtTotal || {};
+  const names = Object.keys(totals).filter(n=>totals[n]>0);
+  names.sort((a,b)=> totals[b]-totals[a]);
+  if(names.length===0){
+    return `<div class="panel-title">${t('stats_title')}</div><div class="panel-desc">${t('stats_desc')}</div><div id="stats-empty">${t('stats_empty')}</div>`;
+  }
+  const rows = names.map(name=>{
+    const m = MIN_BY_NAME[name];
+    if(!m) return ''; // guard against a stale name from a since-removed mineral
+    return `<div class="stats-item">
+      ${mineralIconHTML(m,46,true)}
+      <div class="stats-name">${minName(m)}</div>
+      <div class="stats-count">×${totals[name]}</div>
+    </div>`;
+  }).join('');
+  return `<div class="panel-title">${t('stats_title')}</div><div class="panel-desc">${t('stats_desc')}</div>
+    <div id="stats-list">${rows}</div>`;
+}
 function showDexTooltip(e, name){
   const found = game.testMode || !!game.discovered[name];
   if(!found) return; // don't spoil undiscovered minerals on hover
@@ -1369,6 +1407,7 @@ function commitItem(item){
   const isFirstEver = !game.discovered[item.name];
   game.discovered[item.name] = true;
   game.inventory[item.name] = (game.inventory[item.name]||0)+1;
+  game.caughtTotal[item.name] = (game.caughtTotal[item.name]||0)+1;
   mine.sessionValue += item.mineral.price;
   if(!mine.caughtLog[item.name]) mine.caughtLog[item.name] = {mineral:item.mineral, count:0, isNew:false};
   mine.caughtLog[item.name].count++;

@@ -10,7 +10,7 @@
 const I18N = {
   zh: {
     title:'矿石收集者', subtitle:'MINE COLLECTOR', newgame:'开始游戏', continue_:'继续游戏', lang:'🌐 语言选择',
-    tab_map:'地图', tab_shop:'商店', tab_warehouse:'仓库', tab_dex:'图鉴', exit:'回到主页',
+    tab_map:'地图', tab_shop:'商店', tab_warehouse:'仓库', tab_dex:'图鉴', tab_stats:'数据', exit:'回到主页', save_game:'保存游戏', stats_title:'数据', stats_desc:'按抓到过的次数从多到少排列，卖掉也不会减少。', stats_empty:'还没抓到过任何矿石，去挖矿吧！',
     map_title:'地形选择', map_desc:'挑选一处地形入场挖矿。解锁新地形需要累计发现足够多的矿物种类。',
     enter:'进入挖矿', free:'免费', locked_need:'累计发现矿物 {n}/{t} 种解锁', need_gear:'需要装备：',
     not_enough_gold:'金币不足',
@@ -51,7 +51,7 @@ const I18N = {
   },
   'zh-TW': {
     title:'礦石收集者', subtitle:'MINE COLLECTOR', newgame:'開始遊戲', continue_:'繼續遊戲', lang:'🌐 語言選擇',
-    tab_map:'地圖', tab_shop:'商店', tab_warehouse:'倉庫', tab_dex:'圖鑑', exit:'回到主頁',
+    tab_map:'地圖', tab_shop:'商店', tab_warehouse:'倉庫', tab_dex:'圖鑑', tab_stats:'數據', exit:'回到主頁', save_game:'保存遊戲', stats_title:'數據', stats_desc:'依抓到過的次數由多到少排列，賣掉也不會減少。', stats_empty:'還沒抓到過任何礦石，去挖礦吧！',
     map_title:'地形選擇', map_desc:'挑選一處地形入場挖礦。解鎖新地形需要累計發現足夠多的礦物種類。',
     enter:'進入挖礦', free:'免費', locked_need:'累計發現礦物 {n}/{t} 種解鎖', need_gear:'需要裝備：',
     not_enough_gold:'金幣不足',
@@ -92,7 +92,7 @@ const I18N = {
   },
   en: {
     title:'Mine Collector', subtitle:'矿石收集者', newgame:'New Game', continue_:'Continue', lang:'🌐 Language',
-    tab_map:'Map', tab_shop:'Shop', tab_warehouse:'Warehouse', tab_dex:'Dex', exit:'Home',
+    tab_map:'Map', tab_shop:'Shop', tab_warehouse:'Warehouse', tab_dex:'Dex', tab_stats:'Stats', exit:'Home', save_game:'Save Game', stats_title:'Stats', stats_desc:'Ranked by how many times you\'ve ever caught each mineral \u2014 selling doesn\'t lower this.', stats_empty:'You haven\'t caught anything yet. Go mine something!',
     map_title:'Choose a Site', map_desc:'Pick a terrain to enter and mine. Unlock new terrains by discovering enough mineral species overall.',
     enter:'Enter Mine', free:'Free', locked_need:'Discover {n}/{t} species to unlock', need_gear:'Requires gear: ',
     not_enough_gold:'Not enough gold',
@@ -133,7 +133,7 @@ const I18N = {
   },
   de: {
     title:'Minensammler', subtitle:'矿石收集者', newgame:'Neues Spiel', continue_:'Fortsetzen', lang:'🌐 Sprache',
-    tab_map:'Karte', tab_shop:'Shop', tab_warehouse:'Lager', tab_dex:'Dex', exit:'Startseite',
+    tab_map:'Karte', tab_shop:'Shop', tab_warehouse:'Lager', tab_dex:'Dex', tab_stats:'Statistik', exit:'Startseite', save_game:'Spiel speichern', stats_title:'Statistik', stats_desc:'Sortiert nach der H\u00e4ufigkeit, mit der du jedes Mineral je gefangen hast \u2014 Verkaufen verringert diesen Wert nicht.', stats_empty:'Du hast noch nichts gefangen. Geh sch\u00fcrfen!',
     map_title:'Gebiet wählen', map_desc:'Wähle ein Gelände zum Schürfen. Neue Gelände werden freigeschaltet, sobald du genug Mineralarten insgesamt entdeckt hast.',
     enter:'Mine betreten', free:'Kostenlos', locked_need:'{n}/{t} Arten entdecken zum Freischalten', need_gear:'Benötigt Ausrüstung: ',
     not_enough_gold:'Nicht genug Gold',
@@ -174,7 +174,7 @@ const I18N = {
   },
   fr: {
     title:'Collectionneur de Mines', subtitle:'矿石收集者', newgame:'Nouvelle partie', continue_:'Continuer', lang:'🌐 Langue',
-    tab_map:'Carte', tab_shop:'Boutique', tab_warehouse:'Entrepôt', tab_dex:'Dex', exit:'Accueil',
+    tab_map:'Carte', tab_shop:'Boutique', tab_warehouse:'Entrepôt', tab_dex:'Dex', tab_stats:'Stats', exit:'Accueil', save_game:'Sauvegarder', stats_title:'Statistiques', stats_desc:'Class\u00e9 selon le nombre de fois o\u00f9 vous avez attrap\u00e9 chaque min\u00e9ral \u2014 la vente ne r\u00e9duit pas ce nombre.', stats_empty:'Vous n\'avez encore rien attrap\u00e9. Allez miner !',
     map_title:'Choisir un site', map_desc:"Choisissez un terrain pour miner. Débloquez de nouveaux terrains en découvrant suffisamment d'espèces de minéraux au total.",
     enter:'Entrer dans la mine', free:'Gratuit', locked_need:'Découvrez {n}/{t} espèces pour débloquer', need_gear:'Équipement requis : ',
     not_enough_gold:'Or insuffisant',
@@ -215,7 +215,7 @@ const I18N = {
   },
   ru: {
     title:'Коллекционер Шахт', subtitle:'矿石收集者', newgame:'Новая игра', continue_:'Продолжить', lang:'🌐 Язык',
-    tab_map:'Карта', tab_shop:'Магазин', tab_warehouse:'Склад', tab_dex:'Дех', exit:'На главную',
+    tab_map:'Карта', tab_shop:'Магазин', tab_warehouse:'Склад', tab_dex:'Дех', tab_stats:'Статистика', exit:'На главную', save_game:'Сохранить игру', stats_title:'Статистика', stats_desc:'Отсортировано по тому, сколько раз вы поймали каждый минерал \u2014 продажа не уменьшает это число.', stats_empty:'Вы пока ничего не поймали. Идите добывать!',
     map_title:'Выбор участка', map_desc:'Выберите местность для добычи. Новые местности открываются по мере обнаружения достаточного числа видов минералов.',
     enter:'Войти в шахту', free:'Бесплатно', locked_need:'Откройте {n}/{t} видов для разблокировки', need_gear:'Необходимо снаряжение: ',
     not_enough_gold:'Недостаточно золота',
@@ -256,7 +256,7 @@ const I18N = {
   },
   ja: {
     title:'マインコレクター', subtitle:'矿石收集者', newgame:'新しく始める', continue_:'続ける', lang:'🌐 言語',
-    tab_map:'マップ', tab_shop:'ショップ', tab_warehouse:'倉庫', tab_dex:'図鑑', exit:'ホームへ',
+    tab_map:'マップ', tab_shop:'ショップ', tab_warehouse:'倉庫', tab_dex:'図鑑', tab_stats:'データ', exit:'ホームへ', save_game:'ゲームを保存', stats_title:'データ', stats_desc:'これまでに捕まえた回数の多い順に並んでいます。売却しても回数は減りません。', stats_empty:'まだ何も捕まえていません。採掘に行きましょう！',
     map_title:'採掘地を選ぶ', map_desc:'採掘する地形を選んでください。累計で十分な種類の鉱物を発見すると新しい地形が解放されます。',
     enter:'採掘へ', free:'無料', locked_need:'鉱物を{n}/{t}種発見で解放', need_gear:'必要装備：',
     not_enough_gold:'ゴールドが足りません',
@@ -297,7 +297,7 @@ const I18N = {
   },
   'pt-BR': {
     title:'Colecionador de Minas', subtitle:'矿石收集者', newgame:'Novo Jogo', continue_:'Continuar', lang:'🌐 Idioma',
-    tab_map:'Mapa', tab_shop:'Loja', tab_warehouse:'Armazém', tab_dex:'Dex', exit:'Início',
+    tab_map:'Mapa', tab_shop:'Loja', tab_warehouse:'Armazém', tab_dex:'Dex', tab_stats:'Estatísticas', exit:'Início', save_game:'Salvar Jogo', stats_title:'Estatísticas', stats_desc:'Classificado por quantas vezes você já capturou cada mineral \u2014 vender não reduz esse número.', stats_empty:'Você ainda não capturou nada. Vá minerar algo!',
     map_title:'Escolher Local', map_desc:'Escolha um terreno para minerar. Desbloqueie novos terrenos descobrindo espécies de minerais suficientes no total.',
     enter:'Entrar na Mina', free:'Grátis', locked_need:'Descubra {n}/{t} espécies para desbloquear', need_gear:'Equipamento necessário: ',
     not_enough_gold:'Ouro insuficiente',
@@ -338,7 +338,7 @@ const I18N = {
   },
   es: {
     title:'Coleccionista de Minas', subtitle:'矿石收集者', newgame:'Nueva Partida', continue_:'Continuar', lang:'🌐 Idioma',
-    tab_map:'Mapa', tab_shop:'Tienda', tab_warehouse:'Almacén', tab_dex:'Dex', exit:'Inicio',
+    tab_map:'Mapa', tab_shop:'Tienda', tab_warehouse:'Almacén', tab_dex:'Dex', tab_stats:'Estadísticas', exit:'Inicio', save_game:'Guardar Partida', stats_title:'Estadísticas', stats_desc:'Ordenado por cuántas veces has capturado cada mineral \u2014 venderlo no reduce este número.', stats_empty:'Aún no has capturado nada. ¡Ve a minar algo!',
     map_title:'Elegir Terreno', map_desc:'Elige un terreno para entrar y minar. Desbloquea nuevos terrenos descubriendo suficientes especies de minerales en total.',
     enter:'Entrar a la Mina', free:'Gratis', locked_need:'Descubre {n}/{t} especies para desbloquear', need_gear:'Equipo requerido: ',
     not_enough_gold:'Oro insuficiente',
@@ -379,7 +379,7 @@ const I18N = {
   },
   ko: {
     title:'마인 컬렉터', subtitle:'矿石收集者', newgame:'새 게임', continue_:'이어하기', lang:'🌐 언어',
-    tab_map:'지도', tab_shop:'상점', tab_warehouse:'창고', tab_dex:'도감', exit:'홈으로',
+    tab_map:'지도', tab_shop:'상점', tab_warehouse:'창고', tab_dex:'도감', tab_stats:'데이터', exit:'홈으로', save_game:'게임 저장', stats_title:'데이터', stats_desc:'지금까지 잡은 횟수가 많은 순으로 정렬됩니다. 판매해도 이 횟수는 줄지 않습니다.', stats_empty:'아직 아무것도 잡지 못했습니다. 채굴하러 가세요!',
     map_title:'지형 선택', map_desc:'채굴할 지형을 선택하세요. 누적으로 충분한 종류의 광물을 발견하면 새로운 지형이 해금됩니다.',
     enter:'채굴 입장', free:'무료', locked_need:'광물 {n}/{t}종 발견 시 해금', need_gear:'필요 장비: ',
     not_enough_gold:'골드가 부족합니다',
