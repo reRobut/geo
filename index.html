@@ -482,6 +482,7 @@ const SOUND_SRC = {
   catchCommon: 'sound/wood.wav',
   catchRareUncommon: 'sound/glass.mp3',   // 稀有/少见
   catchLegendaryEpic: 'sound/metal.wav',  // 传说/史诗
+  mvp: 'sound/mvp.mp3',                   // played once on the results screen if the haul has a new discovery or an epic/legendary
 };
 function playSound(key){
   const src = SOUND_SRC[key];
@@ -1768,6 +1769,12 @@ function finishMining(){
     </div>`;
   }).join('') || `<div style="grid-column:1/-1;text-align:center;color:var(--cream-dim);padding:20px;">--</div>`;
   document.getElementById('mine-result').classList.add('show');
+  // MVP jingle: fires once per results screen if this haul has a brand-new
+  // discovery or an epic/legendary mineral in it. playSound() always spins up
+  // a fresh, independent Audio instance rather than reusing/stopping a shared
+  // one, so this plays out fully no matter what else happens on screen next.
+  const isMvpHaul = names.some(n => log[n].isNew || log[n].mineral.rarity==='史诗' || log[n].mineral.rarity==='传说');
+  if(isMvpHaul) playSound('mvp');
   mine = null;
 }
 
