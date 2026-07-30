@@ -163,8 +163,9 @@ button{font-family:inherit;cursor:pointer;}
 #save-btn,#home-exit-btn{
   display:flex;align-items:center;justify-content:center;
   width:38px;height:38px;background:none;border:1px solid var(--wood-edge2);
-  color:var(--cream-dim);border-radius:8px;font-size:19px;line-height:1;
+  color:var(--cream-dim);border-radius:8px;
 }
+#save-btn svg,#home-exit-btn svg{width:19px;height:19px;display:block;}
 #save-btn:hover,#home-exit-btn:hover{background:rgba(255,255,255,.06);color:var(--cream);}
 #save-btn.saved{color:var(--ok);border-color:var(--ok);}
 #tab-content{flex:1;overflow-y:auto;padding:18px 22px;background:var(--bg-deep);max-width:1040px;width:100%;margin:0 auto;box-sizing:border-box;}
@@ -380,8 +381,8 @@ canvas#mineCanvas{display:block;background:#000;width:100%;height:100%;}
         <button class="tab-btn" data-tab="dex" id="tab-dex">图鉴</button>
       </div>
       <div id="topbar-right">
-        <button id="save-btn" title="保存游戏" aria-label="保存游戏">💾</button>
-        <button id="home-exit-btn" title="回到主页" aria-label="回到主页">🏠</button>
+        <button id="save-btn" aria-label="保存游戏"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.1716 1C18.702 1 19.2107 1.21071 19.5858 1.58579L22.4142 4.41421C22.7893 4.78929 23 5.29799 23 5.82843V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H18.1716ZM4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21L5 21L5 15C5 13.3431 6.34315 12 8 12L16 12C17.6569 12 19 13.3431 19 15V21H20C20.5523 21 21 20.5523 21 20V6.82843C21 6.29799 20.7893 5.78929 20.4142 5.41421L18.5858 3.58579C18.2107 3.21071 17.702 3 17.1716 3H17V5C17 6.65685 15.6569 8 14 8H10C8.34315 8 7 6.65685 7 5V3H4ZM17 21V15C17 14.4477 16.5523 14 16 14L8 14C7.44772 14 7 14.4477 7 15L7 21L17 21ZM9 3H15V5C15 5.55228 14.5523 6 14 6H10C9.44772 6 9 5.55228 9 5V3Z" fill="currentColor"/></svg></button>
+        <button id="home-exit-btn" aria-label="回到主页"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="currentColor"/></svg></button>
       </div>
     </div>
     <div id="tab-content"></div>
@@ -669,10 +670,9 @@ document.getElementById('save-btn').addEventListener('click', ()=>{
   if(!game) return;
   saveGame();
   const btn = document.getElementById('save-btn');
-  btn.textContent = '✅';
   btn.classList.add('saved');
   clearTimeout(saveFlashTimer);
-  saveFlashTimer = setTimeout(()=>{ btn.textContent = '💾'; btn.classList.remove('saved'); }, 900);
+  saveFlashTimer = setTimeout(()=>{ btn.classList.remove('saved'); }, 900);
 });
 document.getElementById('testmode-toggle').addEventListener('click', ()=>{
   testModeEnabled = !testModeEnabled;
@@ -699,9 +699,7 @@ function applyStaticText(){
   document.getElementById('tab-shop').textContent = t('tab_shop');
   document.getElementById('tab-warehouse').textContent = t('tab_warehouse');
   document.getElementById('tab-dex').textContent = t('tab_dex');
-  document.getElementById('home-exit-btn').title = t('exit');
   document.getElementById('home-exit-btn').setAttribute('aria-label', t('exit'));
-  document.getElementById('save-btn').title = t('save_game');
   document.getElementById('save-btn').setAttribute('aria-label', t('save_game'));
   document.getElementById('t-total-earn').innerHTML = t('total_earn')+'<br><span class="big" id="mine-gold">'+ (mine?mine.sessionValue:0) +'</span>';
   document.getElementById('t-remain').innerHTML = t('remain')+'<br><span class="big" id="mine-remain">0/10</span>';
