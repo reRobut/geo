@@ -1500,7 +1500,7 @@ function startMining(terrain){
     }
     return {
       name:m.name, mineral:m, isBase:pick.isBase,
-      x:s.x, y:s.y, r,
+      x:s.x, y:s.y, r, sizeTier,
       weight: pick.isBase?2.8:RARITY_WEIGHT[m.rarity],
       alive:true, carried:false,
       hazardType: HAZARD.includes(m.name),
@@ -2005,8 +2005,65 @@ function drawHook(hook){
   }
   ctx.restore();
 }
+function drawSmallItemGlow(it){
+  // Tiny minerals are easy to miss on a busy screen, so give the "小"/"很小"
+  // size tiers a soft pulsing gold halo plus a few twinkling flecks — reads
+  // as "sparkly and precious" and helps them catch the eye at a glance.
+  if(it.sizeTier!=='小' && it.sizeTier!=='很小') return;
+  const t = performance.now();
+  const seed = (it.x*13.37 + it.y*7.77) % 1000;
+  const pulse = 0.7 + 0.3*Math.sin(t/650 + seed);
+  const glowR = it.r * (2.3 + 0.3*Math.sin(t/900 + seed*0.6));
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  const grad = ctx.createRadialGradient(0,0, it.r*0.15, 0,0, glowR);
+  grad.addColorStop(0, `rgba(255,240,180,${0.55*pulse})`);
+  grad.addColorStop(0.45, `rgba(255,207,73,${0.32*pulse})`);
+  grad.addColorStop(1, 'rgba(255,207,73,0)');
+  ctx.fillStyle = grad;
+  ctx.beginPath(); ctx.arc(0,0,glowR,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+
+  const sparkleCount = 4;
+  for(let i=0;i<sparkleCount;i++){
+    const ang = (i/sparkleCount)*Math.PI*2 + t/1800 + seed;
+    const dist = it.r*1.55 + Math.sin(t/500 + i*2 + seed)*it.r*0.35;
+    const sx = Math.cos(ang)*dist, sy = Math.sin(ang)*dist;
+    const twinkle = 0.35 + 0.65*Math.abs(Math.sin(t/300 + i*1.7 + seed));
+    const s = 2.5 + 2.5*twinkle;
+    ctx.save();
+    ctx.translate(sx,sy); ctx.rotate(ang);
+    ctx.globalAlpha = twinkle;
+    ctx.strokeStyle = '#fff3c4';
+    ctx.lineWidth = 1.3;
+    ctx.beginPath();
+    ctx.moveTo(-s,0); ctx.lineTo(s,0);
+    ctx.moveTo(0,-s); ctx.lineTo(0,s);
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+function getTexSilhouette(tex){
+  // Builds (once, then caches on the image itself) a white cutout matching
+  // the texture's actual alpha shape, so the outline drawn from it hugs the
+  // mineral's real silhouette instead of a generic bounding oval.
+  if(tex._silhouette) return tex._silhouette;
+  const w = tex.naturalWidth || tex.width;
+  const h = tex.naturalHeight || tex.height;
+  if(!w || !h) return null;
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  const cctx = c.getContext('2d');
+  cctx.drawImage(tex,0,0,w,h);
+  cctx.globalCompositeOperation = 'source-in';
+  cctx.fillStyle = '#ffffff';
+  cctx.fillRect(0,0,w,h);
+  tex._silhouette = c;
+  return c;
+}
 function drawItemCanvas(it){
   ctx.save(); ctx.translate(it.x,it.y);
+  drawSmallItemGlow(it);
   // Prefer the real texture (pic/min_xxx.png) if it's been dropped in and has
   // finished loading; otherwise fall back to the procedural shape placeholder.
   const tex = it.mineral ? ASSET['min_'+it.mineral.icon] : null;
@@ -2027,6 +2084,20 @@ function drawItemCanvas(it){
     // texture there is still full width. An ellipse hugs the actual
     // rendered shape so the whole length stays visible.
     ctx.beginPath(); ctx.ellipse(0,0,dw/2,dh/2,0,0,Math.PI*2); ctx.clip();
+    // Trace the art's ACTUAL silhouette (its alpha shape), not the elliptical
+    // clip box — draw a white cutout of the texture offset in a ring of
+    // directions underneath, then the real texture on top. Since real
+    // mineral art is irregular (chunky rock, jagged crystal, etc.), this
+    // hugs its true edges instead of faking a uniform oval outline.
+    const sil = getTexSilhouette(tex);
+    if(sil){
+      const outlinePx = Math.max(1.4, it.r*0.055);
+      const dirs = 12;
+      for(let i=0;i<dirs;i++){
+        const a = (i/dirs)*Math.PI*2;
+        ctx.drawImage(sil, -dw/2+Math.cos(a)*outlinePx, -dh/2+Math.sin(a)*outlinePx, dw, dh);
+      }
+    }
     ctx.drawImage(tex, -dw/2, -dh/2, dw, dh);
     ctx.restore();
   } else {
