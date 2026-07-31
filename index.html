@@ -562,7 +562,7 @@ const RARITY_ORDER = {'普通':0,'少见':1,'稀有':2,'史诗':3,'传说':4};
 const MINERAL_COLOR_OVERRIDE = {'煤':'#242220','石膏':'#f4f1e8','褐煤':'#8b4226','泥煤':'#2b1f16'};
 function mineralColor(m){ return MINERAL_COLOR_OVERRIDE[m.name] || RARITY_COLOR_HEX[m.rarity]; }
 const RARITY_WEIGHT = {'普通':1.6,'少见':1.3,'稀有':1.0,'史诗':0.8,'传说':0.5};
-const RARITY_R = {'普通':16,'少见':18,'稀有':20,'史诗':23,'传说':27};
+const RARITY_R = {'普通':27,'少见':23,'稀有':20,'史诗':18,'传说':16};
 const HAZARD = ['辰砂','铀矿','石棉'];
 
 const FIXED_PROB = {'传说':0.001,'史诗':0.005,'稀有':0.02,'少见':0.06};
@@ -1993,7 +1993,13 @@ function drawItemCanvas(it){
     const scale = Math.min(box/iw, box/ih);
     const dw = iw*scale, dh = ih*scale;
     ctx.save();
-    ctx.beginPath(); ctx.arc(0,0,it.r,0,Math.PI*2); ctx.clip();
+    // Clip to an ellipse that matches the texture's own scaled proportions
+    // (not a fixed circle of radius r) — a circle chops off the tips of
+    // elongated art like long vein-shaped ore, since near the ends of the
+    // long axis a circle's cross-section shrinks toward zero while the
+    // texture there is still full width. An ellipse hugs the actual
+    // rendered shape so the whole length stays visible.
+    ctx.beginPath(); ctx.ellipse(0,0,dw/2,dh/2,0,0,Math.PI*2); ctx.clip();
     ctx.drawImage(tex, -dw/2, -dh/2, dw, dh);
     ctx.restore();
   } else {
