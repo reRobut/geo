@@ -1706,17 +1706,16 @@ function updateMine(dt){
   if(mine.ending) return;
   mine.timeLeft -= dt;
   updateTimerUI();
-  if(mine.timeLeft<=0){
-    // Don't hard-cut the round here: a hook can already be mid-retract with
-    // a mineral caught on it (grabItem already fired, so it's off the field
-    // and mine.remaining is already decremented) but not yet committed —
-    // commitItem only runs once the hook finishes reeling in. Ending
-    // immediately used to strand that catch: it would vanish from the run
-    // without ever being added to the haul/log. Instead, just stop new
-    // throws (see fireHook) and let any hook still carrying something
-    // finish coming home; the actual end is decided further below once
-    // every hook is idle.
+  if(mine.timeLeft<=0 && !mine.ending){
+    // Time running out is a hard cutoff: whatever's still on the hook (even
+    // mid-retract, already grabbed but not yet committed) is lost — this is
+    // intentional, it's the risk of cutting it close on the clock. This is
+    // different from the "ran out of minerals" case below, which does wait
+    // for the last catch to come home since nothing is being raced there.
     mine.timeLeft=0; mine.timeUp=true;
+    mine.ending = true;
+    setTimeout(()=>finishMining(), 120);
+    return;
   }
 
   let fainted = false;
@@ -1839,13 +1838,14 @@ function updateMine(dt){
     return;
   }
 
-  // Both end conditions below must wait for every hook to actually finish
-  // reeling in (empty attachedGroup/pendingGroup) before ending the round.
-  // grabItem() decrements mine.remaining the instant something is caught —
-  // well before it's reeled in and committed via commitItem — so if that
-  // catch happened to be the last item on the field, remaining hits 0 while
-  // the claw is still mid-retract. Ending right then used to strand that
-  // catch: the round would finish before it was ever added to the haul.
+  // Only the "ran out of minerals" case needs to wait for the last catch to
+  // come home before ending — grabItem() decrements mine.remaining the
+  // instant something is caught, well before it's reeled in and committed
+  // via commitItem, so if that catch happened to be the last item on the
+  // field, remaining hits 0 while the claw is still mid-retract. Ending
+  // right then used to strand that catch: the round would finish before it
+  // was ever added to the haul. (The time-up case above is a deliberate
+  // hard cutoff instead — see the comment there.)
   const hooksIdle = mine.hooks.every(h =>
     (!h.attachedGroup || h.attachedGroup.length===0) &&
     (!h.pendingGroup || h.pendingGroup.length===0)
@@ -1854,14 +1854,6 @@ function updateMine(dt){
   if(mine.remaining<=0 && !mine.ending && hooksIdle){
     mine.ending = true;
     setTimeout(()=>finishMining(), 260);
-  }
-
-  if(mine.timeUp && !mine.ending){
-    const allIdle = mine.hooks.every(h => h.state==='swing') && hooksIdle;
-    if(allIdle){
-      mine.ending = true;
-      setTimeout(()=>finishMining(), 120);
-    }
   }
 
   for(const p of popups){ p.y -= 28*dt; p.life -= dt; }
